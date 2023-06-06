@@ -90,7 +90,7 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(Estudiante.getInstanciaSingleton() != null){
+        if(Estudiante.getInstanciaSingleton() != null ){
             btnRechazar.setVisible(false);
             btnValidar.setVisible(false);
         }else if(Academico.getInstanciaSingleton() != null && 
@@ -128,6 +128,10 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
         lbProyectoInvestigacion.setText(anteproyectoDetalles.getProyectoInvestigacion());
         lbRequisitos.setText(anteproyectoDetalles.getRequisitos());
         lbResultadosEsperados.setText(anteproyectoDetalles.getResultadosEsperados());
+        if("Disponible".equals(anteproyectoDetalles.getEstado())){
+            btnRechazar.setVisible(false);
+            btnValidar.setVisible(false);
+        }
     }
 
     @FXML
