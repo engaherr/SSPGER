@@ -67,7 +67,6 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
     
     private ObservableList<Anteproyecto> anteproyectos;
     private FilteredList<Anteproyecto> filtradoAnteproyectos;
-    private Button btnVerAnteproyectos; 
     @FXML
     private Label lbTitulo;
     
@@ -101,7 +100,11 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
         
         if(Academico.getInstanciaSingleton() == null || 
                 !Academico.getInstanciaSingleton().isEsResponsableCA())
-            btnVerAnteproyectos.setVisible(false);
+            btnVerPostulados.setVisible(false);
+        if(Academico.getInstanciaSingleton() == null){
+            btnVerMisAnteproyectos.setVisible(false);
+            btnVerPublicados.setVisible(false);
+        }
     }
 
     @FXML
