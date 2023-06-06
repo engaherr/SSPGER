@@ -9,6 +9,7 @@ package javafxsspger.modelo.pojo;
  * @author kikga
  */
 public class Estudiante extends Usuario {
+    private static Estudiante instanciaSingleton;
     private int idEstudiante;
     private String matricula;
 
@@ -19,6 +20,14 @@ public class Estudiante extends Usuario {
         super(email, password, nombre, apellidoPaterno, apellidoMaterno, foto);
         this.idEstudiante = idEstudiante;
         this.matricula = matricula;
+    }
+
+    public static Estudiante getInstanciaSingleton() {
+        return instanciaSingleton;
+    }
+
+    public static void setInstanciaSingleton(Estudiante instanciaSingleton) {
+        Estudiante.instanciaSingleton = instanciaSingleton;
     }
 
     public String getMatricula() {

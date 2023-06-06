@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafxsspger.modelo.ConexionBD;
 import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.AnteproyectoRespuesta;
@@ -21,7 +19,7 @@ import javafxsspger.utils.Constantes;
  * @author kikga
  */
 public class AnteproyectoDAO {
-    /*public static void obtenerAnteproyectosDisponibles(){
+    public static AnteproyectoRespuesta obtenerInformacionAnteproyectos(){
         AnteproyectoRespuesta respuesta = new AnteproyectoRespuesta();
         respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
         Connection conexionBD = ConexionBD.abrirConexionBD();
@@ -32,25 +30,60 @@ public class AnteproyectoDAO {
                         + "duracionAproximada,nombreTrabajo,requisitos,alumnosParticipantes,"
                         + "descripcionProyectoInvestigacion,descripcionTrabajoRecepcional," 
                         + "resultadosEsperados,bibliografiaRecomendada,comentarios,atp.idEstadoATP,"
-                        + "idDirector,ca.nombre,´mod´.modalidad,concat(acad.nombre+\" \"+"
-                        + "acad.apellidoPaterno+\" \"+acad.apellidoMaterno) as \"Director\", "
-                        + "estado.estado, atp.idLgac, lgac.nombre from anteproyecto atp"
-                        + "inner join academico acad on idAcademico = idDirector" 
-                        + "inner join modalidad ´mod´ on ´mod´.idModalidad = atp.idModalidad" 
-                        + "inner join estadoATP estado on estado.idEstadoATP = atp.idEstadoATP" 
-                        + "inner join cuerpoacademico ca on ca.idCuerpoAcademico=atp.idCuerpoAcademico" 
-                        + "inner join lgac on atp.idLgac = lgac.idLgac"
-                        + "where ´mod´.modalidad = \"Disponible\";";
+                        + "idDirector,ca.nombre as nombreCA,´mod´.modalidad,concat(acad.nombre,' ',"
+                        + "acad.apellidoPaterno,' ',acad.apellidoMaterno) as 'director', "
+                        + "estado.estado, atp.idLgac, lgac.nombre as nombreLgac "
+                        + "from anteproyecto atp "
+                        + "inner join academico acad on idAcademico = idDirector " 
+                        + "inner join modalidad ´mod´ on ´mod´.idModalidad = atp.idModalidad " 
+                        + "inner join estadoATP estado on estado.idEstadoATP = atp.idEstadoATP " 
+                        + "inner join cuerpoacademico ca on "
+                        + "ca.idCuerpoAcademico=atp.idCuerpoAcademico " 
+                        + "inner join lgac on atp.idLgac = lgac.idLgac ";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararSentencia.executeQuery();
                 ArrayList<Anteproyecto> anteproyectosConsulta = new ArrayList();
                 while(resultado.next()){
-                    Anteproyecto
+                    Anteproyecto anteproyecto = new Anteproyecto();
+                    anteproyecto.setIdAnteproyecto(resultado.getInt("idAnteproyecto"));
+                    anteproyecto.setBibliografiaRecomendada(
+                            resultado.getString("bibliografiaRecomendada"));
+                    anteproyecto.setDescripcionProyectoInvestigacion(
+                            resultado.getString("descripcionProyectoInvestigacion"));
+                    anteproyecto.setDescripcionTrabajoRecepcional(
+                            resultado.getString("descripcionTrabajoRecepcional"));
+                    anteproyecto.setEstado(resultado.getString("estado"));
+                    anteproyecto.setIdCuerpoAcademico(resultado.getInt("idCuerpoAcademico"));
+                    anteproyecto.setIdDirector(resultado.getInt("idDirector"));
+                    anteproyecto.setIdEstadoATP(resultado.getInt("idEstadoATP"));
+                    anteproyecto.setIdLgac(resultado.getInt("idLgac"));
+                    anteproyecto.setIdModalidad(resultado.getInt("idModalidad"));
+                    anteproyecto.setLineaInvestigacion(resultado.getString("lineaInvestigacion"));
+                    anteproyecto.setMesesDuracionAproximada(resultado.getInt("duracionAproximada"));
+                    anteproyecto.setModalidad(resultado.getString("modalidad"));
+                    anteproyecto.setNombreCA(resultado.getString("nombreCA"));
+                    anteproyecto.setNombreDirector(resultado.getString("director"));
+                    anteproyecto.setNombreLgac(resultado.getString("nombreLgac"));
+                    anteproyecto.setNombreTrabajo(resultado.getString("nombreTrabajo"));
+                    anteproyecto.setNumAlumnosParticipantes(
+                            resultado.getInt("alumnosParticipantes"));
+                    anteproyecto.setProyectoInvestigacion(
+                            resultado.getString("proyectoInvestigacion"));
+                    anteproyecto.setRequisitos(resultado.getString("requisitos"));
+                    anteproyecto.setResultadosEsperados(resultado.getString("resultadosEsperados"));
+                    anteproyectosConsulta.add(anteproyecto);
                 }
-            } catch (Exception e) {
+                respuesta.setAnteproyectos(anteproyectosConsulta);
+                conexionBD.close();
+            } catch (SQLException e) {
+                respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
             }
+        }else{
+            respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
         }
-    }*///TODO
+        return respuesta;
+    }
+    
     public static int guardarAnteproyecto(Anteproyecto anteproyectoNuevo){
         int respuesta;
         Connection conexionBD = ConexionBD.abrirConexionBD();

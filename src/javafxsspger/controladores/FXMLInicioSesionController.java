@@ -98,11 +98,13 @@ public class FXMLInicioSesionController implements Initializable {
                         Utilidades.mostrarDialogoSimple("Estudiante verificado",
                                 "Bienvenid@ " + estudianteRespuesta.toString() + " al sistema...", 
                                 Alert.AlertType.INFORMATION);
+                        Estudiante.setInstanciaSingleton(estudianteRespuesta);
                         irPantallaPrincipal(esAcademico);
                     }else if(academicoRespuesta != null && academicoRespuesta.getIdAcademico() > 0){
                         Utilidades.mostrarDialogoSimple("Academico verificado",
                                 "Bienvenido " + academicoRespuesta.toString() + " al sistema", 
                                 Alert.AlertType.INFORMATION);
+                        Academico.setInstanciaSingleton(academicoRespuesta);
                         irPantallaPrincipal(esAcademico = true);
                     }else{
                         Utilidades.mostrarDialogoSimple("Credenciales incorrectas", 
@@ -120,12 +122,8 @@ public class FXMLInicioSesionController implements Initializable {
 
     private void irPantallaPrincipal(boolean esAcademico) {
         Stage escenarioBase = (Stage) tfContraseña.getScene().getWindow();
-        if(esAcademico)
-            escenarioBase.setScene(Utilidades.inicializaEscena(
-                    "vistas/FXMLMenuPrincipalAcademico.fxml"));
-        else
-            escenarioBase.setScene(Utilidades.inicializaEscena(
-                    "vistas/FXMLMenuPrincipalEstudiante.fxml"));
+        escenarioBase.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLPrincipal.fxml"));
         escenarioBase.setTitle("Menú Principal");
         escenarioBase.show();
     }

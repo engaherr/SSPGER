@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafxsspger.JavaFXSSPGER;
@@ -23,7 +24,7 @@ import javafxsspger.utils.Utilidades;
  *
  * @author kikga
  */
-public class FXMLMenuPrincipalAcademicoController implements Initializable {
+public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private Pane menu;
@@ -43,10 +44,6 @@ public class FXMLMenuPrincipalAcademicoController implements Initializable {
             actualizaEstadoMenu(-255, false, "recursos/menu.png");
         else
             actualizaEstadoMenu(255, true, "recursos/close.png");
-    }
-
-    @FXML
-    private void clicIrAdminAlumnos(MouseEvent event) {
     }
     
     private void actualizaEstadoMenu(int posicion, boolean abierto, String icono){
@@ -70,5 +67,16 @@ public class FXMLMenuPrincipalAcademicoController implements Initializable {
         escenarioPrincipal.setScene(Utilidades.inicializaEscena("vistas/FXMLInicioSesion.fxml"));
         escenarioPrincipal.setTitle("Iniciar sesión");
         escenarioPrincipal.show();
+    }
+
+    @FXML
+    private void clicIrAnteproyectos(MouseEvent event) {
+        actualizaEstadoMenu(-255, false, "recursos/menu.png");
+        Stage escenarioAnteproyectos = new Stage();
+        escenarioAnteproyectos.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAnteproyectos.fxml"));
+        escenarioAnteproyectos.setTitle("Anteproyectos");
+        escenarioAnteproyectos.initModality(Modality.APPLICATION_MODAL);
+        escenarioAnteproyectos.showAndWait();
     }
 }

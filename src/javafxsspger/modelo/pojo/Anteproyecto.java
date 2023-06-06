@@ -16,6 +16,7 @@ public class Anteproyecto {
     private String lineaInvestigacion;
     private int mesesDuracionAproximada;
     private String nombreTrabajo;
+    private String gradoDirector;
     private String requisitos;
     private int numAlumnosParticipantes;
     private String descripcionProyectoInvestigacion;
@@ -74,6 +75,14 @@ public class Anteproyecto {
 
     public int getIdModalidad() {
         return idModalidad;
+    }
+
+    public String getGradoDirector() {
+        return gradoDirector;
+    }
+
+    public void setGradoDirector(String gradoDirector) {
+        this.gradoDirector = gradoDirector;
     }
 
     public void setIdModalidad(int idModalidad) {

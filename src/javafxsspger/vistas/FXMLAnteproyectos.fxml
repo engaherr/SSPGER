@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLAnteproyectoController">
+   <children>
+      <Pane prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="14.0" layoutY="11.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="89.0" layoutY="17.0" text="Anteproyectos Publicados" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tvAnteproyectos" layoutX="28.0" layoutY="160.0" prefHeight="487.0" prefWidth="1121.0">
+         <columns>
+            <TableColumn fx:id="colNombre" prefWidth="569.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="colDirector" prefWidth="200.0" text="Director" />
+            <TableColumn fx:id="colAlumnosMaximos" prefWidth="72.0" text="Alum. Máx." />
+            <TableColumn fx:id="colDuracion" prefWidth="98.0" text="Duración Aprox." />
+            <TableColumn fx:id="colModalidad" prefWidth="96.0" text="Modalidad" />
+            <TableColumn fx:id="colEstado" prefWidth="85.0" text="Estado" />
+         </columns>
+      </TableView>
+      <TextField fx:id="tfBusqueda" layoutX="28.0" layoutY="97.0" prefHeight="27.0" prefWidth="324.0" promptText="Buscar Anteproyecto..." />
+   </children>
+</AnchorPane>
