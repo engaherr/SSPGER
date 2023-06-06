@@ -132,12 +132,6 @@
                   <Font name="Microsoft JhengHei UI Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbComentarios" layoutX="18.0" layoutY="1564.0" text="Comentarios y Sugerencias" visible="false">
-               <font>
-                  <Font name="Roboto Regular" size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tfComentarios" layoutX="17.0" layoutY="1600.0" prefHeight="104.0" prefWidth="1134.0" visible="false" />
             <Button fx:id="btnValidar" layoutX="1072.0" layoutY="1719.0" mnemonicParsing="false" onAction="#clicValidarAnteproyecto" style="-fx-background-color: #00529E;" text="Validar" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei UI Bold" size="14.0" />
@@ -203,6 +197,27 @@
                   <Font name="Microsoft JhengHei UI" size="14.0" />
                </font>
             </Label>
+            <Button fx:id="btnAceptar" disable="true" layoutX="1072.0" layoutY="1719.0" mnemonicParsing="false" onAction="#clicAceptarRechazo" style="-fx-background-color: #00529E;" text="Aceptar" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCancelar" disable="true" layoutX="949.0" layoutY="1719.0" mnemonicParsing="false" onAction="#clicCancelarRechazo" style="-fx-background-color: #F25d58;" text="Cancelar" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="lbErrorComentarios" layoutX="406.0" layoutY="1711.0" text="Campo vacío, por favor ingrese un texto e inténtelo de nuevo." textFill="RED" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbComentarios" layoutX="18.0" layoutY="1564.0" text="Comentarios y Sugerencias" visible="false">
+               <font>
+                  <Font name="Roboto Regular" size="25.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taComentarios" layoutX="10.0" layoutY="1610.0" prefHeight="101.0" prefWidth="1139.0" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
    </content>

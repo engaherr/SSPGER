@@ -33,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
+import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.AnteproyectoDAO;
 import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Anteproyecto;
@@ -45,7 +46,7 @@ import javafxsspger.utils.Utilidades;
  *
  * @author kikga
  */
-public class FXMLAnteproyectoController implements Initializable {
+public class FXMLAnteproyectoController implements Initializable, INotificacionOperacion {
 
     @FXML
     private TableView<Anteproyecto> tvAnteproyectos;
@@ -66,20 +67,24 @@ public class FXMLAnteproyectoController implements Initializable {
     
     private ObservableList<Anteproyecto> anteproyectos;
     private FilteredList<Anteproyecto> filtradoAnteproyectos;
-    @FXML
     private Button btnVerAnteproyectos; 
     @FXML
     private Label lbTitulo;
     
     private boolean verPostulados;
+    @FXML
+    private Button btnVerPostulados;
+    @FXML
+    private Button btnVerPublicados;
+    @FXML
+    private Button btnVerMisAnteproyectos;
+    @FXML
+    private Button btnCrearAnteproyecto;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tvAnteproyectos.setPlaceholder(
-                new Label("Por el momento no hay Anteproyectos disponibles..."
-                        + " Intente realizando una búsqueda"));
         tvAnteproyectos.setRowFactory(tableView -> {
             TableRow<Anteproyecto> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -209,7 +214,7 @@ public class FXMLAnteproyectoController implements Initializable {
                     JavaFXSSPGER.class.getResource("vistas/FXMLAnteproyectoDetalles.fxml"));
             Parent vista = accesoControlador.load();
             FXMLAnteproyectoDetallesController detalles = accesoControlador.getController();
-            detalles.inicializarInformacionDetalles(anteproyecto);
+            detalles.inicializarInformacionDetalles(anteproyecto, this);
             
             Stage escenarioDetalles = new Stage();
             escenarioDetalles.setScene(new Scene(vista));
@@ -220,21 +225,54 @@ public class FXMLAnteproyectoController implements Initializable {
         }
     }
 
+    @Override
+    public void notificarOperacionGuardar() {
+        cargarInformacionTabla("Disponible");
+    }
+
+    @Override
+    public void notificarOperacionActualizar() {
+        cargarInformacionTabla("Postulado");
+    }
+
     @FXML
-    private void clicSwitchAnteproyectos(ActionEvent event) {
-        if(verPostulados){
-            cargarInformacionTabla("Disponible");
-            btnVerAnteproyectos.setText("Ver Anteproyectos Postulados");
-            tfBusqueda.setVisible(true);
-            verPostulados = false;
-            lbTitulo.setText("Anteproyectos Publicados");
-        }else{
-            cargarInformacionTabla("Postulado");
-            btnVerAnteproyectos.setText("Ver Anteproyectos Publicados");
-            tfBusqueda.setVisible(false);
-            verPostulados = true;
-            lbTitulo.setText("Anteproyectos Postulados");
-        }
+    private void clicVerAnteproyectosPostulados(ActionEvent event) {
+        btnCrearAnteproyecto.setDisable(true);
+        btnCrearAnteproyecto.setVisible(false);
+        btnVerMisAnteproyectos.setDisable(false);
+        btnVerPublicados.setDisable(false);
+        cargarInformacionTabla("Postulado");
+        btnVerPostulados.setDisable(true);
+        tfBusqueda.setVisible(false);
+        lbTitulo.setText("Anteproyectos Postulados");
+    }
+
+    @FXML
+    private void clicVerAnteproyectosPublicados(ActionEvent event) {
+        btnCrearAnteproyecto.setVisible(false);
+        btnCrearAnteproyecto.setDisable(true);
+        btnVerPostulados.setDisable(false);
+        btnVerMisAnteproyectos.setDisable(false);
+        cargarInformacionTabla("Disponible");
+        btnVerPublicados.setDisable(true);
+        tfBusqueda.setVisible(true);
+        lbTitulo.setText("Anteproyectos Publicados");
+    }
+
+    @FXML
+    private void clicVerMisAnteproyectos(ActionEvent event) {
+        btnVerMisAnteproyectos.setDisable(false);
+        btnVerPublicados.setDisable(false);
+        btnVerMisAnteproyectos.setDisable(true);
+        cargarInformacionTabla("Borrador");
+        tfBusqueda.setVisible(false);
+        btnCrearAnteproyecto.setVisible(true);
+        btnCrearAnteproyecto.setDisable(false);
+        lbTitulo.setText("Mis Anteproyectos");
+    }
+
+    @FXML
+    private void clicCrearAnteproyecto(ActionEvent event) {
     }
 }
 

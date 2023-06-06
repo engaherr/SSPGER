@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafxsspger.modelo.ConexionBD;
 import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.AnteproyectoRespuesta;
@@ -25,7 +27,7 @@ public class AnteproyectoDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try {
-                String consulta = "select atp.idAnteproyecto, atp.idModalidad, "
+                String consulta = "select atp.idAnteproyecto, atp.idModalidad, codirectores,"
                         + "atp.idCuerpoAcademico,proyectoInvestigacion,lineaInvestigacion,"
                         + "duracionAproximada,nombreTrabajo,requisitos,alumnosParticipantes,"
                         + "descripcionProyectoInvestigacion,descripcionTrabajoRecepcional," 
@@ -70,6 +72,7 @@ public class AnteproyectoDAO {
                     anteproyecto.setProyectoInvestigacion(
                             resultado.getString("proyectoInvestigacion"));
                     anteproyecto.setRequisitos(resultado.getString("requisitos"));
+                    anteproyecto.setCodirectores(resultado.getString("codirectores"));
                     anteproyecto.setResultadosEsperados(resultado.getString("resultadosEsperados"));
                     anteproyectosConsulta.add(anteproyecto);
                 }
@@ -122,6 +125,48 @@ public class AnteproyectoDAO {
         }else{
             respuesta = Constantes.ERROR_CONEXION;
         }
+        return respuesta;
+    }
+    
+    public static int modificarAnteproyecto(Anteproyecto anteproyectoEdicion){
+        int respuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String sentencia = "UPDATE anteproyecto SET idModalidad = ?,idCuerpoAcademico = ?,"
+                        + "proyectoInvestigacion = ?,lineaInvestigacion = ?,duracionAproximada = ?,"
+                        + "nombreTrabajo = ?,requisitos = ?,alumnosParticipantes = ?,"
+                        + "descripcionProyectoInvestigacion = ?,descripcionTrabajoRecepcional = ?,"
+                        + "resultadosEsperados = ?,bibliografiaRecomendada = ?,comentarios = ?,"
+                        + "idEstadoATP = ?,idLgac = ?,codirectores = ? where idAnteproyecto = ?;";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, anteproyectoEdicion.getIdModalidad());
+                prepararSentencia.setInt(2, anteproyectoEdicion.getIdCuerpoAcademico());
+                prepararSentencia.setString(3, anteproyectoEdicion.getProyectoInvestigacion());
+                prepararSentencia.setString(4, anteproyectoEdicion.getLineaInvestigacion());
+                prepararSentencia.setInt(5, anteproyectoEdicion.getMesesDuracionAproximada());
+                prepararSentencia.setString(6, anteproyectoEdicion.getNombreTrabajo());
+                prepararSentencia.setString(7, anteproyectoEdicion.getRequisitos());
+                prepararSentencia.setInt(8, anteproyectoEdicion.getNumAlumnosParticipantes());
+                prepararSentencia.setString(9,
+                        anteproyectoEdicion.getDescripcionProyectoInvestigacion());
+                prepararSentencia.setString(10, anteproyectoEdicion.getDescripcionTrabajoRecepcional());
+                prepararSentencia.setString(11, anteproyectoEdicion.getResultadosEsperados());
+                prepararSentencia.setString(12, anteproyectoEdicion.getBibliografiaRecomendada());
+                prepararSentencia.setString(13, anteproyectoEdicion.getComentarios());
+                prepararSentencia.setInt(14, anteproyectoEdicion.getIdEstadoATP());
+                prepararSentencia.setInt(15, anteproyectoEdicion.getIdLgac());
+                prepararSentencia.setString(16, anteproyectoEdicion.getCodirectores());
+                prepararSentencia.setInt(17, anteproyectoEdicion.getIdAnteproyecto());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
+                conexionBD.close();
+            } catch (SQLException ex) {
+                respuesta = Constantes.ERROR_CONSULTA;
+            }
+        }else
+            respuesta = Constantes.ERROR_CONEXION;
         return respuesta;
     }
 }

@@ -5,10 +5,12 @@
 package javafxsspger.utils;
 
 import java.io.IOException;
+import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafxsspger.JavaFXSSPGER;
 
 /**
@@ -33,5 +35,14 @@ public class Utilidades {
             System.err.println("Error: "+ex.getMessage());
         }
         return escena;
+    }
+    
+    public static boolean mostrarDialogoConfirmacion(String titulo, String mensaje){
+        Alert alertaConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        alertaConfirmacion.setTitle(titulo);
+        alertaConfirmacion.setHeaderText(null);
+        alertaConfirmacion.setContentText(mensaje);
+        Optional<ButtonType> botonClic = alertaConfirmacion.showAndWait();
+        return (botonClic.get() == ButtonType.OK);
     }
 }

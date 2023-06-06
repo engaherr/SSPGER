@@ -29,8 +29,7 @@ public class Anteproyecto {
     private String nombreCA;
     private String modalidad;
     private String nombreDirector;
-    private String[] codirectores;
-    private int[] idCodirectores;
+    private String codirectores;
     private String estado;
     private int idLgac;
     private String nombreLgac;
@@ -38,7 +37,14 @@ public class Anteproyecto {
     public Anteproyecto() {
     }
 
-    public Anteproyecto(int idAnteproyecto, int idModalidad, int idCuerpoAcademico, String proyectoInvestigacion, String lineaInvestigacion, int mesesDuracionAproximada, String nombreTrabajo, String requisitos, int numAlumnosParticipantes, String descripcionProyectoInvestigacion, String descripcionTrabajoRecepcional, String resultadosEsperados, String bibliografiaRecomendada, String comentarios, int idEstadoATP, int idDirector, String nombreCA, String modalidad, String nombreDirector, String[] codirectores, int[] idCodirectores, String estado, int idLgac, String nombreLgac) {
+    public Anteproyecto(int idAnteproyecto, int idModalidad, int idCuerpoAcademico, 
+            String proyectoInvestigacion, String lineaInvestigacion, int mesesDuracionAproximada,
+            String nombreTrabajo, String requisitos, int numAlumnosParticipantes, 
+            String descripcionProyectoInvestigacion, String descripcionTrabajoRecepcional, 
+            String resultadosEsperados, String bibliografiaRecomendada, String comentarios, 
+            int idEstadoATP, int idDirector, String nombreCA, String modalidad, 
+            String nombreDirector, String codirectores, 
+            String estado, int idLgac, String nombreLgac) {
         this.idAnteproyecto = idAnteproyecto;
         this.idModalidad = idModalidad;
         this.idCuerpoAcademico = idCuerpoAcademico;
@@ -59,7 +65,6 @@ public class Anteproyecto {
         this.modalidad = modalidad;
         this.nombreDirector = nombreDirector;
         this.codirectores = codirectores;
-        this.idCodirectores = idCodirectores;
         this.estado = estado;
         this.idLgac = idLgac;
         this.nombreLgac = nombreLgac;
@@ -225,20 +230,12 @@ public class Anteproyecto {
         this.nombreDirector = nombreDirector;
     }
 
-    public String[] getCodirectores() {
+    public String getCodirectores() {
         return codirectores;
     }
 
-    public void setCodirectores(String[] codirectores) {
+    public void setCodirectores(String codirectores) {
         this.codirectores = codirectores;
-    }
-
-    public int[] getIdCodirectores() {
-        return idCodirectores;
-    }
-
-    public void setIdCodirectores(int[] idCodirectores) {
-        this.idCodirectores = idCodirectores;
     }
 
     public String getEstado() {
