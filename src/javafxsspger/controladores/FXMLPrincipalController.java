@@ -17,6 +17,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafxsspger.JavaFXSSPGER;
+import javafxsspger.modelo.pojo.Academico;
+import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Utilidades;
 
 /**
@@ -67,6 +69,8 @@ public class FXMLPrincipalController implements Initializable {
         escenarioPrincipal.setScene(Utilidades.inicializaEscena("vistas/FXMLInicioSesion.fxml"));
         escenarioPrincipal.setTitle("Iniciar sesión");
         escenarioPrincipal.show();
+        Academico.setInstanciaSingleton(null);
+        Estudiante.setInstanciaSingleton(null);
     }
 
     @FXML

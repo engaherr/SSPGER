@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafxsspger.modelo.ConexionBD;
 import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
@@ -25,12 +23,11 @@ public class SesionDAO {
         Connection conexion = ConexionBD.abrirConexionBD();
         if(conexion != null){
             try {
-                String consulta = "select * from academico where noPersonal = ? and password = ?";
+                String consulta = "select * from academico where noPersonal = ? and password = ?;";
                 PreparedStatement prepararSentencia = conexion.prepareStatement(consulta);
                 prepararSentencia.setString(1, usuario);
                 prepararSentencia.setString(2, password);
                 ResultSet resultado = prepararSentencia.executeQuery();
-                academicoVerificado.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
                 if(resultado.next()){
                     academicoVerificado.setIdAcademico(resultado.getInt("idAcademico"));
                     academicoVerificado.setNombre(resultado.getString("nombre"));
@@ -41,6 +38,8 @@ public class SesionDAO {
                     academicoVerificado.setEsAdmin(resultado.getBoolean("esAdmin"));
                     academicoVerificado.setFoto(resultado.getBytes("foto"));
                     academicoVerificado.setNoPersonal(resultado.getInt("noPersonal"));
+                    academicoVerificado.setCodigoRespuesta(
+                    verificarRolAcademico(academicoVerificado, conexion));
                 }
                 conexion.close();
             } catch (SQLException ex) {
@@ -82,4 +81,35 @@ public class SesionDAO {
         }
         return estudianteVerificado;
     }
+
+    private static int verificarRolAcademico(Academico academicoVerificado, Connection conexionBD){
+        int respuesta = Constantes.OPERACION_EXITOSA;
+        try {
+            String consulta = "select count(*) as numAnteproyectos "
+                    + "from anteproyecto where idDirector = ?";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setInt(1, academicoVerificado.getIdAcademico());
+            ResultSet resultado = prepararSentencia.executeQuery();
+            if(resultado.next()){
+                int numAnteproyectos = resultado.getInt("numAnteproyectos");
+                
+                if(numAnteproyectos > 0)
+                    academicoVerificado.setEsDirector(true);
+            }
+            String consulta1 = "select idCuerpoAcademico "
+                    + "from cuerpoacademico where idResponsable = ?";
+            PreparedStatement prepararSentencia1 = conexionBD.prepareStatement(consulta1);
+            prepararSentencia1.setInt(1, academicoVerificado.getIdAcademico());
+            ResultSet resultado1 = prepararSentencia1.executeQuery();
+            if(resultado1.next()){
+                int idCAResponsable = resultado1.getInt("idCuerpoAcademico");
+                academicoVerificado.setIdCAResponsable(idCAResponsable);
+                academicoVerificado.setEsResponsableCA(true);
+            }
+        } catch (SQLException ex) {
+            respuesta = Constantes.ERROR_CONSULTA;
+        }
+        return respuesta;
+    }
+
 }

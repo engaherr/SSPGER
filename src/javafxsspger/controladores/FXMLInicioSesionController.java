@@ -99,33 +99,32 @@ public class FXMLInicioSesionController implements Initializable {
                                 "Bienvenid@ " + estudianteRespuesta.toString() + " al sistema...", 
                                 Alert.AlertType.INFORMATION);
                         Estudiante.setInstanciaSingleton(estudianteRespuesta);
-                        irPantallaPrincipal(esAcademico);
+                        irPantallaPrincipal();
                     }else if(academicoRespuesta != null && academicoRespuesta.getIdAcademico() > 0){
                         Utilidades.mostrarDialogoSimple("Academico verificado",
-                                "Bienvenido " + academicoRespuesta.toString() + " al sistema", 
+                                "Bienvenid@ " + academicoRespuesta.toString() + " al sistema...", 
                                 Alert.AlertType.INFORMATION);
                         Academico.setInstanciaSingleton(academicoRespuesta);
-                        irPantallaPrincipal(esAcademico = true);
+                        irPantallaPrincipal();
                     }else{
                         Utilidades.mostrarDialogoSimple("Credenciales incorrectas", 
-                                "El usuario y/o contraseñas son incorrectas, por favor veriifque "
+                                "El usuario y/o contraseñas son incorrectas, por favor verifique "
                                         + "la información", Alert.AlertType.WARNING);
                     }
                     break;
                 default:
-                    Utilidades.mostrarDialogoSimple("Error de petición",
-                            "El sistema no está disponible por el momento...",
-                            Alert.AlertType.ERROR);
+                    Utilidades.mostrarDialogoSimple("Credenciales incorrectas", 
+                                "El usuario y/o contraseñas son incorrectas, por favor verifique "
+                                        + "la información", Alert.AlertType.WARNING);
             }
         }
     }
 
-    private void irPantallaPrincipal(boolean esAcademico) {
+    private void irPantallaPrincipal() {
         Stage escenarioBase = (Stage) tfContraseña.getScene().getWindow();
         escenarioBase.setScene(Utilidades.inicializaEscena(
                 "vistas/FXMLPrincipal.fxml"));
         escenarioBase.setTitle("Menú Principal");
         escenarioBase.show();
     }
-    
 }

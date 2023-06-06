@@ -15,6 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.Estudiante;
 
@@ -76,6 +77,10 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(Estudiante.getInstanciaSingleton() != null){
+            btnRechazar.setVisible(false);
+            btnValidar.setVisible(false);
+        }else if(Academico.getInstanciaSingleton() != null && 
+                !Academico.getInstanciaSingleton().isEsResponsableCA()){
             btnRechazar.setVisible(false);
             btnValidar.setVisible(false);
         }
