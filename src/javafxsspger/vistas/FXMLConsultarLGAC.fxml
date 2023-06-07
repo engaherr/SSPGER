@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLConsultarLGACController">
+   <children>
+      <Pane layoutX="-1.0" prefHeight="69.0" prefWidth="807.0" style="-fx-background-color: #00529E;">
+         <children>
+            <Label fx:id="lbNombreFormulario" layoutX="81.0" layoutY="8.0" text="Listado de LGAC" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tvLgac" layoutX="56.0" layoutY="147.0" prefHeight="224.0" prefWidth="695.0">
+        <columns>
+          <TableColumn prefWidth="259.0" text="Nombre" />
+          <TableColumn prefWidth="435.0" text="Descripcion" />
+        </columns>
+      </TableView>
+      <Button layoutX="394.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicGuardarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Registrar " textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="592.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicModificarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #5FAD56;" text="Modificar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="69.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLConsultarCuerposAcademicosController">
+   <children>
+      <Pane prefHeight="88.0" prefWidth="800.0" style="-fx-background-color: #00529E;" />
+      <Label fx:id="lbNombreFormulario" layoutX="91.0" layoutY="18.0" text="Listado de Cuerpos Académicos" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <TableView layoutX="34.0" layoutY="157.0" prefHeight="224.0" prefWidth="731.0">
+         <columns>
+            <TableColumn prefWidth="100.0" text="Clave" />
+            <TableColumn prefWidth="229.0" text="Nombre" />
+            <TableColumn prefWidth="133.0" text="Grado" />
+            <TableColumn prefWidth="150.0" text="DES" />
+            <TableColumn prefWidth="118.0" text="LGAC" />
+         </columns>
+      </TableView>
+      <Button layoutX="613.0" layoutY="420.0" mnemonicParsing="false" onAction="#clicGuardarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Registrar " textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

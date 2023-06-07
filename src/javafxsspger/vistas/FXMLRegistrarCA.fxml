@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLRegistrarCAController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="-7.0" prefHeight="69.0" prefWidth="807.0" style="-fx-background-color: #00529E;">
+         <children>
+            <Label fx:id="lbNombreFormulario" layoutX="81.0" layoutY="8.0" text="Registro de Cuerpo Académico" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="411.0" layoutY="428.0" mnemonicParsing="false" onAction="#clicGuardarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="631.0" layoutY="428.0" mnemonicParsing="false" onAction="#clicCancelarGuardado" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #f25d59;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="55.0" layoutY="70.0" text="Clave:">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="129.0" text="Nombre:">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="78.0" layoutY="191.0" prefHeight="39.0" prefWidth="280.0" promptText="Grado de consolidacion" />
+      <ComboBox layoutX="457.0" layoutY="192.0" prefHeight="39.0" prefWidth="280.0" promptText="Dependencia de adscripcipción" />
+      <TextField layoutX="151.0" layoutY="72.0" />
+      <TextField layoutX="151.0" layoutY="129.0" prefHeight="39.0" prefWidth="504.0" />
+      <ComboBox layoutX="78.0" layoutY="258.0" prefHeight="39.0" prefWidth="280.0" promptText="LGAC" />
+   </children>
+</AnchorPane>

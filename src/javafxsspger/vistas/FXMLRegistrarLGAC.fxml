@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxsspger.controladores.FXMLRegistrarLGACController">
+   <children>
+      <Pane prefHeight="75.0" prefWidth="800.0" style="-fx-background-color: #00529E;">
+         <children>
+            <Label fx:id="lbNombreFormulario" layoutX="19.0" layoutY="11.0" text="Registro de LGAC" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="68.0" layoutY="108.0" text="Nombre:">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="216.0" text="Descripcion:">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNombreLgac" layoutX="68.0" layoutY="157.0" prefHeight="39.0" prefWidth="675.0" promptText="Educación Ambiental para la Sustentabilidad" />
+      <TextField fx:id="lbDescripcionLgac" alignment="TOP_LEFT" layoutX="68.0" layoutY="259.0" prefHeight="150.0" prefWidth="675.0" promptText="La línea de generación y aplicación del conocimiento (LGAC) en educación ambiental para la sustentabilidad es de naturaleza consustancialmente interdisciplinaria. Se orienta a responder preguntas de investigación, así como a abordar problemas y desafíos sobre la relación entre los procesos&#10;&#10;&#10;" />
+      <Button layoutX="433.0" layoutY="428.0" mnemonicParsing="false" onAction="#clicGuardarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="606.0" layoutY="428.0" mnemonicParsing="false" onAction="#clicCancelarGuardado" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #f25d59;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
