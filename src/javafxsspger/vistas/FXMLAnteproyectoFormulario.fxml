@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<ScrollPane prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLAntproyectoFormularioController">
+   <content>
+      <AnchorPane id="AnchorPane" prefHeight="1236.0" prefWidth="1175.0">
+         <children>
+            <Pane prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+               <children>
+                  <Label fx:id="lbTitulo" layoutX="34.0" layoutY="13.0" text="Crear Anteproyecto" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="taProyectoInvestigacion" layoutX="25.0" layoutY="117.0" prefHeight="43.0" prefWidth="429.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="25.0" layoutY="96.0" text="Nombre del Proyecto de Investigación VINCULACIÓN/PLADEA-FEI (Opcional)">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbAlumnosMax" layoutX="518.0" layoutY="117.0" prefHeight="25.0" prefWidth="0.0" promptText="1" />
+            <Label layoutX="518.0" layoutY="74.0" prefHeight="43.0" prefWidth="58.0" text="Alumnos Máx." wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbLgac" layoutX="627.0" layoutY="117.0" prefHeight="25.0" prefWidth="516.0" />
+            <Label layoutX="627.0" layoutY="92.0" prefHeight="25.0" prefWidth="202.0" text="LGAC que alimenta" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="172.0" text="Línea de Investigación (Opcional)">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taLineaInvestigacion" layoutX="25.0" layoutY="189.0" prefHeight="43.0" prefWidth="429.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="500.0" layoutY="151.0" prefHeight="43.0" prefWidth="87.0" text="Duración Aprox. (Meses)" wrapText="true" />
+            <TextArea fx:id="taDuracionAprox" layoutX="500.0" layoutY="189.0" prefHeight="25.0" prefWidth="87.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <ComboBox fx:id="cbModalidad" layoutX="627.0" layoutY="189.0" prefHeight="25.0" prefWidth="516.0" />
+            <Label layoutX="627.0" layoutY="172.0" prefHeight="17.0" prefWidth="187.0" text="Modalidad del Trabajo Recepcional" wrapText="true" />
+            <Label layoutX="25.0" layoutY="242.0" prefHeight="17.0" prefWidth="187.0" text="Nombre del Trabajo Recepcional">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taNombreTrabajo" layoutX="25.0" layoutY="259.0" prefHeight="43.0" prefWidth="429.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="taRequisitos" layoutX="502.0" layoutY="259.0" prefHeight="159.0" prefWidth="644.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="501.0" layoutY="242.0" prefHeight="17.0" prefWidth="187.0" text="Requisitos">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taDirector" disable="true" layoutX="25.0" layoutY="327.0" prefHeight="25.0" prefWidth="429.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="25.0" layoutY="310.0" prefHeight="17.0" prefWidth="187.0" text="Director">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taCodirectores" layoutX="25.0" layoutY="375.0" prefHeight="43.0" prefWidth="429.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="25.0" layoutY="358.0" prefHeight="17.0" prefWidth="187.0" text="Codirector(es)">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="422.0" prefHeight="17.0" prefWidth="429.0" text="Descripción del Proyecto de Investigación">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taDescripcionProyecto" layoutX="25.0" layoutY="439.0" prefHeight="133.0" prefWidth="1123.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="25.0" layoutY="579.0" prefHeight="17.0" prefWidth="429.0" text="Descripción del Trabajo Recepcional">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taDescripcionTrabajo" layoutX="25.0" layoutY="596.0" prefHeight="152.0" prefWidth="1123.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="25.0" layoutY="755.0" prefHeight="17.0" prefWidth="429.0" text="Resultados Esperados">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taResultadosEsperados" layoutX="25.0" layoutY="772.0" prefHeight="66.0" prefWidth="1123.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="25.0" layoutY="844.0" prefHeight="17.0" prefWidth="429.0" text="Bibliografía Recomendada">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taBibliografiaRecomendada" layoutX="26.0" layoutY="861.0" prefHeight="152.0" prefWidth="1123.0" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="28.0" layoutY="1019.0" prefHeight="17.0" prefWidth="429.0" text="Comentarios y Sugerencias" visible="false">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taComentarios" disable="true" layoutX="26.0" layoutY="1036.0" prefHeight="121.0" prefWidth="1123.0" visible="false" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="1052.0" layoutY="1190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #00529e;" text="Guardar" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="934.0" layoutY="1190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="814.0" layoutY="1190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: green;" text="Postular" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
