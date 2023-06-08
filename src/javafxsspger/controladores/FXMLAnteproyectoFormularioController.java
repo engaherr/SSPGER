@@ -79,7 +79,6 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
     private String estiloError = 
             "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
     private String estiloNormal = "-fx-border-width: 0;";
-    private Label lbComentairos;
     @FXML
     private Label lbComentarios;
     @FXML
@@ -107,6 +106,15 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
         });
         
         cbAlumnosMax.getItems().addAll(1,2);
+        cbAlumnosMax.valueProperty().addListener(new ChangeListener<Integer>(){
+            
+            @Override
+            public void changed(ObservableValue<? extends Integer> observable, 
+                    Integer oldValue, Integer newValue) {
+                if(cbAlumnosMax.getSelectionModel().getSelectedIndex() != -1)
+                    cbAlumnosMax.setStyle(estiloNormal);
+            }
+        });
     }
     
     public void inicializarInformacionFormulario(boolean esEdicion, Anteproyecto atpEdicion,
