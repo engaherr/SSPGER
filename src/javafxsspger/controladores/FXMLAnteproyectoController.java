@@ -101,11 +101,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
         
         if(Academico.getInstanciaSingleton() == null || 
                 !Academico.getInstanciaSingleton().isEsResponsableCA())
-            btnVerPostulados.setVisible(false);
-        if(Academico.getInstanciaSingleton() == null){
-            btnVerMisAnteproyectos.setVisible(false);
-            btnVerPublicados.setVisible(false);
-        }
+            btnVerAnteproyectos.setVisible(false);
     }
 
     @FXML
