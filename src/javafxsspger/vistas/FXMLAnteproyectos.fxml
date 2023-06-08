@@ -26,11 +26,11 @@
       </Pane>
       <TableView fx:id="tvAnteproyectos" layoutX="28.0" layoutY="160.0" prefHeight="487.0" prefWidth="1121.0">
          <columns>
-            <TableColumn fx:id="colNombre" prefWidth="541.0" resizable="false" text="Nombre" />
-            <TableColumn fx:id="colDirector" prefWidth="173.0" text="Director" />
+            <TableColumn fx:id="colNombre" prefWidth="569.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="colDirector" prefWidth="200.0" text="Director" />
             <TableColumn fx:id="colAlumnosMaximos" prefWidth="72.0" text="Alum. Máx." />
-            <TableColumn fx:id="colDuracion" prefWidth="99.0" text="Duración Aprox." />
-            <TableColumn fx:id="colModalidad" prefWidth="150.0" text="Modalidad" />
+            <TableColumn fx:id="colDuracion" prefWidth="98.0" text="Duración Aprox." />
+            <TableColumn fx:id="colModalidad" prefWidth="96.0" text="Modalidad" />
             <TableColumn fx:id="colEstado" prefWidth="85.0" text="Estado" />
          </columns>
       </TableView>
@@ -50,12 +50,12 @@
             <Font name="Microsoft JhengHei Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnCrearAnteproyecto" disable="true" layoutX="28.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicCrearAnteproyecto" style="-fx-background-color: green;" text="Crear Anteproyecto" textFill="WHITE" visible="false">
+      <Button fx:id="btnCrearAnteproyecto" disable="true" layoutX="28.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicCrearAnteproyecto" style="-fx-background-color: #00529E;" text="Crear Anteproyecto" textFill="WHITE" visible="false">
          <font>
             <Font name="Microsoft JhengHei Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnModificarAnteproyecto" layoutX="197.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicModificarAnteproyecto" style="-fx-background-color: yellow;" text="Modificar Anteproyecto" visible="false">
+      <Button fx:id="btnModificarAnteproyecto" layoutX="222.0" layoutY="98.0" mnemonicParsing="false" onAction="#clicModificarAnteproyecto" style="-fx-background-color: yellow;" text="Modificar Anteproyecto" visible="false">
          <font>
             <Font name="Microsoft JhengHei Bold" size="12.0" />
          </font>

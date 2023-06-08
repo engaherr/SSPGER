@@ -69,6 +69,7 @@ public class AnteproyectoDAO {
                             resultado.getInt("alumnosParticipantes"));
                     anteproyecto.setProyectoInvestigacion(
                             resultado.getString("proyectoInvestigacion"));
+                    anteproyecto.setComentarios(resultado.getString("comentarios"));
                     anteproyecto.setRequisitos(resultado.getString("requisitos"));
                     anteproyecto.setCodirectores(resultado.getString("codirectores"));
                     anteproyecto.setResultadosEsperados(resultado.getString("resultadosEsperados"));

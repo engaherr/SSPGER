@@ -136,7 +136,7 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </Label>
-            <TextArea fx:id="taComentarios" disable="true" layoutX="26.0" layoutY="1036.0" prefHeight="121.0" prefWidth="1123.0" visible="false" wrapText="true">
+            <TextArea fx:id="taComentarios" layoutX="26.0" layoutY="1036.0" prefHeight="121.0" prefWidth="1123.0" visible="false" wrapText="true">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
