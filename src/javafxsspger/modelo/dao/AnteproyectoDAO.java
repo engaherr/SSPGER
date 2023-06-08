@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafxsspger.modelo.ConexionBD;
 import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.AnteproyectoRespuesta;
@@ -93,19 +91,38 @@ public class AnteproyectoDAO {
         if(conexionBD != null){
             try {
                 String sentencia = "insert into anteproyecto(idModalidad,idCuerpoAcademico,"
-                        + "proyectoInvestigacion,lineaInvestigacion,duracionAproximada,nombreTrabajo,"
+                        + "proyectoInvestigacion,lineaInvestigacion,duracionAproximada,"
+                        + "nombreTrabajo,"
                         + "requisitos,alumnosParticipantes,descripcionProyectoInvestigacion,"
-                        + "descripcionTrabajoRecepcional,resultadosEsperados,bibliografiaRecomendada"
-                        + "idEstadoATP,idDirector,idLgac values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "descripcionTrabajoRecepcional,resultadosEsperados,"
+                        + "bibliografiaRecomendada,"
+                        + "idEstadoATP,idDirector,idLgac,codirectores)"
+                        + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setInt(1, anteproyectoNuevo.getIdModalidad());
-                prepararSentencia.setInt(2, anteproyectoNuevo.getIdCuerpoAcademico());
+                try{
+                    prepararSentencia.setInt(1, anteproyectoNuevo.getIdModalidad());
+                }catch(NullPointerException npe){
+                    prepararSentencia.setNull(1, java.sql.Types.INTEGER);
+                }
+                try{                
+                    prepararSentencia.setInt(2, anteproyectoNuevo.getIdCuerpoAcademico());
+                }catch(NullPointerException npe){
+                    prepararSentencia.setNull(2, java.sql.Types.INTEGER);
+                }
                 prepararSentencia.setString(3, anteproyectoNuevo.getProyectoInvestigacion());
                 prepararSentencia.setString(4, anteproyectoNuevo.getLineaInvestigacion());
-                prepararSentencia.setInt(5, anteproyectoNuevo.getMesesDuracionAproximada());
-                prepararSentencia.setString(6, anteproyectoNuevo.getNombreTrabajo());
+                try{
+                    prepararSentencia.setInt(5, anteproyectoNuevo.getMesesDuracionAproximada());
+                }catch(NullPointerException npe){
+                    prepararSentencia.setNull(5, java.sql.Types.INTEGER);
+                }
+                prepararSentencia.setString(6, anteproyectoNuevo.getNombreTrabajo());   
                 prepararSentencia.setString(7, anteproyectoNuevo.getRequisitos());
-                prepararSentencia.setInt(8, anteproyectoNuevo.getNumAlumnosParticipantes());
+                try{
+                    prepararSentencia.setInt(8, anteproyectoNuevo.getNumAlumnosParticipantes());
+                }catch(NullPointerException npe){
+                    prepararSentencia.setNull(8, java.sql.Types.INTEGER);
+                }
                 prepararSentencia.setString(9, 
                         anteproyectoNuevo.getDescripcionProyectoInvestigacion());
                 prepararSentencia.setString(10, 
@@ -114,12 +131,22 @@ public class AnteproyectoDAO {
                 prepararSentencia.setString(12, anteproyectoNuevo.getBibliografiaRecomendada());
                 prepararSentencia.setInt(13, anteproyectoNuevo.getIdEstadoATP());
                 prepararSentencia.setInt(14, anteproyectoNuevo.getIdDirector());
-                prepararSentencia.setInt(15, anteproyectoNuevo.getIdLgac());
+                try{
+                    prepararSentencia.setInt(15, anteproyectoNuevo.getIdLgac());
+                }catch(NullPointerException npe){
+                    prepararSentencia.setNull(15, java.sql.Types.INTEGER);
+                }
+                prepararSentencia.setString(16, anteproyectoNuevo.getCodirectores());
+                System.out.println("Fin setters");
                 int filasAfectadas = prepararSentencia.executeUpdate();
+                System.out.println("executeUpdate()");
                 respuesta = (filasAfectadas == 1) ?
                         Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                System.out.println(filasAfectadas);
                 conexionBD.close();
             } catch (SQLException ex) {
+                ex.initCause(ex);
+                ex.printStackTrace();
                 respuesta = Constantes.ERROR_CONSULTA;
             }
         }else{

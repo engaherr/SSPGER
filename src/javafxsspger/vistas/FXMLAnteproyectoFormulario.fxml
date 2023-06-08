@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<ScrollPane prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLAntproyectoFormularioController">
+<ScrollPane prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLAnteproyectoFormularioController">
    <content>
       <AnchorPane id="AnchorPane" prefHeight="1236.0" prefWidth="1175.0">
          <children>
@@ -32,14 +31,14 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbAlumnosMax" layoutX="518.0" layoutY="117.0" prefHeight="25.0" prefWidth="0.0" promptText="1" />
+            <ComboBox fx:id="cbAlumnosMax" layoutX="518.0" layoutY="117.0" prefHeight="25.0" prefWidth="0.0" />
             <Label layoutX="518.0" layoutY="74.0" prefHeight="43.0" prefWidth="58.0" text="Alumnos Máx." wrapText="true">
                <font>
                   <Font name="Microsoft JhengHei UI" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbLgac" layoutX="627.0" layoutY="117.0" prefHeight="25.0" prefWidth="516.0" />
-            <Label layoutX="627.0" layoutY="92.0" prefHeight="25.0" prefWidth="202.0" text="LGAC que alimenta" wrapText="true">
+            <ComboBox fx:id="cbLgac" layoutX="502.0" layoutY="259.0" prefHeight="25.0" prefWidth="516.0" />
+            <Label layoutX="502.0" layoutY="234.0" prefHeight="25.0" prefWidth="202.0" text="LGAC que alimenta" wrapText="true">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
@@ -55,11 +54,6 @@
                </font>
             </TextArea>
             <Label layoutX="500.0" layoutY="151.0" prefHeight="43.0" prefWidth="87.0" text="Duración Aprox. (Meses)" wrapText="true" />
-            <TextArea fx:id="taDuracionAprox" layoutX="500.0" layoutY="189.0" prefHeight="25.0" prefWidth="87.0" wrapText="true">
-               <font>
-                  <Font name="Microsoft JhengHei" size="12.0" />
-               </font>
-            </TextArea>
             <ComboBox fx:id="cbModalidad" layoutX="627.0" layoutY="189.0" prefHeight="25.0" prefWidth="516.0" />
             <Label layoutX="627.0" layoutY="172.0" prefHeight="17.0" prefWidth="187.0" text="Modalidad del Trabajo Recepcional" wrapText="true" />
             <Label layoutX="25.0" layoutY="242.0" prefHeight="17.0" prefWidth="187.0" text="Nombre del Trabajo Recepcional">
@@ -72,22 +66,17 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="taRequisitos" layoutX="502.0" layoutY="259.0" prefHeight="159.0" prefWidth="644.0" wrapText="true">
+            <TextArea fx:id="taRequisitos" layoutX="502.0" layoutY="324.0" prefHeight="94.0" prefWidth="644.0" wrapText="true">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </TextArea>
-            <Label layoutX="501.0" layoutY="242.0" prefHeight="17.0" prefWidth="187.0" text="Requisitos">
+            <Label layoutX="502.0" layoutY="310.0" prefHeight="17.0" prefWidth="187.0" text="Requisitos">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </Label>
-            <TextArea fx:id="taDirector" disable="true" layoutX="25.0" layoutY="327.0" prefHeight="25.0" prefWidth="429.0" wrapText="true">
-               <font>
-                  <Font name="Microsoft JhengHei" size="12.0" />
-               </font>
-            </TextArea>
-            <Label layoutX="25.0" layoutY="310.0" prefHeight="17.0" prefWidth="187.0" text="Director">
+            <Label layoutX="25.0" layoutY="306.0" prefHeight="17.0" prefWidth="187.0" text="Director">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
@@ -102,7 +91,7 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="422.0" prefHeight="17.0" prefWidth="429.0" text="Descripción del Proyecto de Investigación">
+            <Label layoutX="25.0" layoutY="422.0" prefHeight="17.0" prefWidth="429.0" text="Descripción del Proyecto de Investigación (Opcional)">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
@@ -142,7 +131,7 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </TextArea>
-            <Label layoutX="28.0" layoutY="1019.0" prefHeight="17.0" prefWidth="429.0" text="Comentarios y Sugerencias" visible="false">
+            <Label fx:id="lbComentarios" layoutX="28.0" layoutY="1019.0" prefHeight="17.0" prefWidth="429.0" text="Comentarios y Sugerencias" visible="false">
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
@@ -152,21 +141,29 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </TextArea>
-            <Button layoutX="1052.0" layoutY="1190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #00529e;" text="Guardar" textFill="WHITE">
+            <Button layoutX="1052.0" layoutY="1190.0" mnemonicParsing="false" onAction="#clicGuardar" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #00529e;" text="Guardar" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="934.0" layoutY="1190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE">
+            <Button layoutX="934.0" layoutY="1190.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="814.0" layoutY="1190.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: green;" text="Postular" textFill="WHITE">
+            <Button layoutX="814.0" layoutY="1190.0" mnemonicParsing="false" onAction="#clicPostular" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: green;" text="Postular" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Button>
+            <ComboBox fx:id="cbCuerpoAcademico" layoutX="627.0" layoutY="105.0" prefHeight="25.0" prefWidth="516.0" />
+            <Label layoutX="627.0" layoutY="81.0" prefHeight="25.0" prefWidth="361.0" text="Cuerpo Académico al que aporta el Anteproyecto" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfDirector" layoutX="26.0" layoutY="323.0" prefHeight="25.0" prefWidth="430.0" />
+            <TextField fx:id="tfDuracion" layoutX="500.0" layoutY="189.0" prefHeight="25.0" prefWidth="86.0" />
          </children>
       </AnchorPane>
    </content>

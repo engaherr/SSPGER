@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
@@ -90,7 +89,7 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(Estudiante.getInstanciaSingleton() != null ){
+        if(Estudiante.getInstanciaSingleton() != null){
             btnRechazar.setVisible(false);
             btnValidar.setVisible(false);
         }else if(Academico.getInstanciaSingleton() != null && 
@@ -108,7 +107,6 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     }
     
     private void cargarInformacionDetalles() {
-        String codirectores = null;
         lbAlumnosParticipantes.setText(
                 Integer.toString(anteproyectoDetalles.getNumAlumnosParticipantes()));
         lbBibliografiaRecomendada.setText(anteproyectoDetalles.getBibliografiaRecomendada());
@@ -128,7 +126,8 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
         lbProyectoInvestigacion.setText(anteproyectoDetalles.getProyectoInvestigacion());
         lbRequisitos.setText(anteproyectoDetalles.getRequisitos());
         lbResultadosEsperados.setText(anteproyectoDetalles.getResultadosEsperados());
-        if("Disponible".equals(anteproyectoDetalles.getEstado())){
+        
+        if(!"Postulado".equals(anteproyectoDetalles.getEstado())){
             btnRechazar.setVisible(false);
             btnValidar.setVisible(false);
         }
@@ -165,7 +164,7 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
                             "El anteproyecto ha sido publicado exitosamente",
                             Alert.AlertType.INFORMATION);
                     cerrarVentana();
-                    interfazNotificacion.notificarOperacionActualizar();
+                    interfazNotificacion.notificarOperacionActualizar("Postulados");
             }
         }
     }
@@ -253,7 +252,7 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
                         "Los comentarios sobre el anteproyecto han sido enviados correctamente", 
                         Alert.AlertType.INFORMATION);
                 cerrarVentana();
-                interfazNotificacion.notificarOperacionActualizar();
+                interfazNotificacion.notificarOperacionActualizar("Postulado");
                 break;
         }
     }

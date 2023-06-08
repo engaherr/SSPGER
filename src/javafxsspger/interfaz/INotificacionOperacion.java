@@ -9,7 +9,7 @@ package javafxsspger.interfaz;
  * @author kikga
  */
 public interface INotificacionOperacion {
-    public void notificarOperacionGuardar();
+    public void notificarOperacionGuardar(String estado);
     
-    public void notificarOperacionActualizar();
+    public void notificarOperacionActualizar(String estado);
 }

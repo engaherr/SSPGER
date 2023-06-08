@@ -67,10 +67,9 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
     
     private ObservableList<Anteproyecto> anteproyectos;
     private FilteredList<Anteproyecto> filtradoAnteproyectos;
+    
     @FXML
     private Label lbTitulo;
-    
-    private boolean verPostulados;
     @FXML
     private Button btnVerPostulados;
     @FXML
@@ -79,6 +78,8 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
     private Button btnVerMisAnteproyectos;
     @FXML
     private Button btnCrearAnteproyecto;
+    @FXML
+    private Button btnModificarAnteproyecto;
     /**
      * Initializes the controller class.
      */
@@ -169,7 +170,8 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
             case Constantes.OPERACION_EXITOSA:
                 anteproyectos.addAll(respuestaBD.getAnteproyectos());
                 filtradoAnteproyectos = new FilteredList<>(anteproyectos);
-                if(estado.equals("Postulado")){
+            switch (estado) {
+                case "Postulado":
                     filtradoAnteproyectos.setPredicate(anteproyecto -> {
                         boolean estadoMatch = anteproyecto.getEstado().equals(estado);
                         int idResponsableCA = 
@@ -178,13 +180,25 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
                                 idResponsableCA;
                         return estadoMatch && mismoCuerpoAcademico;
                     });
-                }else{
-                    filtradoAnteproyectos.setPredicate(anteproyecto -> 
-                        anteproyecto.getEstado().equals(estado));
-                }
-                
+                    break;
+                case "Borrador":
+                    filtradoAnteproyectos.setPredicate(anteproyecto -> {
+                        boolean estadoMatch = (anteproyecto.getEstado().equals("Rechazado"))
+                                || (anteproyecto.getEstado().equals("Borrador")) ||
+                                       (anteproyecto.getEstado().equals("Disponible"));
+                        int idDirector = anteproyecto.getIdDirector();
+                        int idAcademico = Academico.getInstanciaSingleton().getIdAcademico();
+                        return estadoMatch && idDirector == idAcademico;
+                    });
+                    break;
+                default:
+                    filtradoAnteproyectos.setPredicate(anteproyecto ->
+                            anteproyecto.getEstado().equals(estado));
+                    break;
+            }
                 tvAnteproyectos.setItems(filtradoAnteproyectos);
                 break;
+
         }
     }
     
@@ -229,17 +243,18 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
     }
 
     @Override
-    public void notificarOperacionGuardar() {
-        cargarInformacionTabla("Disponible");
+    public void notificarOperacionGuardar(String estado) {
+        cargarInformacionTabla(estado);
     }
 
     @Override
-    public void notificarOperacionActualizar() {
-        cargarInformacionTabla("Postulado");
+    public void notificarOperacionActualizar(String estado) {
+        cargarInformacionTabla(estado);
     }
 
     @FXML
     private void clicVerAnteproyectosPostulados(ActionEvent event) {
+        btnModificarAnteproyecto.setVisible(false);
         btnCrearAnteproyecto.setDisable(true);
         btnCrearAnteproyecto.setVisible(false);
         btnVerMisAnteproyectos.setDisable(false);
@@ -252,6 +267,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
 
     @FXML
     private void clicVerAnteproyectosPublicados(ActionEvent event) {
+        btnModificarAnteproyecto.setVisible(false);
         btnCrearAnteproyecto.setVisible(false);
         btnCrearAnteproyecto.setDisable(true);
         btnVerPostulados.setDisable(false);
@@ -264,6 +280,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
 
     @FXML
     private void clicVerMisAnteproyectos(ActionEvent event) {
+        btnModificarAnteproyecto.setVisible(true);
         btnVerMisAnteproyectos.setDisable(false);
         btnVerPublicados.setDisable(false);
         btnVerMisAnteproyectos.setDisable(true);
@@ -276,6 +293,48 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
 
     @FXML
     private void clicCrearAnteproyecto(ActionEvent event) {
+        irFormulario(false, null);
+    }
+
+    private void irFormulario(boolean esEdicion, Anteproyecto anteproyectoEdicion) {
+        try {
+            FXMLLoader accesoControlador = new FXMLLoader(JavaFXSSPGER.class.getResource(
+                    "vistas/FXMLAnteproyectoFormulario.fxml"));
+            Parent vista = accesoControlador.load();
+            FXMLAnteproyectoFormularioController formulario = accesoControlador.getController();
+            
+            formulario.inicializarInformacionFormulario(esEdicion, anteproyectoEdicion, this);
+            
+            Stage escenarioFormulario = new Stage();
+            escenarioFormulario.setScene(new Scene(vista));
+            escenarioFormulario.setTitle("Formulario");
+            escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
+            escenarioFormulario.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void clicModificarAnteproyecto(ActionEvent event) {
+        Anteproyecto anteproyectoSeleccionado = 
+                tvAnteproyectos.getSelectionModel().getSelectedItem();
+        if(anteproyectoSeleccionado != null ){
+            if(anteproyectoSeleccionado.getEstado().equals("Disponible")){
+                Utilidades.mostrarDialogoSimple("Anteproyecto ya Publicado",
+                        "No se puede modificar un Anteproyecto ya publicado y/o asignado, "
+                                + "seleccione uno en estado 'Borrador' o 'Rechazado' e intentélo de"
+                                + " nuevo. Si desea modificar un anteproyecto de su autoría ya "
+                                + "publicado comuniquese con el Cuerpo Académico al que pertenezca "
+                                + "el anteproyecto", Alert.AlertType.WARNING);
+            }else 
+                irFormulario(true, anteproyectoSeleccionado);
+        }else{
+            Utilidades.mostrarDialogoSimple("Selecciona un Anteproyecto", 
+                    "Selecciona el borrador o rechazado"
+                            + " en la tabla del Anteproyecto para su edición", 
+                    Alert.AlertType.WARNING);
+        }
     }
 }
 
