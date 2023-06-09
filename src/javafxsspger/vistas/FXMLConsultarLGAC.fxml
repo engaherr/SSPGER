@@ -21,8 +21,8 @@
       </Pane>
       <TableView fx:id="tvLgac" layoutX="56.0" layoutY="147.0" prefHeight="224.0" prefWidth="695.0">
         <columns>
-          <TableColumn prefWidth="259.0" text="Nombre" />
-          <TableColumn prefWidth="435.0" text="Descripcion" />
+          <TableColumn fx:id="tcNombreLgac" prefWidth="259.0" text="Nombre" />
+          <TableColumn fx:id="tcDescrLgac" prefWidth="435.0" text="Descripcion" />
         </columns>
       </TableView>
       <Button layoutX="394.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicGuardarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Registrar " textFill="WHITE">

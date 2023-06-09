@@ -10,7 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafxsspger.modelo.pojo.Lgac;
 
 /**
  * FXML Controller class
@@ -22,7 +24,11 @@ public class FXMLConsultarLGACController implements Initializable {
     @FXML
     private Label lbNombreFormulario;
     @FXML
-    private TableView<?> tvLgac;
+    private TableView<Lgac> tvLgac;
+    @FXML
+    private TableColumn tcNombreLgac;
+    @FXML
+    private TableColumn tcDescrLgac;
 
     /**
      * Initializes the controller class.
@@ -30,7 +36,11 @@ public class FXMLConsultarLGACController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    private void configurarTabla(){
+        
+    }
 
     @FXML
     private void clicGuardarLgac(ActionEvent event) {
