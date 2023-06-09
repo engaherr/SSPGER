@@ -1,42 +1,39 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de las LGAC
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase modelo para la respuesta del DAO de LGACs que recupera la información de la 
+* persistencia del sistema
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author jasie
- */
-public class LgacRespuesta {
-    private ArrayList<Lgac> lgacs;
+public class LGACRespuesta {
     private int codigoRespuesta;
+    private ArrayList<LGAC> lgacs;
 
-    public LgacRespuesta() {
+    public LGACRespuesta() {
     }
 
-    public LgacRespuesta(ArrayList<Lgac> lgacs, int codigoRespuesta) {
-        this.lgacs = lgacs;
+    public LGACRespuesta(int codigoRespuesta, ArrayList<LGAC> lgacs) {
         this.codigoRespuesta = codigoRespuesta;
-    }
-
-    public ArrayList<Lgac> getLgacs() {
-        return lgacs;
+        this.lgacs = lgacs;
     }
 
     public int getCodigoRespuesta() {
         return codigoRespuesta;
     }
 
-    public void setLgacs(ArrayList<Lgac> lgacs) {
-        this.lgacs = lgacs;
-    }
-
     public void setCodigoRespuesta(int codigoRespuesta) {
         this.codigoRespuesta = codigoRespuesta;
     }
-    
-    
+
+    public ArrayList<LGAC> getLgacs() {
+        return lgacs;
+    }
+
+    public void setLgacs(ArrayList<LGAC> lgacs) {
+        this.lgacs = lgacs;
+    }
 }

@@ -1,54 +1,61 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de LGAC
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase modelo para las LGACs del sistema y toda su información
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author jasie
- */
-public class Lgac {
+public class LGAC {
     private int idLgac;
     private String nombre;
-    private String descripcion;
+    private int idCuerpoAcademico;
+    private int numero;
 
-    public Lgac() {
-    }
-
-    public Lgac(int idLgac, String nombre, String descripcion) {
+    public LGAC(int idLgac, String nombre, int idCuerpoAcademico, int numero) {
         this.idLgac = idLgac;
         this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.idCuerpoAcademico = idCuerpoAcademico;
+        this.numero = numero;
     }
 
-    
-    
+    public LGAC() {
+    }
+
     public int getIdLgac() {
         return idLgac;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
     }
 
     public void setIdLgac(int idLgac) {
         this.idLgac = idLgac;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public int getIdCuerpoAcademico() {
+        return idCuerpoAcademico;
     }
-    
-    public String toString(){
-        return nombre;
-    }    
+
+    public void setIdCuerpoAcademico(int idCuerpoAcademico) {
+        this.idCuerpoAcademico = idCuerpoAcademico;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    @Override
+    public String toString() {
+        return numero + ". " + nombre;
+    }
 }
