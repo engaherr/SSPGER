@@ -1,13 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de Académico
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 05/06/2023
+* Descripción: Clase modelo para los Usuarios Académicos del sistema, la clase extiende a usuario
+* para evitar la duplicidad de código entre Académico y Estudiante
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author kikga
- */
 public class Academico extends Usuario {
     private static Academico instanciaSingleton;
     private int idAcademico;

@@ -1,13 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de LGAC
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase modelo para las LGACs del sistema y toda su información
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author kikga
- */
 public class LGAC {
     private int idLgac;
     private String nombre;

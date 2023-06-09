@@ -1,13 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de Estudiante
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 05/06/2023
+* Descripción: Clase modelo para Usuario Estudiante y la información que lo integre
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author kikga
- */
 public class Estudiante extends Usuario {
     private static Estudiante instanciaSingleton;
     private int idEstudiante;
