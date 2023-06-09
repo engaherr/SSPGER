@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador de Anteproyecto
+* Autor: Enrique Gamboa Hernández
+* Fecha: 05/06/2023
+* Descripción: Clase controladora de vista FXMLAnteproyecto.fxml
+*/
 package javafxsspger.controladores;
 
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -41,11 +43,6 @@ import javafxsspger.modelo.pojo.AnteproyectoRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author kikga
- */
 public class FXMLAnteproyectoController implements Initializable, INotificacionOperacion {
 
     @FXML
@@ -80,9 +77,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
     private Button btnCrearAnteproyecto;
     @FXML
     private Button btnModificarAnteproyecto;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tvAnteproyectos.setRowFactory(tableView -> {

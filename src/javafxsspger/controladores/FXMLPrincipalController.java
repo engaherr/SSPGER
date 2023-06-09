@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador de Menú Principal 
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 05/06/2023
+* Descripción: Clase controladora para la vista FXMLPrincipal.fxml que dirige a los módulos
+* distintos del sistema dependiendo del tipo de usuario y sus permisos
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -21,11 +24,6 @@ import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author kikga
- */
 public class FXMLPrincipalController implements Initializable {
 
     @FXML

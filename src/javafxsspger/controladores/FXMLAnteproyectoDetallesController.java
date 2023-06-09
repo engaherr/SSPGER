@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador de Detalles de Anteproyecto
+* Autor: Enrique Gamboa Hernández
+* Fecha: 05/06/2023
+* Descripción: Clase controladora de la vista FXMLAnteproyectoDetalles.fxml
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -24,11 +26,6 @@ import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author kikga
- */
 public class FXMLAnteproyectoDetallesController implements Initializable {
 
     @FXML
@@ -84,9 +81,6 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     @FXML
     private TextArea taComentarios;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(Estudiante.getInstanciaSingleton() != null){

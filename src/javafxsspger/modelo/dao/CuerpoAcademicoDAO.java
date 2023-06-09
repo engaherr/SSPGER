@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para los cuerpos académicos
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase de acceso a la información para los Cuerpos Académicos los cuales tienen
+* una tabla en la persistencia del sistema
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;

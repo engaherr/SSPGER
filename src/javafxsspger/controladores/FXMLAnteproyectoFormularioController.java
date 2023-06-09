@@ -1,3 +1,9 @@
+/*
+* Título del programa: Controlador del Formulario de registro y modificación de Anteproyectos
+* Autor: Enrique Gamboa Hernández
+* Fecha de Creación: 07/06/2023
+* Descripción: Clase controladora para la vista de FXMLAnteproyectoFormulario.fxml
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -31,11 +37,7 @@ import javafxsspger.modelo.pojo.ModalidadRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author kikga
- */
+
 public class FXMLAnteproyectoFormularioController implements Initializable {
 
     @FXML
@@ -86,9 +88,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
     @FXML
     private TextField tfDuracion;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         obtenerInformacionModalidades();
