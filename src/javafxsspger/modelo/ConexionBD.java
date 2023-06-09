@@ -1,7 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase Conexion con Base de Datos
+* Autor: Ramón Gómez Romero
+* Fecha Creación: 09/05/2023
+* Descripción: Clase para abrir la conexión con la base de datos que contiene los datos 
+* variables (dependiendo el que corra el sistema) nombreBase, hostname, puerto, usuario y 
+* password. Hecho en clase de Principios de Construcción de Software
+*/
 package javafxsspger.modelo;
 
 import java.sql.Connection;

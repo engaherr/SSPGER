@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase de utilidades
+* Autor: Ramón Gómez Romero
+* Fecha Creación: 11/05/2023
+* Descripción: Clase con métodos de utilidad que se utilizan a lo largo de todo el sistema y sus 
+* clases. Hecho en clase de Principios de Construcción de Software por el profesor autor de la clase
+*/
 package javafxsspger.utils;
 
 import java.io.IOException;
@@ -13,10 +16,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafxsspger.JavaFXSSPGER;
 
-/**
- *
- * @author kikga
- */
 public class Utilidades {
     public static void mostrarDialogoSimple(String titulo, String mensaje, Alert.AlertType tipo){
         Alert alertaSimple = new Alert(tipo);

@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxsspger.controladores.FXMLPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLPrincipalController">
    <children>
       <ImageView fitHeight="286.0" fitWidth="207.0" layoutX="247.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -46,14 +45,14 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="7.0" layoutY="86.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane layoutX="7.0" layoutY="281.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../JFXControlEscolar/src/jfxcontrolescolar/recursos/user.png" />
+                        <Image url="@../recursos/actividades.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="48.0" layoutY="16.0" text="Administración de usuarios" textFill="WHITE">
+                  <Label layoutX="48.0" layoutY="16.0" onMouseClicked="#clicIrCronograma" text="Cronograma de Actividades" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>

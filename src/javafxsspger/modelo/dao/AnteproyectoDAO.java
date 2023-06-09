@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para Anteproyectos
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 11/05/2023
+* Descripción: Clase de Acceso a la información de la base de datos correspondiente a los 
+* anteproyectos los cuales tienen una tabla en la persistencia del sistema
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;
@@ -14,10 +17,6 @@ import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.AnteproyectoRespuesta;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author kikga
- */
 public class AnteproyectoDAO {
     public static AnteproyectoRespuesta obtenerInformacionAnteproyectos(){
         AnteproyectoRespuesta respuesta = new AnteproyectoRespuesta();

@@ -1,7 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para el inicio de sesión
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 05/06/2023
+* Descripción: Clase de acceso a la información para el inicio de sesión con credenciales
+* que recupera de la base de datos el rol autoritario de Administrador que tiene una columna
+* en la persistencia del sistema en Académico y verifica los roles de lógica del negocio
+* Director de Anteproyecto y Responsable del Cuerpo Académico y los asigna a una clase Singleton
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;
@@ -13,10 +18,6 @@ import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author kikga
- */
 public class SesionDAO {
     public static Academico verificarAcademicoSesion(String usuario, String password){
         Academico academicoVerificado = new Academico();

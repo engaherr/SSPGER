@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
- */
+* Título: Clase controladora para el Inicio de sesión al sistema
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 11/05/2023
+* Descripción: Clase controladora de la vista FXMLInicioSesion que implementa Singleton para 
+* distinguir el tipo de usuario y al ser académico le asigna valores booleanos para el rol
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -20,10 +23,6 @@ import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- *
- * @author kikga
- */
 public class FXMLInicioSesionController implements Initializable {
     
     private Label label;
@@ -38,7 +37,6 @@ public class FXMLInicioSesionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
