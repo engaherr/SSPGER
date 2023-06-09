@@ -1,13 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de Cuerpo Académico
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase modelo para los Cuerpos Académicos y su información que proviene de la 
+* persistencia del sistema
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author kikga
- */
 public class CuerpoAcademico {
     private int idCuerpoAcademico;
     private String nombre;

@@ -1,13 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase abstracta de Usuario
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 05/06/2023
+* Descripción: Clase modelo abstracta para los usuarios Estudiante y Académico y los datos que 
+* comparten
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author kikga
- */
 public abstract class Usuario {
     private String email;
     private String password;

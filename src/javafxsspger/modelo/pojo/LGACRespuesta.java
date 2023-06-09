@@ -1,15 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de las LGAC
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase modelo para la respuesta del DAO de LGACs que recupera la información de la 
+* persistencia del sistema
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author kikga
- */
 public class LGACRespuesta {
     private int codigoRespuesta;
     private ArrayList<LGAC> lgacs;

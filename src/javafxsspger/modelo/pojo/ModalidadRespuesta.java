@@ -1,15 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de las Modalidades de Anteproyecto
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 07/06/2023
+* Descripción: Clase modelo para la respuesta del DAO de las modalidades del anteproyecto que las 
+* recupera de la persistencia del sistema
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author kikga
- */
 public class ModalidadRespuesta {
     private int codigoRespuesta;
     private ArrayList<Modalidad> modalidades;
