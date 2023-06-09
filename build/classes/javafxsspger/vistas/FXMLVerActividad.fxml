@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxsspger.controladores.FXMLVerActividadController">
+   <children>
+      <Label layoutX="88.0" layoutY="35.0" prefHeight="73.0" prefWidth="852.0" text="ACTIVIDAD DEL ESTUDIANTE">
+         <font>
+            <Font name="Microsoft JhengHei UI Light" size="50.0" />
+         </font>
+      </Label>
+      <Line endX="900.0" layoutX="193.0" layoutY="130.0" startX="-100.0" />
+      <TextArea editable="false" layoutX="85.0" layoutY="167.0" prefHeight="404.0" prefWidth="1002.0" promptText="Cuerpo de la entrega">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="962.0" layoutY="594.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="122.0" text="Calificar">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label layoutX="81.0" layoutY="600.0" text="Documentos adjuntos:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

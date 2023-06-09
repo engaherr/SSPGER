@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxsspger.controladores.FXMLEvaluarActividadController">
+   <children>
+      <Label layoutX="81.0" layoutY="16.0" prefHeight="73.0" prefWidth="546.0" text="EVALUAR ACTIVIDAD">
+         <font>
+            <Font name="Microsoft JhengHei UI Light" size="50.0" />
+         </font>
+      </Label>
+      <Line endX="900.0" layoutX="187.0" layoutY="98.0" startX="-100.0" />
+      <ImageView fitHeight="477.0" fitWidth="995.0" layoutX="87.0" layoutY="106.0" pickOnBounds="true">
+         <image>
+            <Image url="@../recursos/rubrica.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="137.0" layoutY="602.0" text="Evaluación basada en las rúbricas:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField layoutX="593.0" layoutY="594.0" prefHeight="32.0" prefWidth="64.0">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </TextField>
+      <Label layoutX="684.0" layoutY="602.0" text=" pts. de 10 pts.">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
