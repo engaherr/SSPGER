@@ -1,3 +1,10 @@
+/*
+* Título del programa: ActividadDAO
+* Autor: Omar Dylan Segura Platas
+* Fecha: 09/06/2023
+* Descripción: Se encarga de la correcta conexión y obtención de datos de la base de datos.
+*/
+
 
 package javafxsspger.modelo.dao;
 
@@ -12,10 +19,7 @@ import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.ActividadRespuesta;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author dplat
- */
+
 public class ActividadDAO {
     
         public static ActividadRespuesta obtenerActividadesdelEstudiante(int idEstudiante){

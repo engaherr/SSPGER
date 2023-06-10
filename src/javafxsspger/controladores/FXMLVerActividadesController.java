@@ -1,7 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador para ver actividades
+* Autor: Omar Dylan Segura Platas
+* Fecha: 09/06/2023
+* Descripción: Clase controladora de vista FXMLVerActividades
+*/
+
+
 package javafxsspger.controladores;
 
 import java.net.URL;
