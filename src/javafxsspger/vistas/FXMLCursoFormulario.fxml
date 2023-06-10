@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLCursoFormularioController">
+   <children>
+      <Pane prefHeight="75.0" prefWidth="700.0" style="-fx-background-color: #00529E;">
+         <children>
+            <Label fx:id="lbTitulo" layoutX="73.0" layoutY="4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="554.0" text="Registrar Curso" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="15.0" layoutY="17.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button layoutX="543.0" layoutY="418.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: green;" text="Aceptar" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="366.0" layoutY="418.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfNRC" layoutX="251.0" layoutY="129.0" promptText="NRC del Curso">
+         <font>
+            <Font name="Microsoft JhengHei" size="14.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="cbPeriodoEscolar" layoutX="438.0" layoutY="206.0" prefHeight="29.0" prefWidth="187.0" promptText="Periodo Escolar" />
+      <TextField fx:id="tfNombreDelCurso" editable="false" layoutX="77.0" layoutY="316.0" prefHeight="29.0" prefWidth="546.0" promptText="Nombre del Curso">
+         <font>
+            <Font name="Microsoft JhengHei" size="14.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="cbEE" layoutX="77.0" layoutY="206.0" prefHeight="29.0" prefWidth="187.0" promptText="Experiencia Educativa" />
+   </children>
+</AnchorPane>

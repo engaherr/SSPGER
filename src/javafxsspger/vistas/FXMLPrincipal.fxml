@@ -45,7 +45,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="7.0" layoutY="281.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneCronograma" layoutX="7.0" layoutY="281.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,6 +53,20 @@
                      </image>
                   </ImageView>
                   <Label layoutX="48.0" layoutY="16.0" onMouseClicked="#clicIrCronograma" text="Cronograma de Actividades" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="140.0" prefHeight="50.0" prefWidth="237.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/cursos.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="48.0" layoutY="16.0" onMouseClicked="#clicIrAdminCursos" text="Administrador de Cursos" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
