@@ -8,19 +8,27 @@
 
 package javafxsspger.controladores;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafxsspger.JavaFXSSPGER;
 import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.ActividadRespuesta;
@@ -46,6 +54,7 @@ public class FXMLVerActividadesController implements Initializable {
     @FXML
     private Label lbTitulo;
     private ObservableList<Actividad> actividades;
+    private Actividad actividadSeleccionada;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -57,6 +66,20 @@ public class FXMLVerActividadesController implements Initializable {
           tcActividad.setCellValueFactory(new PropertyValueFactory("nombre"));
           tcFechaInicio.setCellValueFactory(new PropertyValueFactory("fechaInicio"));
           tcFechaFinal.setCellValueFactory(new PropertyValueFactory("fechaFin"));
+            tvActividades.setRowFactory(tv -> {
+        TableRow<Actividad> fila = new TableRow<>();
+        fila.setOnMouseClicked(event -> {
+            if (!fila.isEmpty() && event.getClickCount() == 2) {
+                Actividad actividad = fila.getItem();
+                try {
+                    verActividad(actividad);
+                } catch (IOException ex) {
+//                    Utilidades.mostrarDialogoSimple("Error", "Error al mostrar los detalles de la actividad", Alert.AlertType.ERROR);
+                }
+            }
+        });
+        return fila;
+    });
     }
     
 public void setEstudianteSeleccionado(Estudiante estudiante) {
@@ -83,6 +106,19 @@ public void setEstudianteSeleccionado(Estudiante estudiante) {
                 actividades.addAll(respuestaBD.getActividades());
                 tvActividades.setItems(actividades);
         }   
+    }
+    
+    private void verActividad(Actividad actividad) throws IOException{
+       actividadSeleccionada = tvActividades.getSelectionModel().getSelectedItem();
+      FXMLLoader accesoControlador = new FXMLLoader(
+                    JavaFXSSPGER.class.getResource("vistas/FXMLVerActividad.fxml"));
+            Parent vista = accesoControlador.load();
+            FXMLVerActividadController detalles = accesoControlador.getController();
+            detalles.setActividadSeleccionada(actividadSeleccionada);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(vista));
+            stage.showAndWait();
+        
     }
     
     @FXML

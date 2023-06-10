@@ -22,12 +22,13 @@ public class Actividad {
     private File archivo;
     private int idEstudiante;
     private int idAvance;
+    private String comentarios;
     
     
     public Actividad(){
     }
 
-    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, File archivo, int idEstudiante, int idAvance) {
+    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, File archivo, int idEstudiante, int idAvance, String comentarios) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -38,7 +39,20 @@ public class Actividad {
         this.archivo = archivo;
         this.idEstudiante = idEstudiante;
         this.idAvance = idAvance;
+        this.comentarios = comentarios;
     }
+
+ 
+
+    public String getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+
+
 
     public int getIdActividad() {
         return idActividad;
