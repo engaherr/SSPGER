@@ -55,5 +55,39 @@ public class EstudianteDAO {
         }
         return respuesta;
     } 
+      
+      public static EstudianteRespuesta obtenerDatosDelEstudiante(String matricula) {
+    EstudianteRespuesta respuesta = new EstudianteRespuesta();
+    respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
+    ArrayList<Estudiante> estudiantes = new ArrayList<>();
+    Connection conexionBD = ConexionBD.abrirConexionBD();
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, apellidoMaterno, matricula "
+                    + "FROM estudiante WHERE matricula = ?;";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setString(1, matricula);
+            ResultSet resultado = prepararSentencia.executeQuery();
+            while (resultado.next()) {
+                Estudiante estudiante = new Estudiante();
+                estudiante.setIdEstudiante(resultado.getInt("idEstudiante"));
+                estudiante.setEmail(resultado.getString("email"));
+                estudiante.setNombre(resultado.getString("nombre"));
+                estudiante.setApellidoPaterno(resultado.getString("apellidoPaterno"));
+                estudiante.setApellidoMaterno(resultado.getString("apellidoMaterno"));
+                estudiante.setMatricula(resultado.getString("matricula"));
+                estudiantes.add(estudiante);
+            }
+            respuesta.setEstudiantes(estudiantes);
+            conexionBD.close();
+        } catch (SQLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+        }
+    } else {
+        respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
+    }
+    return respuesta;
+}
+
     
 }

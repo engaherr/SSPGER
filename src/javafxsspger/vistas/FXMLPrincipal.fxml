@@ -81,5 +81,6 @@
          </children>
       </Pane>
       <Button layoutX="466.0" layoutY="134.0" mnemonicParsing="false" onAction="#clicIrVerEstudiantes" text="ver estudiantes" />
+      <Button layoutX="489.0" layoutY="225.0" mnemonicParsing="false" onAction="#clicAgregarEstudianteCurso" text="Agregar estudiantes a curso" />
    </children>
 </AnchorPane>

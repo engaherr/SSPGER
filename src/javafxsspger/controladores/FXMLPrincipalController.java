@@ -97,6 +97,16 @@ public class FXMLPrincipalController implements Initializable {
         escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
         escenarioEstudiantes.showAndWait();
     }
+
+    @FXML
+    private void clicAgregarEstudianteCurso(ActionEvent event) {
+          Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAgregarEstudianteCurso.fxml"));
+        escenarioEstudiantes.setTitle("Agregar estudiantes a curso");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
     
     
     
