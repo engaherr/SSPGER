@@ -10,6 +10,7 @@ package javafxsspger.controladores;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -81,4 +82,22 @@ public class FXMLPrincipalController implements Initializable {
         escenarioAnteproyectos.initModality(Modality.APPLICATION_MODAL);
         escenarioAnteproyectos.showAndWait();
     }
+
+    @FXML
+    private void clicIrCronograma(MouseEvent event) {
+    }
+
+    @FXML
+    private void clicIrVerEstudiantes(ActionEvent event) {
+        
+          Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLVerEstudiantes.fxml"));
+        escenarioEstudiantes.setTitle("Estudiantes");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
+    
+    
+    
 }
