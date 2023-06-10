@@ -31,12 +31,13 @@ public class EstudianteDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                String consulta = "SELECT email, nombre, apellidoPaterno, apellidoMaterno, matricula\n" +
+                String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, apellidoMaterno, matricula\n" +
                 "FROM estudiante;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     Estudiante estudiante = new Estudiante();
+                    estudiante.setIdEstudiante(resultado.getInt("idEstudiante"));
                     estudiante.setEmail(resultado.getString("email"));
                     estudiante.setNombre(resultado.getString("nombre"));
                     estudiante.setApellidoPaterno(resultado.getString("apellidoPaterno"));

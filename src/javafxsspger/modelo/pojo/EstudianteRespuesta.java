@@ -1,6 +1,6 @@
 
 /*
-* Título del programa: Clase POJO de Estudiantes
+* Título del programa: Clase POJO de EstudianteRespuesta
 * Autor: Omar Dylan Segura Platas
 * Fecha Creación: 07/06/2023
 * Descripción: Clase modelo para la respuesta del DAO de Estudiantes.

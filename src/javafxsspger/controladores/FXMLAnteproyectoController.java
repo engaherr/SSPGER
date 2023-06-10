@@ -223,6 +223,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
 
     private void mostrarDetallesAnteproyecto(Anteproyecto anteproyecto){
         try {
+            
             FXMLLoader accesoControlador = new FXMLLoader(
                     JavaFXSSPGER.class.getResource("vistas/FXMLAnteproyectoDetalles.fxml"));
             Parent vista = accesoControlador.load();
