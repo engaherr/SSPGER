@@ -21,20 +21,24 @@
       </Pane>
       <TableView fx:id="tvLgac" layoutX="56.0" layoutY="147.0" prefHeight="224.0" prefWidth="695.0">
         <columns>
-          <TableColumn fx:id="tcNombreLgac" prefWidth="259.0" text="Nombre" />
-          <TableColumn fx:id="tcDescrLgac" prefWidth="435.0" text="Descripcion" />
+          <TableColumn fx:id="colNombre" prefWidth="177.0" text="Nombre" />
+          <TableColumn fx:id="colDescripcion" prefWidth="299.0" text="Descripcion" />
+            <TableColumn fx:id="colCuerpoAcademico" prefWidth="218.0" text="Cuerpo académico" />
         </columns>
       </TableView>
-      <Button layoutX="394.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicGuardarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Registrar " textFill="WHITE">
+      <Button layoutX="394.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicRegistrar" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Registrar " textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="592.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicModificarLgac" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #5FAD56;" text="Modificar" textFill="WHITE">
+      <Button layoutX="592.0" layoutY="419.0" mnemonicParsing="false" onAction="#clicModificar" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #5FAD56;" text="Modificar" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <ImageView fitHeight="69.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="69.0" fitWidth="66.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/arrow.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>

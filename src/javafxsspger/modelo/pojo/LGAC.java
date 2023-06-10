@@ -9,13 +9,17 @@ package javafxsspger.modelo.pojo;
 public class LGAC {
     private int idLgac;
     private String nombre;
+    private String descripcion;
     private int idCuerpoAcademico;
+    private String nombreCuerpoAcademico;
     private int numero;
 
-    public LGAC(int idLgac, String nombre, int idCuerpoAcademico, int numero) {
+    public LGAC(int idLgac, String nombre,String descripcion, int idCuerpoAcademico,String nombreCuerpoAcademico, int numero) {
         this.idLgac = idLgac;
         this.nombre = nombre;
+        this.descripcion = descripcion;
         this.idCuerpoAcademico = idCuerpoAcademico;
+        this.nombreCuerpoAcademico = nombreCuerpoAcademico;
         this.numero = numero;
     }
 
@@ -38,6 +42,15 @@ public class LGAC {
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
     public int getIdCuerpoAcademico() {
         return idCuerpoAcademico;
     }
@@ -46,6 +59,15 @@ public class LGAC {
         this.idCuerpoAcademico = idCuerpoAcademico;
     }
 
+    public String getNombreCuerpoAcademico() {
+        return nombreCuerpoAcademico;
+    }
+
+    public void setNombreCuerpoAcademico(String nombreCuerpoAcademico) {
+        this.nombreCuerpoAcademico = nombreCuerpoAcademico;
+    }
+    
+    
     public int getNumero() {
         return numero;
     }
