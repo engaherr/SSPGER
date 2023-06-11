@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador de lista de LGAC
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 08/06/2023
+* Descripción: Clase controladora de vista FXMLConsultarLGAC.fxml
+*/
 package javafxsspger.controladores;
 
 import java.io.IOException;

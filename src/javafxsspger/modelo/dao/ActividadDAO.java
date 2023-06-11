@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para Actividades
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 10/06/2023
+* Descripción: Clase de Acceso a la información de la base de datos correspondiente a las 
+* actividades los cuales tienen una tabla en la persistencia del sistema
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;
@@ -80,6 +83,36 @@ public class ActividadDAO {
                 int filasAfecadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
                 conexionBD.close();
+            }catch(SQLException ex){
+                respuesta = Constantes.ERROR_CONSULTA;
+            }
+        }else{
+            respuesta = Constantes.ERROR_CONEXION;
+        }
+        return respuesta;
+    }
+    
+    public static int modificarActividad(Actividad edicionActividad){
+        int respuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try{
+                String sentencia = "update actividad set nombre = ?, fechaInicio = ?, fechaFin = ?, "
+                        + "idAnteproyecto = ?, descripcion = ?, archivo = ?, "
+                        + "idEstudiante = ?, idAvance = ?, extensionArchivo = ? where idActividad = ?";
+                PreparedStatement prepararSentencia  = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1,edicionActividad.getNombre());
+                prepararSentencia.setString(2,edicionActividad.getFechaInicio());
+                prepararSentencia.setString(3,edicionActividad.getFechaFin());
+                prepararSentencia.setInt(4,edicionActividad.getIdAnteproyecto());
+                prepararSentencia.setString(5,edicionActividad.getDescripcion());
+                prepararSentencia.setBytes(6,edicionActividad.getArchivo());
+                prepararSentencia.setInt(7,edicionActividad.getIdEstudiante());
+                prepararSentencia.setInt(8,edicionActividad.getIdAvance());
+                prepararSentencia.setString(9,edicionActividad.getExtensionArchivo());
+                prepararSentencia.setInt(10,edicionActividad.getIdActividad());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }

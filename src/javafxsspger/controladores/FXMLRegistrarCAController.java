@@ -1,18 +1,16 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador de Cuerpo Académico
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 08/06/2023
+* Descripción: Clase controladora de vista FXMLRegistrarCA.fxml
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
+
 public class FXMLRegistrarCAController implements Initializable {
 
     /**

@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador de LGAC
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 08/06/2023
+* Descripción: Clase controladora de vista FXMLRegistrarLGAC.fxml
+*/
 package javafxsspger.controladores;
 
 import java.io.ByteArrayInputStream;
@@ -24,11 +26,7 @@ import javafxsspger.modelo.pojo.LGAC;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
+
 public class FXMLRegistrarLGACController implements Initializable {
 
     private INotificacionOperacion interfazNotificacion;
