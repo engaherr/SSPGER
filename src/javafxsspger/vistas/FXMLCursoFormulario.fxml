@@ -24,12 +24,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button layoutX="543.0" layoutY="418.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: green;" text="Aceptar" textFill="WHITE">
-         <font>
-            <Font name="Microsoft JhengHei Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="366.0" layoutY="418.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE">
+      <Button layoutX="543.0" layoutY="418.0" mnemonicParsing="false" onAction="#clicGuardar" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: green;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Microsoft JhengHei Bold" size="18.0" />
          </font>
