@@ -85,6 +85,12 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicIrCronograma(MouseEvent event) {
+          Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLVerActividadesCronograma.fxml"));
+        escenarioEstudiantes.setTitle("Estudiantes");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
     }
 
     @FXML

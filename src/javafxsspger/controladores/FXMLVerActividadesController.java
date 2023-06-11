@@ -36,11 +36,7 @@ import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author dplat
- */
+
 public class FXMLVerActividadesController implements Initializable {
 
     @FXML
@@ -74,7 +70,7 @@ public class FXMLVerActividadesController implements Initializable {
                 try {
                     verActividad(actividad);
                 } catch (IOException ex) {
-//                    Utilidades.mostrarDialogoSimple("Error", "Error al mostrar los detalles de la actividad", Alert.AlertType.ERROR);
+                   Utilidades.mostrarDialogoSimple("Error", "Error al mostrar los detalles de la actividad", Alert.AlertType.ERROR);
                 }
             }
         });
