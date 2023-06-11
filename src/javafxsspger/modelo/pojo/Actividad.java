@@ -19,7 +19,7 @@ public class Actividad {
     private String fechaCreacion;
     private int idAnteproyecto;
     private String descripcion;
-    private File archivo;
+    private byte[] archivo;
     private int idEstudiante;
     private int idAvance;
     private String comentarios;
@@ -29,7 +29,7 @@ public class Actividad {
     public Actividad(){
     }
 
-    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, File archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion) {
+    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -44,6 +44,17 @@ public class Actividad {
         this.evaluacion = evaluacion;
     }
     
+    
+    
+
+    public byte[] getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(byte[] archivo) {
+        this.archivo = archivo;
+    }
+
     
     public int getEvaluacion() {
         return evaluacion;
@@ -120,13 +131,6 @@ public class Actividad {
         this.descripcion = descripcion;
     }
 
-    public File getArchivo() {
-        return archivo;
-    }
-
-    public void setArchivo(File archivo) {
-        this.archivo = archivo;
-    }
 
     public int getIdEstudiante() {
         return idEstudiante;
