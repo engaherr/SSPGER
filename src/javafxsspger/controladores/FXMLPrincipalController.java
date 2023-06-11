@@ -13,6 +13,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafxsspger.JavaFXSSPGER;
+import javafxsspger.modelo.dao.EstudianteDAO;
 import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Utilidades;
@@ -85,12 +87,21 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicIrCronograma(MouseEvent event) {
-          Stage escenarioEstudiantes = new Stage();
-        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
-                "vistas/FXMLVerActividadesCronograma.fxml"));
-        escenarioEstudiantes.setTitle("Estudiantes");
-        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
-        escenarioEstudiantes.showAndWait();
+        
+        Estudiante estudiante = Estudiante.getInstanciaSingleton();
+        int idEstudiante = estudiante.getIdEstudiante();
+        boolean tieneAnteproyecto = EstudianteDAO.verificarTieneAnteproyecto(idEstudiante);
+           if (!tieneAnteproyecto) {
+                    Utilidades.mostrarDialogoSimple("El estudiante no tiene anteproyecto", 
+                            "El estudiante no tienen ningún anteproyecto asignado.",Alert.AlertType.WARNING);
+           }else{
+                    Stage escenarioEstudiantes = new Stage();
+                    escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                            "vistas/FXMLVerActividadesCronograma.fxml"));
+                    escenarioEstudiantes.setTitle("Estudiantes");
+                    escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+                    escenarioEstudiantes.showAndWait();
+           }
     }
 
     @FXML

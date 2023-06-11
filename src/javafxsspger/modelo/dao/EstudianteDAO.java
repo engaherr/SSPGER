@@ -56,7 +56,7 @@ public class EstudianteDAO {
         return respuesta;
     } 
       
-      public static EstudianteRespuesta obtenerDatosDelEstudiante(String matricula) {
+   public static EstudianteRespuesta obtenerDatosDelEstudiante(String matricula) {
     EstudianteRespuesta respuesta = new EstudianteRespuesta();
     respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
     ArrayList<Estudiante> estudiantes = new ArrayList<>();
@@ -87,6 +87,31 @@ public class EstudianteDAO {
         respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
     }
     return respuesta;
+}
+
+      
+  public static boolean verificarTieneAnteproyecto(int idEstudiante) {
+    EstudianteRespuesta respuesta = new EstudianteRespuesta();
+    respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
+    boolean tieneAnteproyecto = false;
+    Connection conexionBD = ConexionBD.abrirConexionBD();
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT EXISTS(SELECT 1 FROM estudiante WHERE idEstudiante = ? AND idAnteproyecto IS NOT NULL) AS tiene_anteproyecto";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setInt(1, idEstudiante);
+            ResultSet resultado = prepararSentencia.executeQuery();
+            if (resultado.next()) {
+                tieneAnteproyecto = resultado.getBoolean("tiene_anteproyecto");
+            }
+            conexionBD.close();
+        } catch (SQLException ex) {
+         respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+        }
+    } else {
+        respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
+    }
+    return tieneAnteproyecto;
 }
 
     

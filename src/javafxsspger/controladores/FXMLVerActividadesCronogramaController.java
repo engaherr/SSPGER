@@ -31,6 +31,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
 import javafxsspger.modelo.dao.ActividadDAO;
+import javafxsspger.modelo.dao.AnteproyectoDAO;
+import javafxsspger.modelo.dao.EstudianteDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.ActividadRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
@@ -62,8 +64,8 @@ public class FXMLVerActividadesCronogramaController implements Initializable {
         Estudiante estudiante = Estudiante.getInstanciaSingleton();
         int idEstudiante = estudiante.getIdEstudiante();
         cargarInformacionTabla(idEstudiante);
-
-        // Agregar listeners para los DatePickers
+        String nombreTrabajo = AnteproyectoDAO.obtenerNombreTrabajoAnteproyecto(idEstudiante); 
+        lbTitulo.setText(nombreTrabajo);
         dpInicio.valueProperty().addListener((observable, oldValue, newValue) -> actualizarTabla());
         dpFin.valueProperty().addListener((observable, oldValue, newValue) -> actualizarTabla());
     }

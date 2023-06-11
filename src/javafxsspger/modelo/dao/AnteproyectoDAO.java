@@ -196,4 +196,33 @@ public class AnteproyectoDAO {
             respuesta = Constantes.ERROR_CONEXION;
         return respuesta;
     }
+    
+    public static String obtenerNombreTrabajoAnteproyecto(int idEstudiante) {
+    int respuesta;
+    String nombreTrabajo = null;
+    Connection conexionBD = ConexionBD.abrirConexionBD();
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT a.nombreTrabajo " +
+                    "FROM anteproyecto AS a " +
+                    "JOIN estudiante AS e ON a.idAnteproyecto = e.idAnteproyecto " +
+                    "WHERE e.idEstudiante = ?";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setInt(1, idEstudiante);
+            ResultSet resultado = prepararSentencia.executeQuery();
+            if (resultado.next()) {
+                nombreTrabajo = resultado.getString("nombreTrabajo");
+            }
+            conexionBD.close();
+        } catch (SQLException ex) {
+              respuesta = Constantes.ERROR_CONSULTA;
+        }
+    } else {
+         respuesta = Constantes.ERROR_CONEXION;
+    }
+    return nombreTrabajo;
+}
+
+    
+    
 }
