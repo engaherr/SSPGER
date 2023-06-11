@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxsspger.controladores.FXMLAdminCursosController">
+   <children>
+      <Button layoutX="283.0" layoutY="99.0" mnemonicParsing="false" onAction="#clicCrearCurso" style="-fx-background-color: green;" text="Crear Curso" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="19.0" />
+         </font>
+      </Button>
+      <Pane prefHeight="75.0" prefWidth="700.0" style="-fx-background-color: #00529E;">
+         <children>
+            <Label fx:id="lbTitulo" layoutX="73.0" layoutY="4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="554.0" text="Administrador de Cursos" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="15.0" layoutY="17.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

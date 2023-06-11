@@ -31,11 +31,17 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private ImageView imgMenu;
     private boolean menuAbierto;
+    @FXML
+    private Pane paneCronograma;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
+        
+        if(Estudiante.getInstanciaSingleton() == null){
+            paneCronograma.setVisible(false);
+        }
     }    
 
     @FXML
@@ -81,4 +87,27 @@ public class FXMLPrincipalController implements Initializable {
         escenarioAnteproyectos.initModality(Modality.APPLICATION_MODAL);
         escenarioAnteproyectos.showAndWait();
     }
+
+    @FXML
+    private void clicIrCronograma(MouseEvent event) {
+        actualizaEstadoMenu(-255, false, "recursos/menu.png");
+        Stage escenarioCronograma = new Stage();
+        escenarioCronograma.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLCronogramaActividades.fxml"));
+        escenarioCronograma.setTitle("Cronograma");
+        escenarioCronograma.initModality(Modality.APPLICATION_MODAL);
+        escenarioCronograma.showAndWait();
+    }
+
+    @FXML
+    private void clicIrAdminCursos(MouseEvent event) {
+        actualizaEstadoMenu(-255, false, "recursos/menu.png");
+        Stage escenarioCronograma = new Stage();
+        escenarioCronograma.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAdminCursos.fxml"));
+        escenarioCronograma.setTitle("Administrador de Cursos");
+        escenarioCronograma.initModality(Modality.APPLICATION_MODAL);
+        escenarioCronograma.showAndWait();
+    }
+
 }
