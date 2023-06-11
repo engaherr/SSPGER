@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLRegistrarLGACController">
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLRegistrarLGACController">
    <children>
       <Pane prefHeight="75.0" prefWidth="800.0" style="-fx-background-color: #00529E;">
          <children>
@@ -19,27 +19,27 @@
             </Label>
          </children>
       </Pane>
-      <Label layoutX="68.0" layoutY="108.0" text="Nombre:">
+      <Label layoutX="68.0" layoutY="88.0" text="Nombre:">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="216.0" text="Descripción:">
+      <Label layoutX="68.0" layoutY="199.0" text="Descripción:">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Label>
-      <TextField fx:id="tfNombreLgac" layoutX="68.0" layoutY="157.0" prefHeight="39.0" prefWidth="675.0" promptText="Educación Ambiental para la Sustentabilidad" />
-      <Button layoutX="433.0" layoutY="428.0" mnemonicParsing="false" onAction="#clicGuardar" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Guardar" textFill="WHITE">
+      <TextField fx:id="tfNombreLgac" layoutX="68.0" layoutY="134.0" prefHeight="39.0" prefWidth="675.0" promptText="Educación Ambiental para la Sustentabilidad" />
+      <Button layoutX="433.0" layoutY="412.0" mnemonicParsing="false" onAction="#clicGuardar" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #00529E;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="606.0" layoutY="428.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #f25d59;" text="Cancelar" textFill="WHITE">
+      <Button layoutX="606.0" layoutY="410.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: #f25d59;" text="Cancelar" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <TextArea fx:id="taDescripcion" layoutX="68.0" layoutY="265.0" prefHeight="135.0" prefWidth="675.0" promptText="La línea de generación y aplicación del conocimiento (LGAC) en educación ambiental para la sustentabilidad es de naturaleza consustancialmente interdisciplinaria..." wrapText="true" />
+      <TextArea fx:id="taDescripcion" layoutX="68.0" layoutY="244.0" prefHeight="135.0" prefWidth="675.0" promptText="La línea de generación y aplicación del conocimiento (LGAC) en educación ambiental para la sustentabilidad es de naturaleza consustancialmente interdisciplinaria..." wrapText="true" />
    </children>
 </AnchorPane>
