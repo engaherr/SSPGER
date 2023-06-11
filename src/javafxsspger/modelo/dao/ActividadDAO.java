@@ -131,5 +131,26 @@ public class ActividadDAO {
     return respuesta;
 }      
         
+        
+      public static void EvaluarEntrega(int evaluacion, int idActividad) {
+        ActividadRespuesta respuesta = new ActividadRespuesta();
+        respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);   
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null) {
+        try {
+            String consulta = "UPDATE entrega SET evaluacion = ? WHERE idActividad = ?";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setInt(1, evaluacion);
+            prepararSentencia.setInt(2, idActividad);
+            prepararSentencia.executeUpdate();
+            conexionBD.close();
+        } catch (SQLException ex) {
+         respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+        }
+    } else {
+        respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
+    }
+}
+
     
 }

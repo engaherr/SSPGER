@@ -38,11 +38,7 @@ import javafxsspger.utils.Utilidades;
 import javafxsspger.controladores.FXMLVerActividadesController;
 
 
-/**
- * FXML Controller class
- *
- * @author dplat
- */
+
 public class FXMLVerEstudiantesController implements Initializable {
 
     @FXML

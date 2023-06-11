@@ -8,16 +8,21 @@
 
 package javafxsspger.controladores;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafxsspger.JavaFXSSPGER;
 import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.ActividadRespuesta;
@@ -41,10 +46,11 @@ public class FXMLVerActividadController implements Initializable {
     private TextArea taCuerpo;
     @FXML
     private Label lbfechaCreacion;
+    private int idActividadSeleccionada;
 
-    /**
-     * Initializes the controller class.
-     */
+    
+   
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        taCuerpo.setWrapText(true);
@@ -58,7 +64,15 @@ public class FXMLVerActividadController implements Initializable {
     }
 
     @FXML
-    private void clicCalificar(ActionEvent event) {
+    private void clicCalificar(ActionEvent event) throws IOException {
+           FXMLLoader accesoControlador = new FXMLLoader(
+                    JavaFXSSPGER.class.getResource("vistas/FXMLEvaluarActividad.fxml"));
+            Parent vista = accesoControlador.load();
+             FXMLEvaluarActividadController evaluarActividadController = accesoControlador.getController();
+             evaluarActividadController.setActividadEvaluar(idActividadSeleccionada);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(vista));
+            stage.showAndWait();
     }
     
     
@@ -68,7 +82,10 @@ public class FXMLVerActividadController implements Initializable {
     lbFechaComienzo.setText(actividad.getFechaInicio());
     lbFechaEntrega.setText(actividad.getFechaFin());
      cargarInformacionEntrega(actividad.getIdActividad());
+     idActividadSeleccionada = actividad.getIdActividad();
 }
+    
+    
      public void cargarInformacionEntrega(int idActividad) {
         ActividadRespuesta respuestaBD = ActividadDAO.obtenerDetallesEntrega(idActividad);
         ArrayList<Actividad> actividades = respuestaBD.getActividades();
