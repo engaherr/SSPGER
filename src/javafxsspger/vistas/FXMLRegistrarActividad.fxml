@@ -47,7 +47,8 @@
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Button>
-      <ImageView fx:id="ivArchivo" fitHeight="165.0" fitWidth="146.0" layoutX="220.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="cbAvances" layoutX="754.0" layoutY="204.0" prefHeight="39.0" prefWidth="359.0" promptText="Avances" />
+      <Label layoutX="67.0" layoutY="421.0" text="Archivo seleccionado (opcional)" />
+      <Label fx:id="lbRutaArchivo" layoutX="70.0" layoutY="462.0" prefHeight="27.0" prefWidth="246.0" />
    </children>
 </AnchorPane>

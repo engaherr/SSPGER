@@ -30,7 +30,8 @@ public class ActividadDAO {
     if(conexionBD != null){
         try {
             String consulta = "select idActividad, nombre, fechaInicio, fechaFin, fechaCreacion, "
-                    + "descripcion, archivo, idEstudiante, idAvance, extensionArchivo from "
+                    + "descripcion, archivo, idEstudiante, idAvance, extensionArchivo, nombreArchivo "
+                    + "from "
                     + "lgac where idAnteproyecto = ?";
             PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
             prepararSentencia.setInt(1, idAnteproyecto);
@@ -48,6 +49,7 @@ public class ActividadDAO {
                 actividad.setIdEstudiante(resultado.getInt("idEstudiante"));
                 actividad.setIdAvance(resultado.getInt("idAvance"));
                 actividad.setExtensionArchivo(resultado.getString("extensionArchivo"));
+                actividad.setNombreArchivo(resultado.getString("nombreArchivo"));
                 actividades.add(actividad);
             }
             conexionBD.close();           
@@ -68,7 +70,7 @@ public class ActividadDAO {
             try{
                 String sentencia = "insert into actividad (nombre,fechaInicio,fechaFin,"
                         + "fechaCreacion,idAnteproyecto,descripcion,archivo,idEstudiante,idAvance,"
-                        + "extensionArchivo) values (?,?,?,?,?,?,?,?,?,?)";
+                        + "extensionArchivo,nombreArchivo) values (?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,actividadNueva.getNombre());
                 prepararSentencia.setString(2,actividadNueva.getFechaInicio());
@@ -80,6 +82,8 @@ public class ActividadDAO {
                 prepararSentencia.setInt(8,actividadNueva.getIdEstudiante());
                 prepararSentencia.setInt(9,actividadNueva.getIdAvance());
                 prepararSentencia.setString(10,actividadNueva.getExtensionArchivo());
+                prepararSentencia.setString(11,actividadNueva.getNombreArchivo());
+                
                 int filasAfecadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
                 conexionBD.close();
@@ -99,7 +103,8 @@ public class ActividadDAO {
             try{
                 String sentencia = "update actividad set nombre = ?, fechaInicio = ?, fechaFin = ?, "
                         + "idAnteproyecto = ?, descripcion = ?, archivo = ?, "
-                        + "idEstudiante = ?, idAvance = ?, extensionArchivo = ? where idActividad = ?";
+                        + "idEstudiante = ?, idAvance = ?, extensionArchivo = ?,nombreArchivo = ? "
+                        + "where idActividad = ?";
                 PreparedStatement prepararSentencia  = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,edicionActividad.getNombre());
                 prepararSentencia.setString(2,edicionActividad.getFechaInicio());
@@ -110,7 +115,8 @@ public class ActividadDAO {
                 prepararSentencia.setInt(7,edicionActividad.getIdEstudiante());
                 prepararSentencia.setInt(8,edicionActividad.getIdAvance());
                 prepararSentencia.setString(9,edicionActividad.getExtensionArchivo());
-                prepararSentencia.setInt(10,edicionActividad.getIdActividad());
+                prepararSentencia.setString(10,edicionActividad.getNombreArchivo());                
+                prepararSentencia.setInt(11,edicionActividad.getIdActividad());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){

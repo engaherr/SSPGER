@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -70,17 +71,15 @@ public class FXMLRegistrarActividadController implements Initializable {
     
     private String estiloError = "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
     private String estiloNormal;
-    @FXML
-    private ImageView ivArchivo;
     
     private File archivoAtividad;
     private String extensionArchivo;
+    private String nombreArchivo;
     
     private LocalDate fechaAnteriorInicio;
     private LocalDate fechaAnteriorFin;
 
-    boolean cambioEnNombre = false;
-    boolean cambioEnDescripcion = false;
+    boolean cambiosRealizados = false;
     @FXML
     private Button btGuardar;
     
@@ -90,6 +89,8 @@ public class FXMLRegistrarActividadController implements Initializable {
     @FXML
     private ComboBox<Avance> cbAvances;
     private ObservableList<Avance> avances;
+    @FXML
+    private Label lbRutaArchivo;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -136,6 +137,10 @@ public class FXMLRegistrarActividadController implements Initializable {
     
 private void visualizarArchivo(File archivoSeleccionado) {
     if (archivoSeleccionado != null) {
+        nombreArchivo = archivoSeleccionado.getName();
+        String enlace = "<a href='" + archivoSeleccionado.getAbsolutePath() + "'>" + nombreArchivo + "</a>";
+        lbRutaArchivo.setText(enlace);
+        
         String extension = getFileExtension(archivoSeleccionado);
         extensionArchivo = extension;
         if (extension.equalsIgnoreCase("pdf")) {
@@ -166,11 +171,13 @@ private String getFileExtension(File archivo) {
         taDescripcion.setStyle(estiloNormal);
         dpFechaInicio.setStyle(estiloNormal);
         dpFechaFin.setStyle(estiloNormal);
+        cbAvances.setStyle(estiloNormal);
                
         String nombre = null;
         String descripcion = null;
         String fechaInicio = null;
         String fechaFin = null;
+        int idAvance = -1;
         boolean esValido = true;
  
         if(! tfNombre.getText().isEmpty()){
@@ -202,6 +209,13 @@ private String getFileExtension(File archivo) {
             esValido = false;
         }
         
+        if(cbAvances.getSelectionModel().getSelectedItem() != null){
+            idAvance = cbAvances.getSelectionModel().getSelectedItem().getIdAvance();
+        }else{
+            cbAvances.setStyle(estiloError);
+            esValido = false;
+        }
+        
         
         if(esValido){
             Actividad actividadValida = new Actividad();
@@ -209,10 +223,8 @@ private String getFileExtension(File archivo) {
             actividadValida.setDescripcion(descripcion);
             actividadValida.setFechaInicio(fechaInicio);
             actividadValida.setFechaFin(fechaFin);
+            actividadValida.setIdAvance(idAvance);
             
-
-            
-            //Asignar el id de Anteproyecto, de estudiante y de avance;
             
             try{
                 if(esEdicion){
@@ -221,9 +233,11 @@ private String getFileExtension(File archivo) {
                     if(archivoAtividad != null){
                         actividadValida.setArchivo(Files.readAllBytes(archivoAtividad.toPath()));
                         actividadValida.setExtensionArchivo(extensionArchivo);
+                        actividadValida.setNombreArchivo(nombreArchivo);
                     }else{
                         actividadValida.setIdActividad(actividadEdicion.getIdActividad());
                         actividadValida.setExtensionArchivo(actividadEdicion.getExtensionArchivo());
+                        actividadValida.setNombreArchivo(actividadEdicion.getNombreArchivo());
                     }
                     actividadValida.setIdActividad(actividadEdicion.getIdActividad());
                     modificarActividad(actividadValida);               
@@ -231,14 +245,16 @@ private String getFileExtension(File archivo) {
                     if(archivoAtividad != null){
                         actividadValida.setArchivo(Files.readAllBytes(archivoAtividad.toPath()));
                         actividadValida.setExtensionArchivo(extensionArchivo);
+                        actividadValida.setNombreArchivo(nombreArchivo);
                     }
                     LocalDate fechaActual = LocalDate.now();
                     String fechaHoy = fechaActual.format(DateTimeFormatter.ISO_DATE);
                     actividadValida.setFechaCreacion(fechaHoy);
                     
-                    registrarActividad(actividadValida);
                     actividadValida.setIdEstudiante(estudiante.getIdEstudiante());
                     actividadValida.setIdAnteproyecto(atpAsignado.getIdAnteproyecto());
+                    registrarActividad(actividadValida);
+
                     
                 }
             }catch(IOException ex){
@@ -320,21 +336,29 @@ private String getFileExtension(File archivo) {
             @Override
             public void handle(ActionEvent event) {
                 if (event.getSource() == tfNombre) {
-                    cambioEnNombre = true;
+                    cambiosRealizados = true;
+                }else if(event.getSource() == dpFechaFin){
+                    cambiosRealizados = true;
+                }else if(event.getSource() == dpFechaInicio){
+                    cambiosRealizados = true;
                 } 
-                if (cambioEnNombre) {
+                
+                if (cambiosRealizados) {
                     btGuardar.setDisable(false);  
                 }
             }
         };
         tfNombre.setOnAction(eventHandler);
+        dpFechaInicio.setOnAction(eventHandler);
+        dpFechaFin.setOnAction(eventHandler);
+        
         
         taDescripcion.setOnKeyTyped(new EventHandler<javafx.scene.input.KeyEvent>() {
             @Override
             public void handle(javafx.scene.input.KeyEvent event) {
-                cambioEnDescripcion = true;
+                cambiosRealizados = true;
                 
-                if (cambioEnDescripcion || cambioEnNombre ) {
+                if (cambiosRealizados) {
                     btGuardar.setDisable(false);
                 }
             }
@@ -349,19 +373,19 @@ private String getFileExtension(File archivo) {
         dpFechaInicio.setValue(LocalDate.parse(actividadEdicion.getFechaInicio()));
         dpFechaFin.setValue(LocalDate.parse(actividadEdicion.getFechaFin()));
         
+        int posicionAvance = obtenerPosicionComboAvance(actividadEdicion.getIdAvance());
+        cbAvances.getSelectionModel().select(posicionAvance);
         
-        fechaAnteriorInicio = dpFechaInicio.getValue();
-        fechaAnteriorFin = dpFechaFin.getValue();
-        
-        /*try{
-            ByteArrayInputStream inputFoto = new ByteArrayInputStream(promocion.getImagen());
-            Image imgPromocion = new Image(inputFoto);
-            imagenPromocion.setImage(imgPromocion);
-        }catch(Exception ex){
-            ex.printStackTrace();
+        lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.getExtensionArchivo());
+       
+    }
+    
+    private int obtenerPosicionComboAvance(int idAvance){
+        for (int i = 0; i < avances.size(); i++) {
+            if(avances.get(i).getIdAvance() == idAvance)
+                return i;
         }
-        
-        */        
+        return 0;
     }
     
     private void cargarInformacionAvances(){

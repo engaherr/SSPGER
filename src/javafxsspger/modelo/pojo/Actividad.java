@@ -20,10 +20,11 @@ public class Actividad {
     private String descripcion;
     private byte[] archivo;
     private String extensionArchivo;
+    private String nombreArchivo;
 
     public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, 
             String fechaCreacion, int idAnteproyecto, int idEstudiante, int idAvance, 
-            String descripcion, byte[] archivo, String extensionArchivo) {
+            String descripcion, byte[] archivo, String extensionArchivo, String nombreArchivo) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -35,6 +36,7 @@ public class Actividad {
         this.descripcion = descripcion;
         this.archivo = archivo;
         this.extensionArchivo = extensionArchivo;
+        this.nombreArchivo = nombreArchivo;
     }
 
     public Actividad() {
@@ -127,6 +129,14 @@ public class Actividad {
 
     public void setExtensionArchivo(String extensionArchivo) {
         this.extensionArchivo = extensionArchivo;
+    }
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public void setNombreArchivo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
     }
     
     @Override
