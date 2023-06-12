@@ -9,7 +9,6 @@ package javafxsspger.modelo.pojo;
 public class Avance {
     private int idAvance;
     private int idAnteproyecto;
-    private int porcentaje;
     private String nombre;
     private String nombreTrabajo;
     private int cantidadActividades;
@@ -19,7 +18,7 @@ public class Avance {
     public Avance() {
     }
 
-    public Avance(int idAvance, int idAnteproyecto, int porcentaje, String nombre) {
+    public Avance(int idAvance, int idAnteproyecto, Double porcentaje, String nombre) {
         this.idAvance = idAvance;
         this.idAnteproyecto = idAnteproyecto;
         this.porcentaje = porcentaje;
@@ -58,14 +57,6 @@ public class Avance {
 
     public void setIdAnteproyecto(int idAnteproyecto) {
         this.idAnteproyecto = idAnteproyecto;
-    }
-
-    public int getPorcentaje() {
-        return porcentaje;
-    }
-
-    public void setPorcentaje(int porcentaje) {
-        this.porcentaje = porcentaje;
     }
 
     public String getNombre() {
