@@ -115,7 +115,7 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicAgregarEstudianteCurso(ActionEvent event) {
-          Stage escenarioEstudiantes = new Stage();
+        Stage escenarioEstudiantes = new Stage();
         escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
                 "vistas/FXMLAgregarEstudianteCurso.fxml"));
         escenarioEstudiantes.setTitle("Agregar estudiantes a curso");
@@ -135,6 +135,12 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicIrAdminCursos(MouseEvent event) {
+        Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAdminCursos.fxml"));
+        escenarioEstudiantes.setTitle("Administrador de Cursos");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
     }
 
     @FXML
