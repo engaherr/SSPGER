@@ -39,8 +39,9 @@ public class FXMLPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
-    }    
-
+    }
+    
+    
     @FXML
     private void clicOpenMenu(MouseEvent event) {
         if(menuAbierto)

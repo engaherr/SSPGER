@@ -8,6 +8,9 @@
 package javafxsspger.utils;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,4 +47,14 @@ public class Utilidades {
         Optional<ButtonType> botonClic = alertaConfirmacion.showAndWait();
         return (botonClic.get() == ButtonType.OK);
     }
+    
+    
+    
+
+public static String obtenerFechaActual() {
+    LocalDateTime fechaActual = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    return fechaActual.format(formatter);
+}
+
 }

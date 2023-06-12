@@ -153,5 +153,29 @@ public class ActividadDAO {
     }
 }
 
+      
+       public static int enviarEntrega(Actividad actividadEntrega) {
+        int respuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null) {
+            try {
+                String sentencia = "INSERT INTO entrega (idActividad, fechaCreacion, archivo, comentarios, nombreArchivo)\n" +
+                        "VALUES (?, ?, ?, ?, ?);";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, actividadEntrega.getIdActividad());
+                prepararSentencia.setString(2, actividadEntrega.getFechaCreacion());
+                prepararSentencia.setBytes(3, actividadEntrega.getArchivo());
+                prepararSentencia.setString(4, actividadEntrega.getComentarios());
+                prepararSentencia.setString(5, actividadEntrega.getNombreArchivo());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+            } catch (SQLException ex) {
+                respuesta = Constantes.ERROR_CONSULTA;
+            }
+        } else {
+            respuesta = Constantes.ERROR_CONEXION;
+        }
+        return respuesta;
+    }
     
 }
