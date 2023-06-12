@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLRegistrarActividadController">
+   <children>
+      <Pane prefHeight="86.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+         <children>
+            <Label layoutX="60.0" layoutY="11.0" text="Registro de actividad" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="44.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Label layoutX="67.0" layoutY="101.0" text="Nombre:" textFill="#2f0000">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNombre" layoutX="194.0" layoutY="102.0" prefHeight="39.0" prefWidth="919.0" />
+      <DatePicker fx:id="dpFechaInicio" layoutX="753.0" layoutY="287.0" prefHeight="39.0" prefWidth="359.0" promptText="Fecha de inicio" />
+      <DatePicker fx:id="dpFechaFin" layoutX="754.0" layoutY="366.0" prefHeight="39.0" prefWidth="359.0" promptText="Fecha de fin" />
+      <Label layoutX="67.0" layoutY="164.0" text="Descripcion:" textFill="#2f0000">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="taDescripcion" layoutX="67.0" layoutY="209.0" prefHeight="197.0" prefWidth="643.0" />
+      <Button fx:id="btGuardar" layoutX="788.0" layoutY="578.0" mnemonicParsing="false" onAction="#clicGuardar" style="-fx-background-color: #00529E;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="981.0" layoutY="578.0" mnemonicParsing="false" onAction="#clicCancelar" style="-fx-background-color: #f25d59;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="147.0" layoutY="580.0" mnemonicParsing="false" onAction="#clicSeleccionarArchivo" style="-fx-background-color: #5FAD56;" text="Seleccionar archivo" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="cbAvances" layoutX="754.0" layoutY="204.0" prefHeight="39.0" prefWidth="359.0" promptText="Avances" />
+      <Label layoutX="67.0" layoutY="421.0" text="Archivo seleccionado (opcional)" />
+      <Label fx:id="lbRutaArchivo" layoutX="70.0" layoutY="462.0" prefHeight="27.0" prefWidth="246.0" />
+   </children>
+</AnchorPane>
