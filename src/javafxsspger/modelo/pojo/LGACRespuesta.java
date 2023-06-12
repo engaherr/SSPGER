@@ -9,14 +9,14 @@ package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-public class LGACRespuesta {
+public class LgacRespuesta {
     private int codigoRespuesta;
-    private ArrayList<LGAC> lgacs;
+    private ArrayList<Lgac> lgacs;
 
-    public LGACRespuesta() {
+    public LgacRespuesta() {
     }
 
-    public LGACRespuesta(int codigoRespuesta, ArrayList<LGAC> lgacs) {
+    public LgacRespuesta(int codigoRespuesta, ArrayList<Lgac> lgacs) {
         this.codigoRespuesta = codigoRespuesta;
         this.lgacs = lgacs;
     }
@@ -29,11 +29,11 @@ public class LGACRespuesta {
         this.codigoRespuesta = codigoRespuesta;
     }
 
-    public ArrayList<LGAC> getLgacs() {
+    public ArrayList<Lgac> getLgacs() {
         return lgacs;
     }
 
-    public void setLgacs(ArrayList<LGAC> lgacs) {
+    public void setLgacs(ArrayList<Lgac> lgacs) {
         this.lgacs = lgacs;
     }
 }

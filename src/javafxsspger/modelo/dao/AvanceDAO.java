@@ -34,7 +34,7 @@ public class AvanceDAO {
                     Avance avance = new Avance();
                     avance.setIdAvance(resultado.getInt("idAvance"));
                     avance.setNombre(resultado.getString("nombre"));
-                    avance.setPorcentaje(resultado.getInt("porcentaje"));
+                   // avance.setPorcentaje(resultado.getInt("porcentaje"));
                     avance.setIdAnteproyecto(idAnteproyecto);
                     avances.add(avance);
                 }

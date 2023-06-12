@@ -1,8 +1,8 @@
 /*
-* Título del programa: Controlador de lista de LGAC
+* Título del programa: Controlador de lista de Lgac
 * Autor: Jasiel Emir Zavaleta García
 * Fecha: 08/06/2023
-* Descripción: Clase controladora de vista FXMLConsultarLGAC.fxml
+* Descripción: Clase controladora de vista FXMLConsultarLgac.fxml
 */
 package javafxsspger.controladores;
 
@@ -29,9 +29,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
 import javafxsspger.interfaz.INotificacionOperacion;
-import javafxsspger.modelo.dao.LGACDAO;
-import javafxsspger.modelo.pojo.LGAC;
-import javafxsspger.modelo.pojo.LGACRespuesta;
+import javafxsspger.modelo.dao.LgacDAO;
+import javafxsspger.modelo.pojo.Lgac;
+import javafxsspger.modelo.pojo.LgacRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
@@ -46,14 +46,14 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
     @FXML
     private Label lbNombreFormulario;
     @FXML
-    private TableView<LGAC> tvLgac;
+    private TableView<Lgac> tvLgac;
     @FXML
     private TableColumn colNombre;
     @FXML
     private TableColumn colDescripcion;
     @FXML
     private TableColumn  colCuerpoAcademico;
-    private ObservableList<LGAC> lgacs;
+    private ObservableList<Lgac> lgacs;
 
     /**
      * Initializes the controller class.
@@ -73,11 +73,11 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
     
     private void cargarInformacionTabla(){
         lgacs = FXCollections.observableArrayList();
-        LGACRespuesta lgacRegistrados = LGACDAO.obtenerTodosLGACs();
+        LgacRespuesta lgacRegistrados = LgacDAO.obtenerTodosLgacs();
         switch(lgacRegistrados.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "recuperar la información relacionada con las LGAC, por favor inténtelo "
+                        + "recuperar la información relacionada con las Lgac, por favor inténtelo "
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
@@ -86,7 +86,7 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
                         + "inténtelo de nuevo, por favor", Alert.AlertType.ERROR);    
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operacion exitosa","Las LGAC registradas en el "
+                Utilidades.mostrarDialogoSimple("Operacion exitosa","Las Lgac registradas en el "
                     + "sistema se cargaron de forma correcta", Alert.AlertType.INFORMATION);
                 lgacs.addAll(lgacRegistrados.getLgacs());
                 tvLgac.setItems(lgacs);
@@ -103,7 +103,7 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
     @FXML
     private void clicRegistrar(ActionEvent event) {
         Stage escenarioFormulario = new Stage();
-        escenarioFormulario.setScene(Utilidades.inicializaEscena("vistas/FXMLRegistrarLGAC.fxml"));
+        escenarioFormulario.setScene(Utilidades.inicializaEscena("vistas/FXMLRegistrarLgac.fxml"));
         escenarioFormulario.setTitle("Formulario");
         escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
         escenarioFormulario.showAndWait();
@@ -111,7 +111,7 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
 
     @FXML
     private void clicModificar(ActionEvent event) {
-        LGAC lgacSeleccionada = tvLgac.getSelectionModel().getSelectedItem();
+        Lgac lgacSeleccionada = tvLgac.getSelectionModel().getSelectedItem();
         if(lgacSeleccionada != null){
             irFormulario(true,lgacSeleccionada);
         }else{
@@ -121,10 +121,10 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
     }
     
     
-    private void irFormulario(boolean esEdicion, LGAC lgacSeleccionada){
+    private void irFormulario(boolean esEdicion, Lgac lgacSeleccionada){
         try{
             FXMLLoader accesoControlador = new FXMLLoader
-                (JavaFXSSPGER.class.getResource("vistas/FXMLRegistrarLGAC.fxml"));
+                (JavaFXSSPGER.class.getResource("vistas/FXMLRegistrarLgac.fxml"));
             Parent vista;
             vista = accesoControlador.load();
             
@@ -133,7 +133,7 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
             
             Stage escenarioFormulario = new Stage();
             escenarioFormulario.setScene(new Scene(vista));
-            escenarioFormulario.setTitle("Modificación de LGAC");
+            escenarioFormulario.setTitle("Modificación de Lgac");
             escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
             escenarioFormulario.showAndWait();         
             

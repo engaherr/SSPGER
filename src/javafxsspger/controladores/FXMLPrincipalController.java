@@ -43,6 +43,9 @@ public class FXMLPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
+        
+        if(Academico.getInstanciaSingleton() != null)
+            paneCronograma.setVisible(false);
     }
     
     

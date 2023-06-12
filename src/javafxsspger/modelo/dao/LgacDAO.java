@@ -1,8 +1,8 @@
 /*
-* Título del programa: DAO para las LGACs
+* Título del programa: DAO para las Lgacs
 * Autor: Enrique Gamboa Hernández
 * Fecha Creación: 07/06/2023
-* Descripción: Clase de acceso a la información para las LGACs lass cuales tienen
+* Descripción: Clase de acceso a la información para las Lgacs lass cuales tienen
 * una tabla en la persistencia del sistema
 */
 package javafxsspger.modelo.dao;
@@ -13,15 +13,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafxsspger.modelo.ConexionBD;
-import javafxsspger.modelo.pojo.LGAC;
-import javafxsspger.modelo.pojo.LGACRespuesta;
+import javafxsspger.modelo.pojo.Lgac;
+import javafxsspger.modelo.pojo.LgacRespuesta;
 import javafxsspger.utils.Constantes;
 
-public class LGACDAO {
-    public static LGACRespuesta obtenerLGACsPorCA(int idCuerpoAcademico){
-        LGACRespuesta respuesta = new LGACRespuesta();
+public class LgacDAO {
+    public static LgacRespuesta obtenerLgacsPorCA(int idCuerpoAcademico){
+        LgacRespuesta respuesta = new LgacRespuesta();
         respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
-        ArrayList<LGAC> lgacs = new ArrayList<>();
+        ArrayList<Lgac> lgacs = new ArrayList<>();
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try {
@@ -31,7 +31,7 @@ public class LGACDAO {
                 prepararSentencia.setInt(1, idCuerpoAcademico);
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
-                    LGAC lgac = new LGAC();
+                    Lgac lgac = new Lgac();
                     lgac.setIdCuerpoAcademico(idCuerpoAcademico);
                     lgac.setIdLgac(resultado.getInt("idLgac"));
                     lgac.setNombre(resultado.getString("nombre"));
@@ -49,10 +49,10 @@ public class LGACDAO {
         return respuesta;
     }
        
-    public static LGACRespuesta obtenerTodosLGACs(){
-        LGACRespuesta respuesta = new LGACRespuesta();
+    public static LgacRespuesta obtenerTodosLgacs(){
+        LgacRespuesta respuesta = new LgacRespuesta();
         respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
-        ArrayList<LGAC> lgacs = new ArrayList<>();
+        ArrayList<Lgac> lgacs = new ArrayList<>();
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try {
@@ -64,7 +64,7 @@ public class LGACDAO {
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
-                    LGAC lgac = new LGAC();
+                    Lgac lgac = new Lgac();
                     
                     lgac.setIdLgac(resultado.getInt("idLgac"));
                     lgac.setNombre(resultado.getString("nombre"));
@@ -87,15 +87,15 @@ public class LGACDAO {
         return respuesta;
     }
     
-    public static int RegistarLGAC(LGAC nuevoLGAC){
+    public static int RegistarLgac(Lgac nuevoLgac){
         int respuesta;
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
                 String sentencia = "insert into lgac (nombre,descripcion) values (?,?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setString(1, nuevoLGAC.getNombre());
-                prepararSentencia.setString(2,nuevoLGAC.getDescripcion());
+                prepararSentencia.setString(1, nuevoLgac.getNombre());
+                prepararSentencia.setString(2,nuevoLgac.getDescripcion());
                 
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
@@ -110,7 +110,7 @@ public class LGACDAO {
         return respuesta;
     }
     
-    public static int modificarLGAC(LGAC edicionLGAC, boolean tieneCuerpoAcademico){
+    public static int modificarLgac(Lgac edicionLgac, boolean tieneCuerpoAcademico){
         int respuesta;
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
@@ -119,11 +119,11 @@ public class LGACDAO {
                     String sentencia = "update lgac set nombre = ? descripcion = ?, "
                             + "idCuerpoAcademico = ?, numero = ? where idLgac = ?";
                     PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                    prepararSentencia.setString(1, edicionLGAC.getNombre());
-                    prepararSentencia.setString(2, edicionLGAC.getDescripcion());
-                    prepararSentencia.setInt(3, edicionLGAC.getIdCuerpoAcademico());    
-                    prepararSentencia.setInt(4, edicionLGAC.getNumero());
-                    prepararSentencia.setInt(3, edicionLGAC.getIdLgac());
+                    prepararSentencia.setString(1, edicionLgac.getNombre());
+                    prepararSentencia.setString(2, edicionLgac.getDescripcion());
+                    prepararSentencia.setInt(3, edicionLgac.getIdCuerpoAcademico());    
+                    prepararSentencia.setInt(4, edicionLgac.getNumero());
+                    prepararSentencia.setInt(3, edicionLgac.getIdLgac());
 
                     int filasAfectadas = prepararSentencia.executeUpdate();
                     respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
@@ -138,11 +138,11 @@ public class LGACDAO {
                     String sentencia = "update lgac set nombre = ?, "
                             + "descripcion = ?  where idLgac = ?";
                     PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                    prepararSentencia.setString(1, edicionLGAC.getNombre());
-                    prepararSentencia.setString(2, edicionLGAC.getDescripcion());
-                    //prepararSentencia.setInt(3, edicionLGAC.getIdCuerpoAcademico());    
-                    //prepararSentencia.setInt(4, edicionLGAC.getNumero());
-                    prepararSentencia.setInt(3, edicionLGAC.getIdLgac());
+                    prepararSentencia.setString(1, edicionLgac.getNombre());
+                    prepararSentencia.setString(2, edicionLgac.getDescripcion());
+                    //prepararSentencia.setInt(3, edicionLgac.getIdCuerpoAcademico());    
+                    //prepararSentencia.setInt(4, edicionLgac.getNumero());
+                    prepararSentencia.setInt(3, edicionLgac.getIdLgac());
 
                     int filasAfectadas = prepararSentencia.executeUpdate();
                     respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 

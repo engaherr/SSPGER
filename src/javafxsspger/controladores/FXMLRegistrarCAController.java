@@ -17,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafxsspger.modelo.pojo.CuerpoAcademico;
-import javafxsspger.modelo.pojo.LGAC;
+import javafxsspger.modelo.pojo.Lgac;
 
 
 public class FXMLRegistrarCAController implements Initializable {
@@ -35,7 +35,7 @@ public class FXMLRegistrarCAController implements Initializable {
     @FXML
     private TableColumn colNombreLgac;
     @FXML
-    private TableColumn colSeleccionarLGAC;
+    private TableColumn colSeleccionarLgac;
     @FXML
     private TableColumn colNumeroDePersonal;
     @FXML
@@ -43,7 +43,7 @@ public class FXMLRegistrarCAController implements Initializable {
     @FXML
     private TableColumn colPaternoAcademico;
     @FXML
-    private TableView<LGAC> tvLgac;
+    private TableView<Lgac> tvLgac;
     @FXML
     private TableView<CuerpoAcademico> tvAcademicos;
 

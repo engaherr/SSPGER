@@ -1,28 +1,24 @@
 /*
-* Título del programa: Controlador de LGAC
+* Título del programa: Controlador de Lgac
 * Autor: Jasiel Emir Zavaleta García
 * Fecha: 08/06/2023
-* Descripción: Clase controladora de vista FXMLRegistrarLGAC.fxml
+* Descripción: Clase controladora de vista FXMLRegistrarLgac.fxml
 */
 package javafxsspger.controladores;
 
-import java.io.ByteArrayInputStream;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
-import javafxsspger.modelo.dao.LGACDAO;
-import javafxsspger.modelo.pojo.LGAC;
+import javafxsspger.modelo.dao.LgacDAO;
+import javafxsspger.modelo.pojo.Lgac;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
@@ -31,7 +27,7 @@ public class FXMLRegistrarLGACController implements Initializable {
 
     private INotificacionOperacion interfazNotificacion;
     private boolean esEdicion;
-    private LGAC lgacEdicion;
+    private Lgac lgacEdicion;
     
     @FXML
     private Label lbNombreFormulario;
@@ -85,15 +81,15 @@ public class FXMLRegistrarLGACController implements Initializable {
         }
         
         if(esValido){
-            LGAC nuevoLGAC = new LGAC();
-            nuevoLGAC.setNombre(nombre);
-            nuevoLGAC.setDescripcion(descripcion);
+            Lgac nuevoLgac = new Lgac();
+            nuevoLgac.setNombre(nombre);
+            nuevoLgac.setDescripcion(descripcion);
 
             if(esEdicion){
-                nuevoLGAC.setIdLgac(lgacEdicion.getIdLgac());
-                modificarLGAC(nuevoLGAC);               
+                nuevoLgac.setIdLgac(lgacEdicion.getIdLgac());
+                modificarLgac(nuevoLgac);               
             }else{
-                registrarLGAC(nuevoLGAC);
+                registrarLgac(nuevoLgac);
             }
             
             
@@ -111,8 +107,8 @@ public class FXMLRegistrarLGACController implements Initializable {
         }
     }
     
-    private void registrarLGAC(LGAC nuevoLGAC){
-        int codigoRespuesta = LGACDAO.RegistarLGAC(nuevoLGAC);
+    private void registrarLgac(Lgac nuevoLgac){
+        int codigoRespuesta = LgacDAO.RegistarLgac(nuevoLgac);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
@@ -124,7 +120,7 @@ public class FXMLRegistrarLGACController implements Initializable {
                         + "durante la consulta, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El LGAC que "
+                Utilidades.mostrarDialogoSimple("Operación realizada","El Lgac que "
                         + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
@@ -135,9 +131,9 @@ public class FXMLRegistrarLGACController implements Initializable {
                 
     }
     
-    private void modificarLGAC(LGAC edicionLGAC){
+    private void modificarLgac(Lgac edicionLgac){
         boolean tieneCuerpoAcademico = false;
-        int codigoRespuesta = LGACDAO.modificarLGAC(edicionLGAC, tieneCuerpoAcademico);
+        int codigoRespuesta = LgacDAO.modificarLgac(edicionLgac, tieneCuerpoAcademico);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
@@ -149,7 +145,7 @@ public class FXMLRegistrarLGACController implements Initializable {
                         + "durante la actualización, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El LGAC ha "
+                Utilidades.mostrarDialogoSimple("Operación realizada","El Lgac ha "
                         + "sido actualizado", Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
@@ -165,18 +161,18 @@ public class FXMLRegistrarLGACController implements Initializable {
        
     }
 
-    public void inicializarInformacionFormulario(boolean esEdicion, LGAC lgacEdicion, INotificacionOperacion interfazNotificacion){
+    public void inicializarInformacionFormulario(boolean esEdicion, Lgac lgacEdicion, INotificacionOperacion interfazNotificacion){
         this.esEdicion = esEdicion;
         this.lgacEdicion = lgacEdicion;
         this.interfazNotificacion = interfazNotificacion;
         
         if(esEdicion){
-            cargarInformacionLGAC();
-            lbNombreFormulario.setText("Modificación de LGAC");
+            cargarInformacionLgac();
+            lbNombreFormulario.setText("Modificación de Lgac");
         }
     }
     
-    private void cargarInformacionLGAC(){
+    private void cargarInformacionLgac(){
         tfNombreLgac.setText(lgacEdicion.getNombre());
         taDescripcion.setText(lgacEdicion.getDescripcion());        
     }

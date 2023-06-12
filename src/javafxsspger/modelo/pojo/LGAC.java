@@ -6,7 +6,7 @@
 */
 package javafxsspger.modelo.pojo;
 
-public class LGAC {
+public class Lgac {
     private int idLgac;
     private String nombre;
     private String descripcion;
@@ -14,7 +14,7 @@ public class LGAC {
     private String nombreCuerpoAcademico;
     private int numero;
 
-    public LGAC(int idLgac, String nombre,String descripcion, int idCuerpoAcademico,String nombreCuerpoAcademico, int numero) {
+    public Lgac(int idLgac, String nombre,String descripcion, int idCuerpoAcademico,String nombreCuerpoAcademico, int numero) {
         this.idLgac = idLgac;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -23,7 +23,7 @@ public class LGAC {
         this.numero = numero;
     }
 
-    public LGAC() {
+    public Lgac() {
     }
 
     public int getIdLgac() {
