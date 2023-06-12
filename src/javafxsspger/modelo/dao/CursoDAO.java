@@ -92,7 +92,7 @@ public class CursoDAO {
             }
             conexionBD.close();
         } catch (SQLException ex) {
-            // Manejar excepción en caso de error
+   
         }
     } else {
         
@@ -101,5 +101,28 @@ public class CursoDAO {
 }
 
        
-       
+    public static int guardarCursoEE(Curso cursoNuevo){
+        int respuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try{
+                String sentencia = "insert into cursoee (NRC,idMateria,idPeriodoEscolar,idProfesor)"
+                        + "values (?,?,?,?);";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, cursoNuevo.getNRC());
+                prepararSentencia.setInt(2, cursoNuevo.getIdMateria());
+                prepararSentencia.setInt(3, cursoNuevo.getIdPeridoEscolar());
+                prepararSentencia.setInt(4, cursoNuevo.getIdProfesor());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                        Constantes.ERROR_CONSULTA;
+                conexionBD.close();
+            }catch(SQLException e){
+                respuesta = Constantes.ERROR_CONSULTA;
+            }
+        }else{
+            respuesta = Constantes.ERROR_CONEXION;
+        }
+        return respuesta;
+    }
 }

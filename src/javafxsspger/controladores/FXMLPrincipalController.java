@@ -34,6 +34,10 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private ImageView imgMenu;
     private boolean menuAbierto;
+    @FXML
+    private Pane paneCronograma;
+    @FXML
+    private Pane paneEstudiantes;
     
     
     @Override
@@ -105,16 +109,6 @@ public class FXMLPrincipalController implements Initializable {
            }
     }
 
-    @FXML
-    private void clicIrVerEstudiantes(ActionEvent event) {
-        
-          Stage escenarioEstudiantes = new Stage();
-        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
-                "vistas/FXMLVerEstudiantes.fxml"));
-        escenarioEstudiantes.setTitle("Estudiantes");
-        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
-        escenarioEstudiantes.showAndWait();
-    }
 
     @FXML
     private void clicAgregarEstudianteCurso(ActionEvent event) {
@@ -132,6 +126,20 @@ public class FXMLPrincipalController implements Initializable {
         escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
                 "vistas/FXMLConsultarAvancesAnteproyectos.fxml"));
         escenarioEstudiantes.setTitle("Avances");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
+
+    @FXML
+    private void clicIrAdminCursos(MouseEvent event) {
+    }
+
+    @FXML
+    private void clicIrVerEstudiantes(MouseEvent event) {
+                  Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLVerEstudiantes.fxml"));
+        escenarioEstudiantes.setTitle("Estudiantes");
         escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
         escenarioEstudiantes.showAndWait();
     }

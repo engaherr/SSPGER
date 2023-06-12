@@ -25,7 +25,6 @@ import javafxsspger.utils.Utilidades;
 
 public class FXMLInicioSesionController implements Initializable {
     
-    private Label label;
     @FXML
     private TextField tfUsuario;
     @FXML
@@ -67,7 +66,6 @@ public class FXMLInicioSesionController implements Initializable {
         Estudiante estudianteRespuesta = null;
         Academico academicoRespuesta = null;
         boolean sonValidos = true;
-        boolean esAcademico = false;
         int respuesta = Constantes.ERROR_CONSULTA;
         if(usuario.startsWith("s")){
             estudianteRespuesta = SesionDAO.verificarEstudianteSesion(usuario, password);

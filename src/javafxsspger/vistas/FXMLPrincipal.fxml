@@ -45,7 +45,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="7.0" layoutY="281.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneCronograma" layoutX="7.0" layoutY="281.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,6 +53,34 @@
                      </image>
                   </ImageView>
                   <Label layoutX="48.0" layoutY="16.0" onMouseClicked="#clicIrCronograma" text="Cronograma de Actividades" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="140.0" prefHeight="50.0" prefWidth="237.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/cursos.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="48.0" layoutY="16.0" onMouseClicked="#clicIrAdminCursos" text="Administrador de Cursos" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="paneEstudiantes" layoutX="7.0" layoutY="80.0" prefHeight="50.0" prefWidth="237.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/VectorEstudiantes.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="51.0" layoutY="16.0" onMouseClicked="#clicIrVerEstudiantes" text="Ver estudiantes" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
@@ -80,7 +108,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Button layoutX="466.0" layoutY="134.0" mnemonicParsing="false" onAction="#clicIrVerEstudiantes" text="ver estudiantes" />
       <Button layoutX="489.0" layoutY="225.0" mnemonicParsing="false" onAction="#clicAgregarEstudianteCurso" text="Agregar estudiantes a curso" />
       <Button layoutX="221.0" layoutY="122.0" mnemonicParsing="false" onAction="#clicVerAvances" text="clic ver avances" />
    </children>
