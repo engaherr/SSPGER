@@ -15,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -80,6 +82,22 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     private Label lbErrorComentarios;
     @FXML
     private TextArea taComentarios;
+    @FXML
+    private TableView<Estudiante> tvEstudiantesResponsables;
+    @FXML
+    private TableColumn<Estudiante, String> colMatricula;
+    @FXML
+    private TableColumn<Estudiante, String> colNombre;
+    @FXML
+    private TableColumn<Estudiante, String> colApellidoPaterno;
+    @FXML
+    private TableColumn<Estudiante, String> colApellidoMaterno;
+    @FXML
+    private TableColumn<Estudiante, String> colCorreo;
+    @FXML
+    private Button btnAgregarEstudiante;
+    @FXML
+    private Button btnInformacionEstudiante;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,6 +108,15 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
                 !Academico.getInstanciaSingleton().isEsResponsableCA()){
             btnRechazar.setVisible(false);
             btnValidar.setVisible(false);
+        }
+        
+        if(Academico.getInstanciaSingleton().getIdAcademico() == 
+                anteproyectoDetalles.getIdDirector() && "Disponible".equals(
+                        anteproyectoDetalles.getEstado())){
+            tvEstudiantesResponsables.setVisible(true);
+            cargarInformacionResponsables();
+            btnAgregarEstudiante.setVisible(true);
+            btnInformacionEstudiante.setVisible(true);
         }
     }
     
@@ -249,5 +276,18 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
                 interfazNotificacion.notificarOperacionActualizar("Postulado");
                 break;
         }
+    }
+
+    @FXML
+    private void clicAgregarEstudiante(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void clicVerInformacionEstudiante(ActionEvent event) {
+    }
+
+    private void cargarInformacionResponsables() {
+        
     }
 }
