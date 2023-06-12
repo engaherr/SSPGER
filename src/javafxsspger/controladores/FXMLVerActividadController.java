@@ -79,15 +79,17 @@ public class FXMLVerActividadController implements Initializable {
     @FXML
     private ImageView btnNoArchivo;
     boolean esModificar = false;
+    boolean preparadoModificar = false;
     
    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        taCuerpo.setWrapText(true);
-       mostrarElementosSegunRol();
+       mostrarElementosSegunRol(); 
        if(!lbfechaCreacion.getText().isEmpty()){
            esModificar = true;
+           preparadoModificar = false;
        }
        
     }    
@@ -190,6 +192,10 @@ private void clicEnviar(ActionEvent event) throws IOException {
                 Alert.AlertType.INFORMATION);
       } else {
         if(esModificar = true){
+            if(preparadoModificar = false){
+                Utilidades.mostrarDialogoSimple("Seleccione el archivo", "Por favor seleccione el archivo", 
+                        Alert.AlertType.WARNING);
+            }else{
                 try {
                         Actividad actividadEntrega = crearActividadDesdeFormulario();
                         int resultado = ActividadDAO.modificarEntrega(actividadEntrega);
@@ -203,7 +209,8 @@ private void clicEnviar(ActionEvent event) throws IOException {
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        }
+                   }
+            }
                    }else{
                         try {
                             Actividad actividadEntrega = crearActividadDesdeFormulario();
@@ -228,6 +235,7 @@ private void clicEnviar(ActionEvent event) throws IOException {
 
     @FXML
     private void clicAdjuntarArchivo(MouseEvent event) {
+            preparadoModificar = true;
             FileChooser dialogoSeleccionImg = new FileChooser();
             dialogoSeleccionImg.setTitle("Selecciona un documento");
             Stage escenarioBase = (Stage)lbDescripcion.getScene().getWindow();

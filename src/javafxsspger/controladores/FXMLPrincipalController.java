@@ -125,6 +125,16 @@ public class FXMLPrincipalController implements Initializable {
         escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
         escenarioEstudiantes.showAndWait();
     }
+
+    @FXML
+    private void clicVerAvances(ActionEvent event) {
+              Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLConsultarAvancesAnteproyectos.fxml"));
+        escenarioEstudiantes.setTitle("Avances");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
     
     
     
