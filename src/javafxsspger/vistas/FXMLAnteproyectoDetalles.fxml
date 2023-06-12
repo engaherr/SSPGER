@@ -11,7 +11,7 @@
 
 <ScrollPane fx:id="spEscenarioBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLAnteproyectoDetallesController">
    <content>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1756.0" prefWidth="1170.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1760.0" prefWidth="1170.0">
          <children>
             <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
                <children>
@@ -218,6 +218,25 @@
                </font>
             </Label>
             <TextArea fx:id="taComentarios" layoutX="10.0" layoutY="1610.0" prefHeight="101.0" prefWidth="1139.0" visible="false" wrapText="true" />
+            <TableView fx:id="tvEstudiantesResponsables" layoutX="19.0" layoutY="1575.0" prefHeight="128.0" prefWidth="1132.0" visible="false">
+              <columns>
+                  <TableColumn fx:id="colMatricula" minWidth="0.0" prefWidth="178.0" text="Matrícula" />
+                <TableColumn fx:id="colNombre" prefWidth="213.0" text="Nombre(s)" />
+                <TableColumn fx:id="colApellidoPaterno" minWidth="0.0" prefWidth="241.0" text="Apellido Paterno" />
+                  <TableColumn fx:id="colApellidoMaterno" minWidth="0.0" prefWidth="242.0" text="Apellido Materno" />
+                  <TableColumn fx:id="colCorreo" minWidth="0.0" prefWidth="257.0" text="Correo" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnAgregarEstudiante" layoutX="750.0" layoutY="1719.0" mnemonicParsing="false" onAction="#clicAgregarEstudiante" prefHeight="29.0" prefWidth="158.0" style="-fx-background-color: green;" text="Agregar Estudiante" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnInformacionEstudiante" layoutX="406.0" layoutY="1719.0" mnemonicParsing="false" onAction="#clicVerInformacionEstudiante" style="-fx-background-color: #00529E;" text="Información de Estudiante" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </content>
