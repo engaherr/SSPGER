@@ -10,16 +10,16 @@ import java.util.ArrayList;
  *
  * @author jasie
  */
-public class ActividadRespuesta {
+public class GradoConsolidacionRespuesta {
     private int codigoRespuesta;
-    private ArrayList<Actividad> actividades;
+    private ArrayList<GradoConsolidacion> grados;
 
-    public ActividadRespuesta() {
+    public GradoConsolidacionRespuesta() {
     }
 
-    public ActividadRespuesta(int codigoRespuesta, ArrayList<Actividad> actividades) {
+    public GradoConsolidacionRespuesta(int codigoRespuesta, ArrayList<GradoConsolidacion> grados) {
         this.codigoRespuesta = codigoRespuesta;
-        this.actividades = actividades;
+        this.grados = grados;
     }
 
     public int getCodigoRespuesta() {
@@ -30,13 +30,12 @@ public class ActividadRespuesta {
         this.codigoRespuesta = codigoRespuesta;
     }
 
-    public ArrayList<Actividad> getActividades() {
-        return actividades;
+    public ArrayList<GradoConsolidacion> getGrados() {
+        return grados;
     }
 
-    public void setActividades(ArrayList<Actividad> actividades) {
-        this.actividades = actividades;
+    public void setGrados(ArrayList<GradoConsolidacion> grados) {
+        this.grados = grados;
     }
-    
     
 }

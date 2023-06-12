@@ -18,6 +18,10 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,7 +39,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.ActividadDAO;
+import javafxsspger.modelo.dao.AnteproyectoDAO;
+import javafxsspger.modelo.dao.AnteproyectoEstudianteDAO;
+import javafxsspger.modelo.dao.AvanceDAO;
 import javafxsspger.modelo.pojo.Actividad;
+import javafxsspger.modelo.pojo.Anteproyecto;
+import javafxsspger.modelo.pojo.AnteproyectoEstudiante;
+import javafxsspger.modelo.pojo.Avance;
+import javafxsspger.modelo.pojo.AvanceRespuesta;
+import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 import javax.imageio.ImageIO;
@@ -70,9 +83,14 @@ public class FXMLRegistrarActividadController implements Initializable {
     boolean cambioEnDescripcion = false;
     @FXML
     private Button btGuardar;
-    /**
-     * Initializes the controller class.
-     */
+    
+    
+    private Estudiante estudiante;
+    private AnteproyectoEstudiante atpAsignado;
+    @FXML
+    private ComboBox<Avance> cbAvances;
+    private ObservableList<Avance> avances;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         estiloNormal = tfNombre.getStyle();
@@ -82,6 +100,10 @@ public class FXMLRegistrarActividadController implements Initializable {
         configurarDatePickerInicio();
         configurarDatePickerFin();
         
+        estudiante = Estudiante.getInstanciaSingleton();
+        atpAsignado = AnteproyectoEstudianteDAO.obtenerAnteproyectoEstudiante
+            (estudiante.getIdEstudiante());
+        cargarInformacionAvances();      
     }    
 
     @FXML
@@ -188,10 +210,14 @@ private String getFileExtension(File archivo) {
             actividadValida.setFechaInicio(fechaInicio);
             actividadValida.setFechaFin(fechaFin);
             
+
+            
             //Asignar el id de Anteproyecto, de estudiante y de avance;
             
             try{
                 if(esEdicion){
+                    actividadValida.setIdEstudiante(actividadEdicion.getIdEstudiante());
+                    actividadValida.setIdAnteproyecto(actividadEdicion.getIdAnteproyecto());
                     if(archivoAtividad != null){
                         actividadValida.setArchivo(Files.readAllBytes(archivoAtividad.toPath()));
                         actividadValida.setExtensionArchivo(extensionArchivo);
@@ -209,7 +235,11 @@ private String getFileExtension(File archivo) {
                     LocalDate fechaActual = LocalDate.now();
                     String fechaHoy = fechaActual.format(DateTimeFormatter.ISO_DATE);
                     actividadValida.setFechaCreacion(fechaHoy);
+                    
                     registrarActividad(actividadValida);
+                    actividadValida.setIdEstudiante(estudiante.getIdEstudiante());
+                    actividadValida.setIdAnteproyecto(atpAsignado.getIdAnteproyecto());
+                    
                 }
             }catch(IOException ex){
                 Utilidades.mostrarDialogoSimple("Error con el archivo","Hubo un error al "
@@ -333,7 +363,28 @@ private String getFileExtension(File archivo) {
         
         */        
     }
-
+    
+    private void cargarInformacionAvances(){
+        avances = FXCollections.observableArrayList();
+        AvanceRespuesta avancesBD = AvanceDAO.obtenerAvancesAnteproyecto(atpAsignado.
+                getIdAnteproyecto());
+        switch(avancesBD.getCodigoRespuesta()){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexion", "POr el momento no hay "
+                        + "conexion, "
+                        + "por favor inténtalos más tarde", Alert.AlertType.ERROR);
+                break;
+            case Constantes.ERROR_CONSULTA:
+                Utilidades.mostrarDialogoSimple("Error de consulta", "Ocurrió un error al "
+                        + "cargar la información,"
+                        + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                avances.addAll(avancesBD.getAvances());
+                cbAvances.setItems(avances);
+                break;
+        }
+    }
     private void configurarDatePickerInicio(){
         dpFechaInicio.setOnAction(event -> {
             LocalDate dateSeleccionada = dpFechaInicio.getValue();
