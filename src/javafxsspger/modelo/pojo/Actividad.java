@@ -24,12 +24,14 @@ public class Actividad {
     private int idAvance;
     private String comentarios;
     private int evaluacion;
+    private String nombreArchivo;
+
     
     
     public Actividad(){
     }
 
-    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion) {
+    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion, String nombreArchivo) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -42,10 +44,18 @@ public class Actividad {
         this.idAvance = idAvance;
         this.comentarios = comentarios;
         this.evaluacion = evaluacion;
+        this.nombreArchivo = nombreArchivo;
     }
-    
-    
-    
+
+
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public void setNombreArchivo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
 
     public byte[] getArchivo() {
         return archivo;

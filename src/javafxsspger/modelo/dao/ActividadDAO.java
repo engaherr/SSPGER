@@ -104,7 +104,7 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,archivo\n" +
+                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,archivo,nombreArchivo\n" +
                     "FROM entrega\n" +
                     "WHERE idActividad = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
@@ -115,7 +115,8 @@ public class ActividadDAO {
                     actividad.setIdActividad(resultado.getInt("idActividad"));
                     actividad.setComentarios(resultado.getString("comentarios"));
                     actividad.setFechaCreacion(resultado.getString("fechaCreacion"));
-                   actividad.setArchivo(resultado.getBytes("archivo"));
+                    actividad.setArchivo(resultado.getBytes("archivo"));
+                    actividad.setNombreArchivo(resultado.getString("nombreArchivo"));
                     actividades.add(actividad);
              
             }

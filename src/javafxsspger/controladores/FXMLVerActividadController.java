@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
@@ -53,6 +54,8 @@ public class FXMLVerActividadController implements Initializable {
     private Label lbfechaCreacion;
     private int idActividadSeleccionada;
     private Actividad actividadSeleccionada;
+    @FXML
+    private ImageView btnDescargar;
 
     
    
@@ -60,6 +63,7 @@ public class FXMLVerActividadController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        taCuerpo.setWrapText(true);
+
 
     }    
 
@@ -100,13 +104,26 @@ public class FXMLVerActividadController implements Initializable {
             Actividad actividad = actividades.get(0);
             taCuerpo.setText(actividad.getComentarios());
             lbfechaCreacion.setText(actividad.getFechaCreacion());
-        }
-    }
-
-  @FXML
-private void clicDescargarDocumento(ActionEvent event) {
-    System.out.println("Id de la actividad: " + idActividadSeleccionada);
+            
+             btnDescargar.setOnMouseClicked(event -> {         
+            String directorio = javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath();
+            String directorioFinal = directorio + "/" + actividad.getNombreArchivo();
+            File archivo = new File(directorioFinal);
+            try {
+                OutputStream output = new FileOutputStream(archivo);
+                output.write(actividad.getArchivo());
+                output.close();
+                Utilidades.mostrarDialogoSimple("Documento descargado",
+                        "Se ha descargado el documento en la dirección: " + directorio, Alert.AlertType.INFORMATION);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+               });
+            
+        }       
 }
+     
+   
 
 }
 

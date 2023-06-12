@@ -52,6 +52,7 @@ public class FXMLVerActividadesController implements Initializable {
     private ObservableList<Actividad> actividades;
     private Actividad actividadSeleccionada;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarTabla();
@@ -105,7 +106,7 @@ public void setEstudianteSeleccionado(Estudiante estudiante) {
     }
     
     private void verActividad(Actividad actividad) throws IOException{
-       actividadSeleccionada = tvActividades.getSelectionModel().getSelectedItem();
+     actividadSeleccionada = tvActividades.getSelectionModel().getSelectedItem();
       FXMLLoader accesoControlador = new FXMLLoader(
                     JavaFXSSPGER.class.getResource("vistas/FXMLVerActividad.fxml"));
             Parent vista = accesoControlador.load();

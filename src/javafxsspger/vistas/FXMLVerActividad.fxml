@@ -100,7 +100,7 @@
                               <Font size="25.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="98.0" fitWidth="39.0" layoutX="581.0" layoutY="448.0" onMouseClicked="#clicDescargarDocumento" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnDescargar" fitHeight="98.0" fitWidth="39.0" layoutX="542.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos/VectorDescargar.png" />
                            </image>
