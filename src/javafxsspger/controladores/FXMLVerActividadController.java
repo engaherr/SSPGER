@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -28,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
@@ -74,7 +76,9 @@ public class FXMLVerActividadController implements Initializable {
     private ImageView btnAdjuntar;
     
     File archivoElegido;
-
+    @FXML
+    private ImageView btnNoArchivo;
+    boolean esModificar = false;
     
    
 
@@ -82,6 +86,10 @@ public class FXMLVerActividadController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        taCuerpo.setWrapText(true);
        mostrarElementosSegunRol();
+       if(!lbfechaCreacion.getText().isEmpty()){
+           esModificar = true;
+       }
+       
     }    
 
     public void mostrarElementosSegunRol() {
@@ -91,10 +99,12 @@ public class FXMLVerActividadController implements Initializable {
     if (estudiante != null) {
         btnCalificar.setVisible(false);
         btnDescargar.setVisible(false);
+        btnNoArchivo.setVisible(false);
     } else if (academico != null) {
         taCuerpo.setEditable(false);
         btnEnviar.setVisible(false);
         btnAdjuntar.setVisible(false);
+        btnNoArchivo.setVisible(false);
     }
 }
     
@@ -140,41 +150,79 @@ public class FXMLVerActividadController implements Initializable {
             if(actividad.getNombreArchivo() == null){
                 btnDescargar.setVisible(false);
             }
-             btnDescargar.setOnMouseClicked(event -> {
-            String directorio = javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath();
-            String directorioFinal = directorio + "/" + actividad.getNombreArchivo();
-            File archivo = new File(directorioFinal);
-            try {
-                OutputStream output = new FileOutputStream(archivo);
-                output.write(actividad.getArchivo());
-                output.close();
-                Utilidades.mostrarDialogoSimple("Documento descargado",
-                        "Se ha descargado el documento en la dirección: " + directorio, Alert.AlertType.INFORMATION);
-            } catch (Exception e) {
-                Utilidades.mostrarDialogoSimple("No hay archivo", "No hay ningún archivo para descargar.", 
-                        Alert.AlertType.WARNING);
-            }
-               });
+            btnDescargar.setOnMouseClicked(event -> {
+    DirectoryChooser dialogoSeleccionDirectorio = new DirectoryChooser();
+    dialogoSeleccionDirectorio.setTitle("Selecciona una carpeta de destino");
+    Stage escenarioBase = (Stage) lbDescripcion.getScene().getWindow();
+    File carpetaSeleccionada = dialogoSeleccionDirectorio.showDialog(escenarioBase);
+    
+    if (carpetaSeleccionada != null) {
+        String directorio = carpetaSeleccionada.getAbsolutePath();
+        String directorioFinal = directorio + "/" + actividad.getNombreArchivo();
+        File archivo = new File(directorioFinal);
+        
+        try {
+            OutputStream output = new FileOutputStream(archivo);
+            output.write(actividad.getArchivo());
+            output.close();
+            Utilidades.mostrarDialogoSimple("Documento descargado",
+                    "Se ha descargado el documento en la siguiente ubicación: " + directorio,
+                    Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            Utilidades.mostrarDialogoSimple("No hay archivo",
+                    "No hay ningún archivo para descargar.", Alert.AlertType.WARNING);
+        }
+    }
+});
+
             
         }       
 }
 
     @FXML
 private void clicEnviar(ActionEvent event) throws IOException {
-    try {
-        Actividad actividadEntrega = crearActividadDesdeFormulario();
-        int resultado = ActividadDAO.enviarEntrega(actividadEntrega);
-        if (resultado == Constantes.OPERACION_EXITOSA) {
-            Utilidades.mostrarDialogoSimple("Entrega enviada", "La entrega se ha enviado correctamente.", Alert.AlertType.INFORMATION);
-        } else {
-            Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        // Mostrar el mensaje de error o manejar la excepción de alguna otra manera
-    }
-}
-
+    if (taCuerpo.getText().isEmpty()){
+         Utilidades.mostrarDialogoSimple("Sin cuerpo de entrega", "Por favor ingrese el cuerpo de la entrega.", 
+                 Alert.AlertType.INFORMATION);
+        }else{
+    if (lbnombreDelArchivo.getText().isEmpty()) {
+        Utilidades.mostrarDialogoSimple("No hay archivo adjunto", "Por favor seleccione un archivo para enviar.", 
+                Alert.AlertType.INFORMATION);
+      } else {
+        if(esModificar = true){
+                try {
+                        Actividad actividadEntrega = crearActividadDesdeFormulario();
+                        int resultado = ActividadDAO.modificarEntrega(actividadEntrega);
+                        if (resultado == Constantes.OPERACION_EXITOSA) {
+                            Utilidades.mostrarDialogoSimple("Entrega modificada", "La entrega se ha modificado correctamente.",
+                                    Alert.AlertType.INFORMATION);
+                             Stage escenarioPrincipal = (Stage) lbDescripcion.getScene().getWindow();
+                             escenarioPrincipal.close(); 
+                        } else {
+                            Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        }
+                   }else{
+                        try {
+                            Actividad actividadEntrega = crearActividadDesdeFormulario();
+                            int resultado = ActividadDAO.enviarEntrega(actividadEntrega);
+                            if (resultado == Constantes.OPERACION_EXITOSA) {
+                                Utilidades.mostrarDialogoSimple("Entrega enviada", "La entrega se ha enviado correctamente.",
+                                        Alert.AlertType.INFORMATION);
+                                 Stage escenarioPrincipal = (Stage) lbDescripcion.getScene().getWindow();
+                                 escenarioPrincipal.close(); 
+                            } else {
+                                Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            }
+                         }
+                     }
+                }
+           }
 
 
 
@@ -186,8 +234,9 @@ private void clicEnviar(ActionEvent event) throws IOException {
             archivoElegido = dialogoSeleccionImg.showOpenDialog(escenarioBase);
                     if(archivoElegido != null){
                     lbnombreDelArchivo.setText(archivoElegido.getName());
-            }
-       
+                    
+                    }
+         btnNoArchivo.setVisible(true);
         }
 
     private Actividad crearActividadDesdeFormulario() throws IOException {
@@ -200,10 +249,16 @@ private void clicEnviar(ActionEvent event) throws IOException {
     return actividadEntrega;
 }
 
+    @FXML
+    private void clicNoArchivo(MouseEvent event) {
+     lbnombreDelArchivo.setText(""); 
+     btnNoArchivo.setVisible(false);
+    }
+
     
 
 
-    }
+}
      
    
 

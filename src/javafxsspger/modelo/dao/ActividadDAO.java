@@ -178,4 +178,30 @@ public class ActividadDAO {
         return respuesta;
     }
     
+        public static int modificarEntrega(Actividad actividadEntrega) {
+        int respuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null) {
+            try {
+                String sentencia = "UPDATE entrega\n" +
+                "SET fechaCreacion = ?, archivo = ?, comentarios = ?, nombreArchivo = ?\n" +
+                "WHERE idActividad = ?;";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, actividadEntrega.getFechaCreacion());
+                prepararSentencia.setBytes(2, actividadEntrega.getArchivo());
+                prepararSentencia.setString(3, actividadEntrega.getComentarios());
+                prepararSentencia.setString(4, actividadEntrega.getNombreArchivo());
+                prepararSentencia.setInt(5, actividadEntrega.getIdActividad());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+            } catch (SQLException ex) {
+                respuesta = Constantes.ERROR_CONSULTA;
+            }
+        } else {
+            respuesta = Constantes.ERROR_CONEXION;
+        }
+        return respuesta;
+    }
+       
+       
 }
