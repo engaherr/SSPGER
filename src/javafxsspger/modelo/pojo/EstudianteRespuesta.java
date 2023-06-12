@@ -1,7 +1,7 @@
 /*
 * Título del programa: Estudiante Respuesta
-* Autor: Enrique Gamboa Hernández 
-* Fecha de Creación: 11/06/2023
+* Autor: Enrique Gamboa Hernández, Omar Dylan Segura Platas
+* Fecha de Creación: 07/06/2023
 * Descripción: Clase Respuesta para los estudiantes de la BD 
 */
 package javafxsspger.modelo.pojo;

@@ -77,6 +77,8 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
     private Button btnCrearAnteproyecto;
     @FXML
     private Button btnModificarAnteproyecto;
+    @FXML
+    private Button btnVerAvances;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -223,6 +225,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
 
     private void mostrarDetallesAnteproyecto(Anteproyecto anteproyecto){
         try {
+            
             FXMLLoader accesoControlador = new FXMLLoader(
                     JavaFXSSPGER.class.getResource("vistas/FXMLAnteproyectoDetalles.fxml"));
             Parent vista = accesoControlador.load();
@@ -331,6 +334,16 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
                             + " en la tabla del Anteproyecto para su edición", 
                     Alert.AlertType.WARNING);
         }
+    }
+
+    @FXML
+    private void clicVerAvances(ActionEvent event) {
+                      Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLConsultarAvancesAnteproyectos.fxml"));
+        escenarioEstudiantes.setTitle("Avances");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
     }
 }
 

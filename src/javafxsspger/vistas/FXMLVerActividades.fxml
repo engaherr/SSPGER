@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLVerActividadesController">
+   <children>
+      <TableView fx:id="tvActividades" layoutX="105.0" layoutY="98.0" prefHeight="514.0" prefWidth="1000.0" style="-fx-font-size: 20;">
+        <columns>
+          <TableColumn fx:id="tcActividad" prefWidth="556.0" text="Actividad" />
+          <TableColumn fx:id="tcFechaInicio" minWidth="0.0" prefWidth="225.0" text="Fecha de inicio" />
+            <TableColumn fx:id="tcFechaFinal" prefWidth="218.0" text="Fecha de finalización" />
+        </columns>
+      </TableView>
+      <Pane layoutY="-1.0" prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="14.0" layoutY="11.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbTitulo" layoutX="89.0" layoutY="17.0" text="Actividades del estudiante" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

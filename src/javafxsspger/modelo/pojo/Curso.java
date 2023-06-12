@@ -1,29 +1,37 @@
 /*
-* Título del programa: POJO del Curso
-* Autor: Enrique Gamboa Hernández
-* Fecha de Creación: 10/06/2023
-* Descripción: Clase Modelo para los cursos que se vayan a registrar en la BD
+* Título del programa: Clase POJO de Curso
+* Autor: Omar Dylan Segura Platas
+* Fecha Creación: 10/06/2023
+* Descripción: Clase modelo para Curso y la información que lo integre
 */
+
+
 package javafxsspger.modelo.pojo;
+
 
 public class Curso {
     private int idCursoEE;
     private int NRC;
     private int idMateria;
-    private int idPeriodoEscolar;
-    private int idProfesor;
+    private int idPeridoEscolar;
+    private int  idProfesor;
+    private String nombreMateria;
+    
+    public Curso(){
+    }
 
-    public Curso(int idCursoEE, int NRC, int idMateria, int idPeriodoEscolar, int idProfesor) {
+    public Curso(int idCursoEE, int NRC, int idMateria, int idPeridoEscolar, int idProfesor, String nombreMateria) {
         this.idCursoEE = idCursoEE;
         this.NRC = NRC;
         this.idMateria = idMateria;
-        this.idPeriodoEscolar = idPeriodoEscolar;
+        this.idPeridoEscolar = idPeridoEscolar;
         this.idProfesor = idProfesor;
+        this.nombreMateria = nombreMateria;
     }
 
-    public Curso() {
-    }
-
+    
+    
+    
     public int getIdCursoEE() {
         return idCursoEE;
     }
@@ -48,12 +56,12 @@ public class Curso {
         this.idMateria = idMateria;
     }
 
-    public int getIdPeriodoEscolar() {
-        return idPeriodoEscolar;
+    public int getIdPeridoEscolar() {
+        return idPeridoEscolar;
     }
 
-    public void setIdPeriodoEscolar(int idPeriodoEscolar) {
-        this.idPeriodoEscolar = idPeriodoEscolar;
+    public void setIdPeridoEscolar(int idPeridoEscolar) {
+        this.idPeridoEscolar = idPeridoEscolar;
     }
 
     public int getIdProfesor() {
@@ -63,4 +71,15 @@ public class Curso {
     public void setIdProfesor(int idProfesor) {
         this.idProfesor = idProfesor;
     }
+
+    public String getNombreMateria() {
+        return nombreMateria;
+    }
+
+    public void setNombreMateria(String nombreMateria) {
+        this.nombreMateria = nombreMateria;
+    }
+    
+    
+    
 }

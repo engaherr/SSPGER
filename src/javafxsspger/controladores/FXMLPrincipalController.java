@@ -10,8 +10,10 @@ package javafxsspger.controladores;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafxsspger.JavaFXSSPGER;
+import javafxsspger.modelo.dao.EstudianteDAO;
 import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Utilidades;
@@ -33,17 +36,16 @@ public class FXMLPrincipalController implements Initializable {
     private boolean menuAbierto;
     @FXML
     private Pane paneCronograma;
+    @FXML
+    private Pane paneEstudiantes;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
-        
-        if(Estudiante.getInstanciaSingleton() == null){
-            paneCronograma.setVisible(false);
-        }
-    }    
-
+    }
+    
+    
     @FXML
     private void clicOpenMenu(MouseEvent event) {
         if(menuAbierto)
@@ -90,24 +92,58 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicIrCronograma(MouseEvent event) {
-        actualizaEstadoMenu(-255, false, "recursos/menu.png");
-        Stage escenarioCronograma = new Stage();
-        escenarioCronograma.setScene(Utilidades.inicializaEscena(
-                "vistas/FXMLCronogramaActividades.fxml"));
-        escenarioCronograma.setTitle("Cronograma");
-        escenarioCronograma.initModality(Modality.APPLICATION_MODAL);
-        escenarioCronograma.showAndWait();
+        
+        Estudiante estudiante = Estudiante.getInstanciaSingleton();
+        int idEstudiante = estudiante.getIdEstudiante();
+        boolean tieneAnteproyecto = EstudianteDAO.verificarTieneAnteproyecto(idEstudiante);
+           if (!tieneAnteproyecto) {
+                    Utilidades.mostrarDialogoSimple("El estudiante no tiene anteproyecto", 
+                            "El estudiante no tienen ningún anteproyecto asignado.",Alert.AlertType.WARNING);
+           }else{
+                    Stage escenarioEstudiantes = new Stage();
+                    escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                            "vistas/FXMLVerActividadesCronograma.fxml"));
+                    escenarioEstudiantes.setTitle("Estudiantes");
+                    escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+                    escenarioEstudiantes.showAndWait();
+           }
+    }
+
+
+    @FXML
+    private void clicAgregarEstudianteCurso(ActionEvent event) {
+          Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAgregarEstudianteCurso.fxml"));
+        escenarioEstudiantes.setTitle("Agregar estudiantes a curso");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
+
+    @FXML
+    private void clicVerAvances(ActionEvent event) {
+              Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLConsultarAvancesAnteproyectos.fxml"));
+        escenarioEstudiantes.setTitle("Avances");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
     }
 
     @FXML
     private void clicIrAdminCursos(MouseEvent event) {
-        actualizaEstadoMenu(-255, false, "recursos/menu.png");
-        Stage escenarioCronograma = new Stage();
-        escenarioCronograma.setScene(Utilidades.inicializaEscena(
-                "vistas/FXMLAdminCursos.fxml"));
-        escenarioCronograma.setTitle("Administrador de Cursos");
-        escenarioCronograma.initModality(Modality.APPLICATION_MODAL);
-        escenarioCronograma.showAndWait();
     }
 
+    @FXML
+    private void clicIrVerEstudiantes(MouseEvent event) {
+                  Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLVerEstudiantes.fxml"));
+        escenarioEstudiantes.setTitle("Estudiantes");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
+    
+    
+    
 }

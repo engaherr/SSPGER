@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLConsultarAvancesAnteproyectosController">
+   <children>
+      <TableView fx:id="tvAnteproyectos" layoutX="41.0" layoutY="88.0" prefHeight="526.0" prefWidth="1072.0" style="-fx-font-size: 18;">
+        <columns>
+          <TableColumn fx:id="tcNombreAnteproyecto" prefWidth="447.0" text="Anteproyecto" />
+          <TableColumn fx:id="tcEstablecidos" prefWidth="219.0" text="Avances establecidos" />
+            <TableColumn fx:id="tcEntregados" prefWidth="201.0" text="Avances entregados" />
+            <TableColumn fx:id="tcPorcentaje" prefWidth="204.0" text="Porcentaje de avance" />
+        </columns>
+      </TableView>
+      <Pane layoutY="-1.0" prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="14.0" layoutY="11.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbTitulo" layoutX="89.0" layoutY="17.0" text="Avances de los anteproyectos" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

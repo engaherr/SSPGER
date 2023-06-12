@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLEvaluarActividadController">
+   <children>
+      <ImageView fitHeight="477.0" fitWidth="995.0" layoutX="86.0" layoutY="86.0" pickOnBounds="true">
+         <image>
+            <Image url="@../recursos/rubrica.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="130.0" layoutY="595.0" text="Evaluación basada en las rúbricas:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfEvaluacion" layoutX="579.0" layoutY="587.0" prefHeight="63.0" prefWidth="81.0">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </TextField>
+      <Label layoutX="677.0" layoutY="595.0" text=" pts. de 10 pts.">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Pane layoutY="-5.0" prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="14.0" layoutY="11.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbTitulo" layoutX="89.0" layoutY="17.0" text="Evaluar entrega" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="939.0" layoutY="590.0" mnemonicParsing="false" onAction="#clicGuardar" text="Guardar">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

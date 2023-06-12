@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLVerActividadesCronogramaController">
+   <children>
+      <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="66.0" prefWidth="1175.0" style="-fx-background-color: #00529E;">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="14.0" layoutY="11.0" onMouseClicked="#clicCerrarVentana" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos/arrow.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbTitulo" layoutX="89.0" layoutY="17.0" text="Anteproyecto" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Regular" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tvActividades" layoutX="87.0" layoutY="169.0" prefHeight="446.0" prefWidth="1014.0" style="-fx-font-size: 20;">
+        <columns>
+          <TableColumn fx:id="tcActividades" prefWidth="547.0" text="Actividades" />
+          <TableColumn fx:id="tvFechaInicio" prefWidth="231.0" text="Fecha de Inicio" />
+            <TableColumn fx:id="tvFechaFin" prefWidth="235.0" text="Fecha de Finalización" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="dpFin" layoutX="710.0" layoutY="90.0" promptText="Fecha de Finalización" style="-fx-font-size: 25;" />
+      <DatePicker fx:id="dpInicio" layoutX="124.0" layoutY="90.0" promptText="Fecha de inicio" style="-fx-font-size: 25;" />
+   </children>
+</AnchorPane>

@@ -1,15 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de AvanceRespuesta
+* Autor: Enrique Gamboa Hernández
+* Fecha Creación: 09/05/2023
+* Descripción: Clase modelo para la respuesta del DAO de los registros de Avances provenientes
+* de la persistencia del sistema.
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author jasie
- */
 public class AvanceRespuesta {
     private int codigoRespuesta;
     private ArrayList<Avance> avances;
@@ -37,6 +36,5 @@ public class AvanceRespuesta {
     public void setAvances(ArrayList<Avance> avances) {
         this.avances = avances;
     }
-  
-    
 }
+

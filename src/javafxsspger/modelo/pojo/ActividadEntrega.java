@@ -1,48 +1,43 @@
 /*
-* Título del programa: Clase POJO de Actividad
+* Título del programa: Clase POJO de Actividad Entregra
 * Autor: Omar Dylan Segura Platas
-* Fecha Creación: 05/06/2023
+* Fecha Creación: 11/06/2023
 * Descripción: Clase modelo para las actividades y la información que lo integre
 */
 
 
 package javafxsspger.modelo.pojo;
 
-import java.io.File;
 
-
-public class Actividad {
+public class ActividadEntrega {
+    
+   
     private int idActividad;
     private String nombre;
     private String fechaInicio;
     private String fechaFin;
     private String fechaCreacion;
     private int idAnteproyecto;
-    private int idEstudiante;
-    private int idAvance;
     private String descripcion;
     private byte[] archivo;
-    private String extensionArchivo;
-    private String nombreArchivo;
+    private int idEstudiante;
+    private int idAvance;
     private String comentarios;
     private int evaluacion;
+    private String nombreArchivo;
+
     
-    public Actividad(){
+    
+    public ActividadEntrega(){
     }
 
-    public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion, String nombreArchivo) {
+    public ActividadEntrega(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion, String nombreArchivo) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.fechaCreacion = fechaCreacion;
         this.idAnteproyecto = idAnteproyecto;
-        this.idEstudiante = idEstudiante;
-        this.idAvance = idAvance;
-        this.descripcion = descripcion;
-        this.archivo = archivo;
-        this.extensionArchivo = extensionArchivo;
-        this.nombreArchivo = nombreArchivo;
         this.descripcion = descripcion;
         this.archivo = archivo;
         this.idEstudiante = idEstudiante;
@@ -50,6 +45,24 @@ public class Actividad {
         this.comentarios = comentarios;
         this.evaluacion = evaluacion;
         this.nombreArchivo = nombreArchivo;
+    }
+
+
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public void setNombreArchivo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
+
+    public byte[] getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(byte[] archivo) {
+        this.archivo = archivo;
     }
 
     
@@ -120,6 +133,15 @@ public class Actividad {
         this.idAnteproyecto = idAnteproyecto;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+
     public int getIdEstudiante() {
         return idEstudiante;
     }
@@ -135,42 +157,10 @@ public class Actividad {
     public void setIdAvance(int idAvance) {
         this.idAvance = idAvance;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public byte[] getArchivo() {
-        return archivo;
-    }
-
-    public void setArchivo(byte[] archivo) {
-        this.archivo = archivo;
-    }
-
-    public String getExtensionArchivo() {
-        return extensionArchivo;
-    }
-
-    public void setExtensionArchivo(String extensionArchivo) {
-        this.extensionArchivo = extensionArchivo;
-    }
-
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-
-    public void setNombreArchivo(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
-    }
     
-    @Override
-    public String toString(){
-        return nombre;
-    }
+    
     
 }
+
+    
+

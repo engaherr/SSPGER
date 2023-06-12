@@ -166,7 +166,7 @@ public class FXMLCursoFormularioController implements Initializable {
         if(datosValidos){
             Curso cursoValidado = new Curso();
             cursoValidado.setIdMateria(cbEE.getValue().getIdMateria());
-            cursoValidado.setIdPeriodoEscolar(cbPeriodoEscolar.getValue().getIdPeriodoEscolar());
+            cursoValidado.setIdPeridoEscolar(cbPeriodoEscolar.getValue().getIdPeriodoEscolar());
             cursoValidado.setIdProfesor(Academico.getInstanciaSingleton().getIdAcademico());
             cursoValidado.setNRC(Integer.parseInt(nrc));
             
