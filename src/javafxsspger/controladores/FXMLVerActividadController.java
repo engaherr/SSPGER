@@ -87,10 +87,7 @@ public class FXMLVerActividadController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        taCuerpo.setWrapText(true);
        mostrarElementosSegunRol(); 
-       if(!lbfechaCreacion.getText().isEmpty()){
-           esModificar = true;
-           preparadoModificar = false;
-       }
+      
        
     }    
 
@@ -191,11 +188,8 @@ private void clicEnviar(ActionEvent event) throws IOException {
         Utilidades.mostrarDialogoSimple("No hay archivo adjunto", "Por favor seleccione un archivo para enviar.", 
                 Alert.AlertType.INFORMATION);
       } else {
-        if(esModificar = true){
-            if(preparadoModificar = false){
-                Utilidades.mostrarDialogoSimple("Seleccione el archivo", "Por favor seleccione el archivo", 
-                        Alert.AlertType.WARNING);
-            }else{
+         boolean existeRegistro = ActividadDAO.verificarEsModificar(actividadSeleccionada.getIdActividad());
+        if(existeRegistro){
                 try {
                         Actividad actividadEntrega = crearActividadDesdeFormulario();
                         int resultado = ActividadDAO.modificarEntrega(actividadEntrega);
@@ -210,8 +204,10 @@ private void clicEnviar(ActionEvent event) throws IOException {
                     } catch (Exception e) {
                         e.printStackTrace();
                    }
-            }
-                   }else{
+            
+        
+    }else{
+                   
                         try {
                             Actividad actividadEntrega = crearActividadDesdeFormulario();
                             int resultado = ActividadDAO.enviarEntrega(actividadEntrega);
@@ -227,12 +223,11 @@ private void clicEnviar(ActionEvent event) throws IOException {
                             e.printStackTrace();
                             }
                          }
-                     }
+                     
                 }
            }
 
-
-
+}
     @FXML
     private void clicAdjuntarArchivo(MouseEvent event) {
             preparadoModificar = true;
