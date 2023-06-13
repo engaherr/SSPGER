@@ -155,7 +155,7 @@ public void initialize(URL url, ResourceBundle rb) {
             Actividad actividad = actividades.get(0);
             taCuerpo.setText(actividad.getComentarios());
             lbfechaCreacion.setText(actividad.getFechaCreacion());
-            lbnombreDelArchivo.setText(actividad.getNombreArchivo());
+            lbnombreDelArchivo.setText("");
             
                if (tieneEvaluacion) {
                 btnEnviar.setDisable(true);
