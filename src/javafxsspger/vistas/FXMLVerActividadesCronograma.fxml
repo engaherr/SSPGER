@@ -17,9 +17,9 @@
                   <Image url="@../recursos/arrow.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbTitulo" layoutX="89.0" layoutY="17.0" text="Anteproyecto" textFill="WHITE">
+            <Label fx:id="lbTitulo" alignment="TOP_LEFT" layoutX="76.0" layoutY="11.0" prefHeight="45.0" prefWidth="1058.0" text="Anteproyecto" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="Roboto Regular" size="25.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
