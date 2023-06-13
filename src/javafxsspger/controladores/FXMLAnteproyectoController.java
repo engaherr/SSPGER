@@ -103,6 +103,7 @@ public class FXMLAnteproyectoController implements Initializable, INotificacionO
         if(Academico.getInstanciaSingleton() == null){
             btnVerMisAnteproyectos.setVisible(false);
             btnVerPublicados.setVisible(false);
+            btnVerAvances.setVisible(false);
         }
     }
 

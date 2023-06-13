@@ -6,14 +6,20 @@
 */
 package javafxsspger.controladores;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,7 +29,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafxsspger.JavaFXSSPGER;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.AnteproyectoDAO;
 import javafxsspger.modelo.dao.EstudianteDAO;
@@ -34,7 +42,7 @@ import javafxsspger.modelo.pojo.EstudianteRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-public class FXMLAnteproyectoDetallesController implements Initializable {
+public class FXMLAnteproyectoDetallesController implements Initializable, INotificacionOperacion {
 
     @FXML
     private Label lbTitulo;
@@ -292,7 +300,29 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
 
     @FXML
     private void clicAgregarEstudiante(ActionEvent event) {
-        
+        if(anteproyectoDetalles.getResponsablesActivos() >= 
+                anteproyectoDetalles.getNumAlumnosParticipantes()){
+            Utilidades.mostrarDialogoSimple("Anteproyecto lleno", 
+                    "El anteproyecto ha llegado a su máximo de alumnos Reponsables",
+                    Alert.AlertType.WARNING);
+        }else{
+            try {
+                FXMLLoader accesoControlador = new FXMLLoader(
+                        JavaFXSSPGER.class.getResource("vistas/FXMLAdminResponsablesATP.fxml"));
+                Parent vista = accesoControlador.load();
+                FXMLAdminResponsablesATPController admin = accesoControlador.getController();
+
+                admin.inicializarInformacion(anteproyectoDetalles, this);
+
+                Stage escenarioAdminResponsables = new Stage();
+                escenarioAdminResponsables.setScene(new Scene(vista));
+                escenarioAdminResponsables.setTitle("Administrador de Responsables de Anteproyecto");
+                escenarioAdminResponsables.initModality(Modality.APPLICATION_MODAL);
+                escenarioAdminResponsables.showAndWait();
+            } catch (IOException ex) {
+                ex.getCause();
+            }
+        }
     }
 
 
@@ -325,5 +355,14 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
         colCorreo.setCellValueFactory(new PropertyValueFactory("email"));
         colMatricula.setCellValueFactory(new PropertyValueFactory("matricula"));
         colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+    }
+
+    @Override
+    public void notificarOperacionGuardar(String estado) {
+        cargarInformacionResponsables();
+    }
+
+    @Override
+    public void notificarOperacionActualizar(String estado) {
     }
 }

@@ -48,5 +48,10 @@
             <Font name="Microsoft JhengHei" size="14.0" />
          </font>
       </Label>
+      <Button layoutX="277.0" layoutY="87.0" mnemonicParsing="false" onAction="#clicBuscar" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #00529E;" text="Buscar" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

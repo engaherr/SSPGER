@@ -25,7 +25,8 @@ public class EstudianteDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, apellidoMaterno, matricula\n" +
+                String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, "
+                        + "apellidoMaterno, matricula, idAnteproyecto\n" +
                 "FROM estudiante;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararSentencia.executeQuery();
@@ -37,6 +38,7 @@ public class EstudianteDAO {
                     estudiante.setApellidoPaterno(resultado.getString("apellidoPaterno"));
                     estudiante.setApellidoMaterno(resultado.getString("apellidoMaterno"));
                     estudiante.setMatricula(resultado.getString("matricula"));
+                    estudiante.setIdAnteproyecto(resultado.getInt("idAnteproyecto"));
                     estudiantes.add(estudiante);
                 }
                 respuesta.setEstudiantes(estudiantes);
@@ -138,6 +140,29 @@ public class EstudianteDAO {
             }
         }else{
             respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
+        }
+        return respuesta;
+    }
+    
+    public static int modificarInformacionEstudiante(Estudiante estudianteEdicion){
+        int respuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String sentencia = "update estudiante set idAnteproyecto = ?"
+                        + " where idEstudiante = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, estudianteEdicion.getIdAnteproyecto());
+                prepararSentencia.setInt(2, estudianteEdicion.getIdEstudiante());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
+                conexionBD.close();
+            } catch (SQLException ex) {
+                respuesta = Constantes.ERROR_CONSULTA;
+            }
+        }else{
+            respuesta = Constantes.ERROR_CONEXION;
         }
         return respuesta;
     }
