@@ -7,7 +7,10 @@
 package javafxsspger.controladores;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,14 +18,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.AnteproyectoDAO;
+import javafxsspger.modelo.dao.EstudianteDAO;
 import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.Estudiante;
+import javafxsspger.modelo.pojo.EstudianteRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
@@ -64,6 +72,7 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     private Label lbAlumnosParticipantes;
     
     private Anteproyecto anteproyectoDetalles;
+    
     @FXML
     private Button btnValidar;
     @FXML
@@ -72,6 +81,7 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     private ScrollPane spEscenarioBase;
     
     private INotificacionOperacion interfazNotificacion;
+    
     @FXML
     private Button btnAceptar;
     @FXML
@@ -80,6 +90,22 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
     private Label lbErrorComentarios;
     @FXML
     private TextArea taComentarios;
+    @FXML
+    private TableView<Estudiante> tvEstudiantesResponsables;
+    @FXML
+    private TableColumn colMatricula;
+    @FXML
+    private TableColumn colNombre;
+    @FXML
+    private TableColumn colApellidoPaterno;
+    @FXML
+    private TableColumn colApellidoMaterno;
+    @FXML
+    private TableColumn colCorreo;
+    @FXML
+    private Button btnAgregarEstudiante;
+    
+    private ObservableList<Estudiante> estudiantesResponsables;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,6 +124,19 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
         this.anteproyectoDetalles = anteproyecto;
         this.interfazNotificacion = interfazNotificacion;
         cargarInformacionDetalles();
+        
+        try{
+            if(Academico.getInstanciaSingleton().getIdAcademico() == 
+                    anteproyectoDetalles.getIdDirector() && "Disponible".equals(
+                            anteproyectoDetalles.getEstado())){
+                cargarInformacionResponsables();
+                tvEstudiantesResponsables.setVisible(true);
+                btnAgregarEstudiante.setVisible(true);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
     
     private void cargarInformacionDetalles() {
@@ -249,5 +288,42 @@ public class FXMLAnteproyectoDetallesController implements Initializable {
                 interfazNotificacion.notificarOperacionActualizar("Postulado");
                 break;
         }
+    }
+
+    @FXML
+    private void clicAgregarEstudiante(ActionEvent event) {
+        
+    }
+
+
+    private void cargarInformacionResponsables() {
+        estudiantesResponsables = FXCollections.observableArrayList();
+        EstudianteRespuesta respuestaBD = EstudianteDAO.obtenerEstudiantesPorAnteproyecto(
+                anteproyectoDetalles.getIdAnteproyecto());
+        switch(respuestaBD.getCodigoRespuesta()){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexión",
+                        "Lo sentimos por el momento no hay conexión para poder recuperar la "
+                                + "informacion", Alert.AlertType.ERROR);
+                break;
+            case Constantes.ERROR_CONSULTA:
+                Utilidades.mostrarDialogoSimple("Error al cargar los datos",
+                        "Hubo un error al cargar la información, por favor intente de nuevo más "
+                                + "tarde", Alert.AlertType.WARNING);
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                estudiantesResponsables.addAll(respuestaBD.getEstudiantes());
+                configurarTablaResponsables();
+                tvEstudiantesResponsables.setItems(estudiantesResponsables);
+                break;
+        }
+    }
+    
+    private void configurarTablaResponsables(){
+        colApellidoMaterno.setCellValueFactory(new PropertyValueFactory("apellidoMaterno"));
+        colApellidoPaterno.setCellValueFactory(new PropertyValueFactory("apellidoPaterno"));
+        colCorreo.setCellValueFactory(new PropertyValueFactory("email"));
+        colMatricula.setCellValueFactory(new PropertyValueFactory("matricula"));
+        colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
     }
 }

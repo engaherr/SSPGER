@@ -42,4 +42,17 @@ public class FXMLAdminCursosController implements Initializable {
         Stage escenarioBase = (Stage) lbTitulo.getScene().getWindow();
         escenarioBase.close();
     }
+
+    @FXML
+    private void clicAgregarEstudiante(ActionEvent event) {
+           Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAgregarEstudianteCurso.fxml"));
+        escenarioEstudiantes.setTitle("Agregar estudiantes a curso");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
+    }
+    
+    
+    
 }

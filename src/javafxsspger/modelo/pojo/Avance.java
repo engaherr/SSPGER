@@ -4,18 +4,33 @@
 * Fecha Creación: 10/06/2023
 * Descripción: Clase modelo para Avance y la información que lo integre
 */
-
 package javafxsspger.modelo.pojo;
 
-
 public class Avance {
-     private int idAnteproyecto;
+    private int idAvance;
+    private int idAnteproyecto;
+    private String nombre;
     private String nombreTrabajo;
     private int cantidadActividades;
     private int cantidadRegistros;
-     private Double porcentaje;
+    private Double porcentaje;
 
     public Avance() {
+    }
+
+    public Avance(int idAvance, int idAnteproyecto, Double porcentaje, String nombre) {
+        this.idAvance = idAvance;
+        this.idAnteproyecto = idAnteproyecto;
+        this.porcentaje = porcentaje;
+        this.nombre = nombre;
+    }
+
+    public int getIdAvance() {
+        return idAvance;
+    }
+
+    public void setIdAvance(int idAvance) {
+        this.idAvance = idAvance;
     }
 
     public Avance(int idAnteproyecto, String nombreTrabajo, int cantidadActividades, int cantidadRegistros, Double porcentaje) {
@@ -28,7 +43,7 @@ public class Avance {
 
 
     
-      public Double getPorcentaje() {
+    public Double getPorcentaje() {
         return porcentaje;
     }
 
@@ -44,6 +59,19 @@ public class Avance {
         this.idAnteproyecto = idAnteproyecto;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+ 
+    @Override
+    public String toString(){
+        return nombre;
+    }
+    
     public String getNombreTrabajo() {
         return nombreTrabajo;
     }

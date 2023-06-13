@@ -8,10 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxsspger.controladores.FXMLAdminCursosController">
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLAdminCursosController">
    <children>
-      <Button layoutX="283.0" layoutY="99.0" mnemonicParsing="false" onAction="#clicCrearCurso" style="-fx-background-color: green;" text="Crear Curso" textFill="WHITE">
+      <Button layoutX="283.0" layoutY="180.0" mnemonicParsing="false" onAction="#clicCrearCurso" style="-fx-background-color: green;" text="Crear Curso" textFill="WHITE">
          <font>
             <Font name="Microsoft JhengHei Bold" size="19.0" />
          </font>
@@ -30,5 +29,10 @@
             </ImageView>
          </children>
       </Pane>
+      <Button layoutX="217.0" layoutY="305.0" mnemonicParsing="false" onAction="#clicAgregarEstudiante" style="-fx-background-color: green;" text="Agregar Estudiante a curso" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

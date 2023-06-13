@@ -24,14 +24,14 @@ import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.AnteproyectoDAO;
 import javafxsspger.modelo.dao.CuerpoAcademicoDAO;
-import javafxsspger.modelo.dao.LGACDAO;
+import javafxsspger.modelo.dao.LgacDAO;
 import javafxsspger.modelo.dao.ModalidadDAO;
 import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.modelo.pojo.CuerpoAcademicoRespuesta;
-import javafxsspger.modelo.pojo.LGAC;
-import javafxsspger.modelo.pojo.LGACRespuesta;
+import javafxsspger.modelo.pojo.Lgac;
+import javafxsspger.modelo.pojo.LgacRespuesta;
 import javafxsspger.modelo.pojo.Modalidad;
 import javafxsspger.modelo.pojo.ModalidadRespuesta;
 import javafxsspger.utils.Constantes;
@@ -47,7 +47,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
     @FXML
     private ComboBox<Integer> cbAlumnosMax;
     @FXML
-    private ComboBox<LGAC> cbLgac;
+    private ComboBox<Lgac> cbLgac;
     @FXML
     private TextArea taLineaInvestigacion;
     @FXML
@@ -72,7 +72,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
     private ComboBox<CuerpoAcademico> cbCuerpoAcademico;
     
     private ObservableList<CuerpoAcademico> cuerposAcademicos;
-    private ObservableList<LGAC> lgacs;
+    private ObservableList<Lgac> lgacs;
     private ObservableList<Modalidad> modalidades;
     private Anteproyecto anteproyectoEdicion;
     private boolean esEdicion;
@@ -148,7 +148,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
         int posicionCuerpoAcademico = obtenerPosicionComboCA(
                 anteproyectoEdicion.getIdCuerpoAcademico());
         cbCuerpoAcademico.getSelectionModel().select(posicionCuerpoAcademico);
-        int posicionLgac = obtenerPosicionComboLGAC(anteproyectoEdicion.getIdLgac());
+        int posicionLgac = obtenerPosicionComboLgac(anteproyectoEdicion.getIdLgac());
         cbLgac.getSelectionModel().select(posicionLgac);
         int posicionModalidad = obtenerPosicionModalidad(anteproyectoEdicion.getIdModalidad());
         cbModalidad.getSelectionModel().select(posicionModalidad);
@@ -183,14 +183,14 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
     
     private void cargarInformacionLgacs(int idCuerpoAcademico) {
         lgacs = FXCollections.observableArrayList();
-        LGACRespuesta lgacsBD = LGACDAO.obtenerLGACsPorCA(idCuerpoAcademico);
+        LgacRespuesta lgacsBD = LgacDAO.obtenerLgacsPorCA(idCuerpoAcademico);
         switch(lgacsBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de Conexion",
                         "Error en la conexion con la base de datos", Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de Consulta LGAC", 
+                Utilidades.mostrarDialogoSimple("Error de Consulta Lgac", 
                         "Por el momento no se puede obtener la información",
                         Alert.AlertType.INFORMATION);
                 break;
@@ -216,7 +216,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
         String requisitos = taRequisitos.getText();
         String resultadosEsperados = taResultadosEsperados.getText();
         int posicionCA = cbCuerpoAcademico.getSelectionModel().getSelectedIndex();
-        int posicionLGAC = cbLgac.getSelectionModel().getSelectedIndex();
+        int posicionLgac = cbLgac.getSelectionModel().getSelectedIndex();
         int posicionModalidad = cbModalidad.getSelectionModel().getSelectedIndex();
         int alumnosMaximos = cbAlumnosMax.getSelectionModel().getSelectedIndex();
         
@@ -257,7 +257,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
             datosValidos = false;
         }
         
-        if(posicionLGAC == -1){
+        if(posicionLgac == -1){
             cbLgac.setStyle(estiloError);
             datosValidos = false;
         }
@@ -283,7 +283,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
                     get(posicionCA).getIdCuerpoAcademico());
             anteproyectoValidado.setIdDirector(Academico.getInstanciaSingleton().getIdAcademico());
             anteproyectoValidado.setIdEstadoATP(2);
-            anteproyectoValidado.setIdLgac(lgacs.get(posicionLGAC).getIdLgac());
+            anteproyectoValidado.setIdLgac(lgacs.get(posicionLgac).getIdLgac());
             anteproyectoValidado.setIdModalidad(
                     modalidades.get(posicionModalidad).getIdModalidad());
             anteproyectoValidado.setLineaInvestigacion(lineaInvestigacion);
@@ -291,7 +291,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
             anteproyectoValidado.setModalidad(modalidades.get(posicionModalidad).toString());
             anteproyectoValidado.setNombreCA(cuerposAcademicos.get(posicionCA).getNombre());
             anteproyectoValidado.setNombreDirector(Academico.getInstanciaSingleton().toString());
-            anteproyectoValidado.setNombreLgac(lgacs.get(posicionLGAC).getNombre());
+            anteproyectoValidado.setNombreLgac(lgacs.get(posicionLgac).getNombre());
             anteproyectoValidado.setNombreTrabajo(nombreTrabajo);
             anteproyectoValidado.setNumAlumnosParticipantes(cbAlumnosMax.getValue());
             anteproyectoValidado.setProyectoInvestigacion(proyectoInvestigacion);
@@ -345,7 +345,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
         return 0;
     }
 
-    private int obtenerPosicionComboLGAC(int idLgac) {
+    private int obtenerPosicionComboLgac(int idLgac) {
         for(int i = 0; i < lgacs.size(); i++){
             if(lgacs.get(i).getIdLgac() == idLgac)
                 return i;
@@ -481,7 +481,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
         String requisitos = taRequisitos.getText();
         String resultadosEsperados = taResultadosEsperados.getText();
         int posicionCA = cbCuerpoAcademico.getSelectionModel().getSelectedIndex();
-        int posicionLGAC = cbLgac.getSelectionModel().getSelectedIndex();
+        int posicionLgac = cbLgac.getSelectionModel().getSelectedIndex();
         int posicionModalidad = cbModalidad.getSelectionModel().getSelectedIndex();
         int posicionAlumnosMax = cbAlumnosMax.getSelectionModel().getSelectedIndex();
         
@@ -508,7 +508,7 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
             datosValidos = false;
         }
         
-        if(posicionLGAC == -1){
+        if(posicionLgac == -1){
             cbLgac.setStyle(estiloError);
             datosValidos = false;
         }
@@ -532,9 +532,9 @@ public class FXMLAnteproyectoFormularioController implements Initializable {
             }
             anteproyectoValidado.setIdDirector(Academico.getInstanciaSingleton().getIdAcademico());
             anteproyectoValidado.setIdEstadoATP(1);
-            if(posicionLGAC != -1){
-                anteproyectoValidado.setIdLgac(lgacs.get(posicionLGAC).getIdLgac());
-                anteproyectoValidado.setNombreLgac(lgacs.get(posicionLGAC).getNombre());
+            if(posicionLgac != -1){
+                anteproyectoValidado.setIdLgac(lgacs.get(posicionLgac).getIdLgac());
+                anteproyectoValidado.setNombreLgac(lgacs.get(posicionLgac).getNombre());
             }
             if(posicionModalidad != -1){
                 anteproyectoValidado.setIdModalidad(

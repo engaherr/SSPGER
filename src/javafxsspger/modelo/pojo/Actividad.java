@@ -18,15 +18,14 @@ public class Actividad {
     private String fechaFin;
     private String fechaCreacion;
     private int idAnteproyecto;
-    private String descripcion;
-    private byte[] archivo;
     private int idEstudiante;
     private int idAvance;
+    private String descripcion;
+    private byte[] archivo;
+    private String extensionArchivo;
+    private String nombreArchivo;
     private String comentarios;
     private int evaluacion;
-    private String nombreArchivo;
-
-    
     
     public Actividad(){
     }
@@ -38,6 +37,12 @@ public class Actividad {
         this.fechaFin = fechaFin;
         this.fechaCreacion = fechaCreacion;
         this.idAnteproyecto = idAnteproyecto;
+        this.idEstudiante = idEstudiante;
+        this.idAvance = idAvance;
+        this.descripcion = descripcion;
+        this.archivo = archivo;
+        this.extensionArchivo = extensionArchivo;
+        this.nombreArchivo = nombreArchivo;
         this.descripcion = descripcion;
         this.archivo = archivo;
         this.idEstudiante = idEstudiante;
@@ -45,24 +50,6 @@ public class Actividad {
         this.comentarios = comentarios;
         this.evaluacion = evaluacion;
         this.nombreArchivo = nombreArchivo;
-    }
-
-
-
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-
-    public void setNombreArchivo(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
-    }
-
-    public byte[] getArchivo() {
-        return archivo;
-    }
-
-    public void setArchivo(byte[] archivo) {
-        this.archivo = archivo;
     }
 
     
@@ -133,15 +120,6 @@ public class Actividad {
         this.idAnteproyecto = idAnteproyecto;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-
     public int getIdEstudiante() {
         return idEstudiante;
     }
@@ -157,7 +135,42 @@ public class Actividad {
     public void setIdAvance(int idAvance) {
         this.idAvance = idAvance;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public byte[] getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(byte[] archivo) {
+        this.archivo = archivo;
+    }
+
+    public String getExtensionArchivo() {
+        return extensionArchivo;
+    }
+
+    public void setExtensionArchivo(String extensionArchivo) {
+        this.extensionArchivo = extensionArchivo;
+    }
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public void setNombreArchivo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
     
-    
+    @Override
+    public String toString(){
+        return nombre;
+    }
     
 }

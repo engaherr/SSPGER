@@ -1,6 +1,6 @@
 /*
 * Título del programa: Clase POJO de ActividadRespuesta
-* Autor: Omar Dylan Segura Platas
+* Autor: Omar Dylan Segura Platas, Jasiel Emir Zavaleta García
 * Fecha Creación: 07/06/2023
 * Descripción: Clase modelo para la respuesta del DAO de Actividad.
 */
@@ -38,9 +38,6 @@ public class ActividadRespuesta {
     public void setActividades(ArrayList<Actividad> actividades) {
         this.actividades = actividades;
     }
-    
-    
-    
 }
     
 

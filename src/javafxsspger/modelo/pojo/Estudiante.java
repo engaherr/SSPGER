@@ -11,18 +11,18 @@ public class Estudiante extends Usuario {
     private int idEstudiante;
     private String matricula;
     private int telefono;
+    private int idAnteproyecto;
 
     public Estudiante() {
     }
 
-    public Estudiante(int idEstudiante, String matricula, String email, String password, String nombre, String apellidoPaterno, String apellidoMaterno, byte[] foto, int telefono) {
+    public Estudiante(int idEstudiante, String matricula, int telefono, int idAnteproyecto, String email, String password, String nombre, String apellidoPaterno, String apellidoMaterno, byte[] foto) {
         super(email, password, nombre, apellidoPaterno, apellidoMaterno, foto);
         this.idEstudiante = idEstudiante;
         this.matricula = matricula;
         this.telefono = telefono;
+        this.idAnteproyecto = idAnteproyecto;
     }
-
-    
     
     public static Estudiante getInstanciaSingleton() {
         return instanciaSingleton;
@@ -55,6 +55,12 @@ public class Estudiante extends Usuario {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
-    
+
+    public int getIdAnteproyecto() {
+        return idAnteproyecto;
+    }
+
+    public void setIdAnteproyecto(int idAnteproyecto) {
+        this.idAnteproyecto = idAnteproyecto;
+    }
 }

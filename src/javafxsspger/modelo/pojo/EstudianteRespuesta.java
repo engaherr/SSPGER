@@ -1,28 +1,23 @@
-
 /*
-* Título del programa: Clase POJO de EstudianteRespuesta
-* Autor: Omar Dylan Segura Platas
-* Fecha Creación: 07/06/2023
-* Descripción: Clase modelo para la respuesta del DAO de Estudiantes.
+* Título del programa: Estudiante Respuesta
+* Autor: Enrique Gamboa Hernández, Omar Dylan Segura Platas
+* Fecha de Creación: 07/06/2023
+* Descripción: Clase Respuesta para los estudiantes de la BD 
 */
-
-
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-
 public class EstudianteRespuesta {
-    
-        private int codigoRespuesta;
+    private int codigoRespuesta;
     private ArrayList<Estudiante> estudiantes;
-
-    public EstudianteRespuesta() {
-    }
 
     public EstudianteRespuesta(int codigoRespuesta, ArrayList<Estudiante> estudiantes) {
         this.codigoRespuesta = codigoRespuesta;
         this.estudiantes = estudiantes;
+    }
+
+    public EstudianteRespuesta() {
     }
 
     public int getCodigoRespuesta() {
@@ -40,6 +35,4 @@ public class EstudianteRespuesta {
     public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
     }
-    
-    
 }

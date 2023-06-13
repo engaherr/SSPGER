@@ -43,6 +43,9 @@ public class FXMLPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
+        
+        if(Academico.getInstanciaSingleton() != null)
+            paneCronograma.setVisible(false);
     }
     
     
@@ -110,15 +113,6 @@ public class FXMLPrincipalController implements Initializable {
     }
 
 
-    @FXML
-    private void clicAgregarEstudianteCurso(ActionEvent event) {
-          Stage escenarioEstudiantes = new Stage();
-        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
-                "vistas/FXMLAgregarEstudianteCurso.fxml"));
-        escenarioEstudiantes.setTitle("Agregar estudiantes a curso");
-        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
-        escenarioEstudiantes.showAndWait();
-    }
 
     @FXML
     private void clicVerAvances(ActionEvent event) {
@@ -132,6 +126,12 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicIrAdminCursos(MouseEvent event) {
+        Stage escenarioEstudiantes = new Stage();
+        escenarioEstudiantes.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLAdminCursos.fxml"));
+        escenarioEstudiantes.setTitle("Administrador de Cursos");
+        escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
+        escenarioEstudiantes.showAndWait();
     }
 
     @FXML
