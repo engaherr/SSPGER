@@ -36,7 +36,8 @@ public class FXMLRegistrarLGACController implements Initializable {
     @FXML
     private TextArea taDescripcion;
     
-    private String estiloError = "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
+    private String estiloError = 
+            "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
     private String estiloNormal;
 
     /**
@@ -117,11 +118,13 @@ public class FXMLRegistrarLGACController implements Initializable {
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la consulta, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                        + "durante la consulta, inténtelo de nuevo por favor", 
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
                 Utilidades.mostrarDialogoSimple("Operación realizada","El Lgac que "
-                        + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
+                        + "ingresaste ha sido registrado en el sistema", 
+                        Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
                 interfazNotificacion.notificarOperacionGuardar(exito);
@@ -142,7 +145,8 @@ public class FXMLRegistrarLGACController implements Initializable {
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la actualización, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                        + "durante la actualización, inténtelo de nuevo por favor", 
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
                 Utilidades.mostrarDialogoSimple("Operación realizada","El Lgac ha "
@@ -161,7 +165,8 @@ public class FXMLRegistrarLGACController implements Initializable {
        
     }
 
-    public void inicializarInformacionFormulario(boolean esEdicion, Lgac lgacEdicion, INotificacionOperacion interfazNotificacion){
+    public void inicializarInformacionFormulario(boolean esEdicion, Lgac lgacEdicion,
+            INotificacionOperacion interfazNotificacion){
         this.esEdicion = esEdicion;
         this.lgacEdicion = lgacEdicion;
         this.interfazNotificacion = interfazNotificacion;

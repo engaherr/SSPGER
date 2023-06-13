@@ -21,11 +21,6 @@ import javafx.stage.Stage;
 import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
 public class FXMLConsultarCuerposAcademicosController implements Initializable {
 
     @FXML

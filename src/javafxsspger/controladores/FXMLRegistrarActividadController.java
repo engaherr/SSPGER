@@ -6,23 +6,15 @@
 */
 package javafxsspger.controladores;
 
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,24 +26,19 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.ActividadDAO;
-import javafxsspger.modelo.dao.AnteproyectoDAO;
 import javafxsspger.modelo.dao.AnteproyectoEstudianteDAO;
 import javafxsspger.modelo.dao.AvanceDAO;
 import javafxsspger.modelo.pojo.Actividad;
-import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.AnteproyectoEstudiante;
 import javafxsspger.modelo.pojo.Avance;
 import javafxsspger.modelo.pojo.AvanceRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
-import javax.imageio.ImageIO;
 
 
 public class FXMLRegistrarActividadController implements Initializable {
@@ -69,7 +56,8 @@ public class FXMLRegistrarActividadController implements Initializable {
     @FXML
     private TextArea taDescripcion;
     
-    private String estiloError = "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
+    private String estiloError = 
+            "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
     private String estiloNormal;
     
     private File archivoAtividad;
@@ -138,7 +126,8 @@ public class FXMLRegistrarActividadController implements Initializable {
 private void visualizarArchivo(File archivoSeleccionado) {
     if (archivoSeleccionado != null) {
         nombreArchivo = archivoSeleccionado.getName();
-        String enlace = "<a href='" + archivoSeleccionado.getAbsolutePath() + "'>" + nombreArchivo + "</a>";
+        String enlace = "<a href='" + archivoSeleccionado.getAbsolutePath() + "'>" + 
+                nombreArchivo + "</a>";
         lbRutaArchivo.setText(enlace);
         
         String extension = getFileExtension(archivoSeleccionado);
@@ -285,11 +274,13 @@ private String getFileExtension(File archivo) {
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la consulta, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                        + "durante la consulta, inténtelo de nuevo por favor", 
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
                 Utilidades.mostrarDialogoSimple("Operación realizada","El LGAC que "
-                        + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
+                        + "ingresaste ha sido registrado en el sistema",
+                        Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
                 interfazNotificacion.notificarOperacionGuardar(exito);
@@ -309,7 +300,8 @@ private String getFileExtension(File archivo) {
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la actualización, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                        + "durante la actualización, inténtelo de nuevo por favor",
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
                 Utilidades.mostrarDialogoSimple("Operación realizada","El LGAC ha "
@@ -376,7 +368,8 @@ private String getFileExtension(File archivo) {
         int posicionAvance = obtenerPosicionComboAvance(actividadEdicion.getIdAvance());
         cbAvances.getSelectionModel().select(posicionAvance);
         
-        lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.getExtensionArchivo());
+        lbRutaArchivo.setText(actividadEdicion.getNombreArchivo() + "." + 
+                actividadEdicion.getExtensionArchivo());
        
     }
     
@@ -425,7 +418,7 @@ private String getFileExtension(File archivo) {
                 }
             }
             
-            if (dateSeleccionada != null && dateSeleccionada.getYear() > LocalDate.now().getYear()) {
+            if (dateSeleccionada != null && dateSeleccionada.getYear() > LocalDate.now().getYear()){
                 Utilidades.mostrarDialogoSimple("Año inválido", "Solo se aceptan "
                         + "promociones con el año en curso", Alert.AlertType.WARNING);
                 if(fechaAnteriorInicio == null){

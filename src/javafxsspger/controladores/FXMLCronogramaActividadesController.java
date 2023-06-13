@@ -15,8 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
@@ -30,13 +28,6 @@ public class FXMLCronogramaActividadesController implements Initializable, INoti
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*if(!tieneAnteproyectoAsignado(Estudiante.getInstanciaSingleton())){
-            Utilidades.mostrarDialogoSimple("Sin anteproyecto asignado",
-                    "Para acceder al cronograma de actividades debes tener un Anteproyecto asignado"
-                            + ". Para esto solicita un Anteproyecto con tu profesor de Proyecto "
-                            + "Guiado y/o Experiencia Recepcional", Alert.AlertType.WARNING);
-            cerrarVentana();
-        }*/
         
         dpFechaInicio.setValue(LocalDate.now());
         
@@ -65,34 +56,10 @@ public class FXMLCronogramaActividadesController implements Initializable, INoti
         });
     }
 
-
-
     @FXML
     private void clicCerrarVentana(MouseEvent event) {
         cerrarVentana();
     }
-    /*
-    private boolean tieneAnteproyectoAsignado(Estudiante estudianteLogeado){
-        AnteproyectoRespuesta anteproyectosBD = AnteproyectoDAO.obtenerInformacionAnteproyectos();
-        switch(anteproyectosBD.getCodigoRespuesta()){
-            case Constantes.ERROR_CONEXION:
-                    Utilidades.mostrarDialogoSimple("Error de Conexión",
-                            "No se pudo obtener la información del Anteproyecto debido a un error "
-                                    + "de conexión. Por favor intentélo más tarde...",
-                            Alert.AlertType.ERROR);
-                    break;
-                case Constantes.ERROR_CONSULTA:
-                    Utilidades.mostrarDialogoSimple("Error al Consultar",
-                            "La información del Cronograma no pudo se",
-                            Alert.AlertType.WARNING);
-                    break;
-                case Constantes.OPERACION_EXITOSA:
-                    Utilidades.mostrarDialogoSimple("Producto eliminado",
-                            "El artículo fue eliminado exitosamente del inventario",
-                            Alert.AlertType.INFORMATION);
-                    break;
-        }
-    }*/
     
     private void cerrarVentana(){
         Stage escenarioPrincipal = (Stage) lbAnteproyecto.getScene().getWindow();

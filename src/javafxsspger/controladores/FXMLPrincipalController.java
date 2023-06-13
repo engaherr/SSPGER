@@ -38,6 +38,8 @@ public class FXMLPrincipalController implements Initializable {
     private Pane paneCronograma;
     @FXML
     private Pane paneEstudiantes;
+    @FXML
+    private Pane paneAdminCursos;
     
     
     @Override
@@ -46,6 +48,11 @@ public class FXMLPrincipalController implements Initializable {
         
         if(Academico.getInstanciaSingleton() != null)
             paneCronograma.setVisible(false);
+        
+        if(Estudiante.getInstanciaSingleton() != null){
+           paneAdminCursos.setVisible(false);
+           paneEstudiantes.setVisible(false);
+        }
     }
     
     
@@ -114,7 +121,6 @@ public class FXMLPrincipalController implements Initializable {
 
 
 
-    @FXML
     private void clicVerAvances(ActionEvent event) {
               Stage escenarioEstudiantes = new Stage();
         escenarioEstudiantes.setScene(Utilidades.inicializaEscena(

@@ -59,7 +59,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="7.0" layoutY="140.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneAdminCursos" layoutX="7.0" layoutY="140.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,7 +73,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="paneEstudiantes" layoutX="7.0" layoutY="80.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneEstudiantes" layoutX="7.0" layoutY="82.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>

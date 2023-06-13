@@ -32,18 +32,19 @@ public class Anteproyecto {
     private String estado;
     private int idLgac;
     private String nombreLgac;
+    private int responsablesActivos;
 
     public Anteproyecto() {
     }
 
-    public Anteproyecto(int idAnteproyecto, int idModalidad, int idCuerpoAcademico, 
+    public Anteproyecto(int idAnteproyecto, int idModalidad, int idCuerpoAcademico,
             String proyectoInvestigacion, String lineaInvestigacion, int mesesDuracionAproximada,
-            String nombreTrabajo, String requisitos, int numAlumnosParticipantes, 
-            String descripcionProyectoInvestigacion, String descripcionTrabajoRecepcional, 
-            String resultadosEsperados, String bibliografiaRecomendada, String comentarios, 
-            int idEstadoATP, int idDirector, String nombreCA, String modalidad, 
-            String nombreDirector, String codirectores, 
-            String estado, int idLgac, String nombreLgac) {
+            String nombreTrabajo, String gradoDirector, String requisitos,
+            int numAlumnosParticipantes,String descripcionProyectoInvestigacion, 
+            String descripcionTrabajoRecepcional, String resultadosEsperados,
+            String bibliografiaRecomendada, String comentarios, int idEstadoATP, int idDirector, 
+            String nombreCA, String modalidad, String nombreDirector, String codirectores, 
+            String estado, int idLgac, String nombreLgac, int responsablesActivos) {
         this.idAnteproyecto = idAnteproyecto;
         this.idModalidad = idModalidad;
         this.idCuerpoAcademico = idCuerpoAcademico;
@@ -51,6 +52,7 @@ public class Anteproyecto {
         this.lineaInvestigacion = lineaInvestigacion;
         this.mesesDuracionAproximada = mesesDuracionAproximada;
         this.nombreTrabajo = nombreTrabajo;
+        this.gradoDirector = gradoDirector;
         this.requisitos = requisitos;
         this.numAlumnosParticipantes = numAlumnosParticipantes;
         this.descripcionProyectoInvestigacion = descripcionProyectoInvestigacion;
@@ -67,6 +69,7 @@ public class Anteproyecto {
         this.estado = estado;
         this.idLgac = idLgac;
         this.nombreLgac = nombreLgac;
+        this.responsablesActivos = responsablesActivos;
     }
 
     public int getIdAnteproyecto() {
@@ -259,6 +262,14 @@ public class Anteproyecto {
 
     public void setNombreLgac(String nombreLgac) {
         this.nombreLgac = nombreLgac;
+    }
+
+    public int getResponsablesActivos() {
+        return responsablesActivos;
+    }
+
+    public void setResponsablesActivos(int responsablesActivos) {
+        this.responsablesActivos = responsablesActivos;
     }
     
     

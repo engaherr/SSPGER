@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -21,11 +17,6 @@ import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
 public class FXMLPrincipalAdministradorController implements Initializable {
 
     @FXML
@@ -80,7 +71,6 @@ public class FXMLPrincipalAdministradorController implements Initializable {
         escenarioAnteproyectos.showAndWait();            
     }
         
-
     @FXML
     private void clicCerrarSesion(MouseEvent event) {
         Stage escenarioPrincipal = (Stage) imgMenu.getScene().getWindow();

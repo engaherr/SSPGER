@@ -21,7 +21,9 @@ public class CuerpoAcademico {
     public CuerpoAcademico() {
     }
 
-    public CuerpoAcademico(int idCuerpoAcademico, String nombre, String clave, int idGradoConsolidacion, String gradoConsolidacion, int idDependencia, String dependencia, int idResponsable, String responsable) {
+    public CuerpoAcademico(int idCuerpoAcademico, String nombre, String clave, 
+            int idGradoConsolidacion, String gradoConsolidacion, int idDependencia, 
+            String dependencia, int idResponsable, String responsable) {
         this.idCuerpoAcademico = idCuerpoAcademico;
         this.nombre = nombre;
         this.clave = clave;

@@ -5,7 +5,6 @@
 * Descripción: Clase controladora de vista FXMLVerActividadController
 */
 
-
 package javafxsspger.controladores;
 
 import java.io.File;
@@ -14,13 +13,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -41,11 +42,6 @@ import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author dplat
- */
 public class FXMLVerActividadController implements Initializable {
 
     @FXML
@@ -80,16 +76,17 @@ public class FXMLVerActividadController implements Initializable {
     private ImageView btnNoArchivo;
     boolean esModificar = false;
     boolean preparadoModificar = false;
+    @FXML
+    private Label lbEvaluacion;
     
    
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       taCuerpo.setWrapText(true);
-       mostrarElementosSegunRol(); 
-      
-       
-    }    
+  @Override
+public void initialize(URL url, ResourceBundle rb) {
+   taCuerpo.setWrapText(true);
+   mostrarElementosSegunRol();
+}
+
 
     public void mostrarElementosSegunRol() {
     Estudiante estudiante = Estudiante.getInstanciaSingleton();
@@ -104,6 +101,7 @@ public class FXMLVerActividadController implements Initializable {
         btnEnviar.setVisible(false);
         btnAdjuntar.setVisible(false);
         btnNoArchivo.setVisible(false);
+        lbEvaluacion.setVisible(false);
     }
 }
     
@@ -119,7 +117,8 @@ public class FXMLVerActividadController implements Initializable {
            FXMLLoader accesoControlador = new FXMLLoader(
                     JavaFXSSPGER.class.getResource("vistas/FXMLEvaluarActividad.fxml"));
             Parent vista = accesoControlador.load();
-             FXMLEvaluarActividadController evaluarActividadController = accesoControlador.getController();
+             FXMLEvaluarActividadController evaluarActividadController = 
+                     accesoControlador.getController();
              evaluarActividadController.setActividadEvaluar(idActividadSeleccionada);
             Stage stage = new Stage();
             stage.setScene(new Scene(vista));
@@ -135,17 +134,37 @@ public class FXMLVerActividadController implements Initializable {
      cargarInformacionEntrega(actividad.getIdActividad());
      idActividadSeleccionada = actividad.getIdActividad();
      actividadSeleccionada = actividad;
+     String fechaComienzoStr = lbFechaComienzo.getText();
+     LocalDateTime fechaComienzo = LocalDateTime.parse(fechaComienzoStr, 
+             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+     String fechaEntregaStr = lbFechaEntrega.getText();
+     LocalDateTime fechaEntrega = LocalDateTime.parse(fechaEntregaStr, 
+             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+     LocalDateTime fechaActual = LocalDateTime.now();
+     if (fechaComienzo.isAfter(fechaActual) || fechaEntrega.isBefore(fechaActual)) {
+         btnEnviar.setDisable(true);
+     }
 }
     
     
      public void cargarInformacionEntrega(int idActividad) {
         ActividadRespuesta respuestaBD = ActividadDAO.obtenerDetallesEntrega(idActividad);
         ArrayList<Actividad> actividades = respuestaBD.getActividades();
+        boolean tieneEvaluacion = ActividadDAO.verificarTieneEvaluacion(idActividad);
         if (!actividades.isEmpty()) {
             Actividad actividad = actividades.get(0);
             taCuerpo.setText(actividad.getComentarios());
             lbfechaCreacion.setText(actividad.getFechaCreacion());
             lbnombreDelArchivo.setText(actividad.getNombreArchivo());
+            
+               if (tieneEvaluacion) {
+                btnEnviar.setDisable(true);
+                lbEvaluacion.setText(actividad.getEvaluacion()+ " de 10 pts.");
+                taCuerpo.setEditable(false);
+                btnAdjuntar.setVisible(false);
+           
+        } else {
+                 
             if(actividad.getNombreArchivo() == null){
                 btnDescargar.setVisible(false);
             }
@@ -175,31 +194,36 @@ public class FXMLVerActividadController implements Initializable {
 });
 
             
+            }
         }       
 }
 
     @FXML
 private void clicEnviar(ActionEvent event) throws IOException {
     if (taCuerpo.getText().isEmpty()){
-         Utilidades.mostrarDialogoSimple("Sin cuerpo de entrega", "Por favor ingrese el cuerpo de la entrega.", 
+         Utilidades.mostrarDialogoSimple("Sin cuerpo de entrega", 
+                 "Por favor ingrese el cuerpo de la entrega.", 
                  Alert.AlertType.INFORMATION);
         }else{
     if (lbnombreDelArchivo.getText().isEmpty()) {
-        Utilidades.mostrarDialogoSimple("No hay archivo adjunto", "Por favor seleccione un archivo para enviar.", 
+        Utilidades.mostrarDialogoSimple("No hay archivo adjunto", 
+                "Por favor seleccione un archivo para enviar.", 
                 Alert.AlertType.INFORMATION);
-      } else {
+      } else { 
          boolean existeRegistro = ActividadDAO.verificarEsModificar(actividadSeleccionada.getIdActividad());
         if(existeRegistro){
                 try {
                         Actividad actividadEntrega = crearActividadDesdeFormulario();
                         int resultado = ActividadDAO.modificarEntrega(actividadEntrega);
                         if (resultado == Constantes.OPERACION_EXITOSA) {
-                            Utilidades.mostrarDialogoSimple("Entrega modificada", "La entrega se ha modificado correctamente.",
+                            Utilidades.mostrarDialogoSimple("Entrega modificada", 
+                                    "La entrega se ha modificado correctamente.",
                                     Alert.AlertType.INFORMATION);
                              Stage escenarioPrincipal = (Stage) lbDescripcion.getScene().getWindow();
                              escenarioPrincipal.close(); 
                         } else {
-                            Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
+                            Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega."
+                                    , Alert.AlertType.ERROR);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -212,12 +236,14 @@ private void clicEnviar(ActionEvent event) throws IOException {
                             Actividad actividadEntrega = crearActividadDesdeFormulario();
                             int resultado = ActividadDAO.enviarEntrega(actividadEntrega);
                             if (resultado == Constantes.OPERACION_EXITOSA) {
-                                Utilidades.mostrarDialogoSimple("Entrega enviada", "La entrega se ha enviado correctamente.",
+                                Utilidades.mostrarDialogoSimple("Entrega enviada", 
+                                        "La entrega se ha enviado correctamente.",
                                         Alert.AlertType.INFORMATION);
                                  Stage escenarioPrincipal = (Stage) lbDescripcion.getScene().getWindow();
                                  escenarioPrincipal.close(); 
                             } else {
-                                Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
+                                Utilidades.mostrarDialogoSimple("Error", 
+                                        "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

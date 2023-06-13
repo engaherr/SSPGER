@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título de programa: DAO de Academico
+* Autor: Jasiel Emir Zavaleta García
+* Fecha de Creación 11/06/2023
+* Descripción: DAO para la comunicación entre la BD y los academicos registrados ahí
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;
@@ -14,10 +16,6 @@ import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.AcademicoRespuesta;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author jasie
- */
 public class AcademicoDAO {
     public static AcademicoRespuesta recuperarAcademicosSinCA(){
        AcademicoRespuesta respuesta = new AcademicoRespuesta();

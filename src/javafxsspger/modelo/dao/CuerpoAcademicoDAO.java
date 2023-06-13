@@ -17,10 +17,6 @@ import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.modelo.pojo.CuerpoAcademicoRespuesta;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author kikga
- */
 public class CuerpoAcademicoDAO {
     public static CuerpoAcademicoRespuesta obtenerCuerposAcademicos(){
         CuerpoAcademicoRespuesta respuesta = new CuerpoAcademicoRespuesta();
@@ -80,7 +76,8 @@ public class CuerpoAcademicoDAO {
                 prepararSentencia.setInt(5,caRegistrar.getIdResponsable());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -94,7 +91,8 @@ public class CuerpoAcademicoDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-              String sentencia = "update into cuerpoacademico nombre = ?,clave = ?,idGradoConsolidacion = ?,"
+              String sentencia = "update into cuerpoacademico nombre = ?,clave = ?,"
+                      + "idGradoConsolidacion = ?,"
                       + "idDependencia = ? ,idResponsable = ? where idCuerpoAcademico = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,caModificar.getNombre());
@@ -106,7 +104,8 @@ public class CuerpoAcademicoDAO {
                 
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -125,7 +124,8 @@ public class CuerpoAcademicoDAO {
                 PreparedStatement prepararSentecia = conecionBD.prepareStatement(sentencia);
                 prepararSentecia.setInt(1,idCuerpoAcademico);
                 int filasAfectadas = prepararSentecia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }

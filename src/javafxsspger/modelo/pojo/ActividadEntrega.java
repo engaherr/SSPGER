@@ -5,7 +5,6 @@
 * Descripción: Clase modelo para las actividades y la información que lo integre
 */
 
-
 package javafxsspger.modelo.pojo;
 
 
@@ -31,7 +30,10 @@ public class ActividadEntrega {
     public ActividadEntrega(){
     }
 
-    public ActividadEntrega(int idActividad, String nombre, String fechaInicio, String fechaFin, String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, int idEstudiante, int idAvance, String comentarios, int evaluacion, String nombreArchivo) {
+    public ActividadEntrega(int idActividad, String nombre, String fechaInicio, String fechaFin, 
+            String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, 
+            int idEstudiante, int idAvance, String comentarios, int evaluacion, 
+            String nombreArchivo) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;

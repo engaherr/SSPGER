@@ -31,8 +31,8 @@ public class AnteproyectoDAO {
                         + "resultadosEsperados,bibliografiaRecomendada,comentarios,atp.idEstadoATP,"
                         + "idDirector,ca.nombre as nombreCA,´mod´.modalidad,concat(acad.nombre,' ',"
                         + "acad.apellidoPaterno,' ',acad.apellidoMaterno) as 'director', "
-                        + "estado.estado, atp.idLgac, lgac.nombre as nombreLgac "
-                        + "from anteproyecto atp "
+                        + "estado.estado, atp.idLgac, lgac.nombre as nombreLgac,responsablesActivos" 
+                        + " from anteproyecto atp "
                         + "inner join academico acad on idAcademico = idDirector " 
                         + "inner join modalidad ´mod´ on ´mod´.idModalidad = atp.idModalidad " 
                         + "inner join estadoATP estado on estado.idEstadoATP = atp.idEstadoATP " 
@@ -72,6 +72,7 @@ public class AnteproyectoDAO {
                     anteproyecto.setRequisitos(resultado.getString("requisitos"));
                     anteproyecto.setCodirectores(resultado.getString("codirectores"));
                     anteproyecto.setResultadosEsperados(resultado.getString("resultadosEsperados"));
+                    anteproyecto.setResponsablesActivos(resultado.getInt("responsablesActivos"));
                     anteproyectosConsulta.add(anteproyecto);
                 }
                 respuesta.setAnteproyectos(anteproyectosConsulta);
@@ -165,7 +166,8 @@ public class AnteproyectoDAO {
                         + "nombreTrabajo = ?,requisitos = ?,alumnosParticipantes = ?,"
                         + "descripcionProyectoInvestigacion = ?,descripcionTrabajoRecepcional = ?,"
                         + "resultadosEsperados = ?,bibliografiaRecomendada = ?,comentarios = ?,"
-                        + "idEstadoATP = ?,idLgac = ?,codirectores = ? where idAnteproyecto = ?;";
+                        + "idEstadoATP = ?,idLgac = ?,codirectores = ?,responsablesActivos = ? "
+                        + "where idAnteproyecto = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setInt(1, anteproyectoEdicion.getIdModalidad());
                 prepararSentencia.setInt(2, anteproyectoEdicion.getIdCuerpoAcademico());
@@ -177,14 +179,16 @@ public class AnteproyectoDAO {
                 prepararSentencia.setInt(8, anteproyectoEdicion.getNumAlumnosParticipantes());
                 prepararSentencia.setString(9,
                         anteproyectoEdicion.getDescripcionProyectoInvestigacion());
-                prepararSentencia.setString(10, anteproyectoEdicion.getDescripcionTrabajoRecepcional());
+                prepararSentencia.setString(10, 
+                        anteproyectoEdicion.getDescripcionTrabajoRecepcional());
                 prepararSentencia.setString(11, anteproyectoEdicion.getResultadosEsperados());
                 prepararSentencia.setString(12, anteproyectoEdicion.getBibliografiaRecomendada());
                 prepararSentencia.setString(13, anteproyectoEdicion.getComentarios());
                 prepararSentencia.setInt(14, anteproyectoEdicion.getIdEstadoATP());
                 prepararSentencia.setInt(15, anteproyectoEdicion.getIdLgac());
                 prepararSentencia.setString(16, anteproyectoEdicion.getCodirectores());
-                prepararSentencia.setInt(17, anteproyectoEdicion.getIdAnteproyecto());
+                prepararSentencia.setInt(17, anteproyectoEdicion.getResponsablesActivos());
+                prepararSentencia.setInt(18, anteproyectoEdicion.getIdAnteproyecto());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;

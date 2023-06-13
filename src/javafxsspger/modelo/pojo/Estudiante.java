@@ -16,7 +16,9 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(int idEstudiante, String matricula, int telefono, int idAnteproyecto, String email, String password, String nombre, String apellidoPaterno, String apellidoMaterno, byte[] foto) {
+    public Estudiante(int idEstudiante, String matricula, int telefono, int idAnteproyecto, 
+            String email, String password, String nombre, String apellidoPaterno, 
+            String apellidoMaterno, byte[] foto) {
         super(email, password, nombre, apellidoPaterno, apellidoMaterno, foto);
         this.idEstudiante = idEstudiante;
         this.matricula = matricula;

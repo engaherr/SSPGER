@@ -14,7 +14,8 @@ public class Lgac {
     private String nombreCuerpoAcademico;
     private int numero;
 
-    public Lgac(int idLgac, String nombre,String descripcion, int idCuerpoAcademico,String nombreCuerpoAcademico, int numero) {
+    public Lgac(int idLgac, String nombre,String descripcion, int idCuerpoAcademico,
+            String nombreCuerpoAcademico, int numero) {
         this.idLgac = idLgac;
         this.nombre = nombre;
         this.descripcion = descripcion;

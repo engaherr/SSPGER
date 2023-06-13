@@ -38,7 +38,6 @@ public class FXMLEvaluarActividadController implements Initializable {
     
     @Override
      public void initialize(URL url, ResourceBundle rb) {
-        // Configurar eventos para el TextField
         tfEvaluacion.addEventFilter(KeyEvent.KEY_TYPED, event -> {
             String input = event.getCharacter();
             if (!input.matches("\\d")) { 
@@ -66,7 +65,8 @@ public class FXMLEvaluarActividadController implements Initializable {
             int evaluacion = Integer.parseInt(evaluacionStr);
             if (evaluacion >= 0 && evaluacion <= 10) { 
                 ActividadDAO.EvaluarEntrega(evaluacion, idActividadSeleccionada);
-                Utilidades.mostrarDialogoSimple("Entraga Evaluada", "La evaluación se ha registrado correctamente",
+                Utilidades.mostrarDialogoSimple("Entraga Evaluada", "La evaluación se ha registrado"
+                        + " correctamente",
                         Alert.AlertType.INFORMATION);
                 Stage escenarioPrincipal = (Stage) lbTitulo.getScene().getWindow();
                 escenarioPrincipal.close();

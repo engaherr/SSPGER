@@ -33,7 +33,8 @@ public class Avance {
         this.idAvance = idAvance;
     }
 
-    public Avance(int idAnteproyecto, String nombreTrabajo, int cantidadActividades, int cantidadRegistros, Double porcentaje) {
+    public Avance(int idAnteproyecto, String nombreTrabajo, int cantidadActividades,
+            int cantidadRegistros, Double porcentaje) {
         this.idAnteproyecto = idAnteproyecto;
         this.nombreTrabajo = nombreTrabajo;
         this.cantidadActividades = cantidadActividades;

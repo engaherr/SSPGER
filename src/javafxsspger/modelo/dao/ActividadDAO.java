@@ -26,7 +26,8 @@ public class ActividadDAO {
     if(conexionBD != null){
         try {
             String consulta = "select idActividad, nombre, fechaInicio, fechaFin, fechaCreacion, "
-                    + "descripcion, archivo, idEstudiante, idAvance, extensionArchivo, nombreArchivo "
+                    + "descripcion, archivo, idEstudiante, idAvance, extensionArchivo, "
+                    + "nombreArchivo "
                     + "from "
                     + "lgac where idAnteproyecto = ?";
             PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
@@ -81,7 +82,8 @@ public class ActividadDAO {
                 prepararSentencia.setString(11,actividadNueva.getNombreArchivo());
                 
                 int filasAfecadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
                 conexionBD.close();
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
@@ -97,8 +99,8 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                String sentencia = "update actividad set nombre = ?, fechaInicio = ?, fechaFin = ?, "
-                        + "idAnteproyecto = ?, descripcion = ?, archivo = ?, "
+                String sentencia = "update actividad set nombre = ?, fechaInicio = ?, fechaFin = ?,"
+                        + " idAnteproyecto = ?, descripcion = ?, archivo = ?, "
                         + "idEstudiante = ?, idAvance = ?, extensionArchivo = ?,nombreArchivo = ? "
                         + "where idActividad = ?";
                 PreparedStatement prepararSentencia  = conexionBD.prepareStatement(sentencia);
@@ -114,7 +116,8 @@ public class ActividadDAO {
                 prepararSentencia.setString(10,edicionActividad.getNombreArchivo());                
                 prepararSentencia.setInt(11,edicionActividad.getIdActividad());
                 int filasAfectadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -166,7 +169,8 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                 String consulta = "SELECT idActividad, nombre, fechaInicio, fechaFin, fechaCreacion, idAnteproyecto, "
+                 String consulta = "SELECT idActividad, nombre, fechaInicio, fechaFin, "
+                         + "fechaCreacion, idAnteproyecto, "
                         + "descripcion, archivo, idEstudiante, idAvance "
                         + "FROM actividad "
                         + "WHERE idActividad = ?";
@@ -206,7 +210,8 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,archivo,nombreArchivo\n" +
+                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,evaluacion,archivo,"
+                         + "nombreArchivo\n" +
                     "FROM entrega\n" +
                     "WHERE idActividad = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
@@ -216,6 +221,7 @@ public class ActividadDAO {
                     Actividad actividad = new Actividad();                
                     actividad.setIdActividad(resultado.getInt("idActividad"));
                     actividad.setComentarios(resultado.getString("comentarios"));
+                    actividad.setEvaluacion(resultado.getInt("evaluacion"));
                     actividad.setFechaCreacion(resultado.getString("fechaCreacion"));
                     actividad.setArchivo(resultado.getBytes("archivo"));
                     actividad.setNombreArchivo(resultado.getString("nombreArchivo"));
@@ -260,7 +266,8 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if (conexionBD != null) {
             try {
-                String sentencia = "INSERT INTO entrega (idActividad, fechaCreacion, archivo, comentarios, nombreArchivo)\n" +
+                String sentencia = "INSERT INTO entrega (idActividad, fechaCreacion, archivo, "
+                        + "comentarios, nombreArchivo)\n" +
                         "VALUES (?, ?, ?, ?, ?);";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setInt(1, actividadEntrega.getIdActividad());
@@ -269,7 +276,8 @@ public class ActividadDAO {
                 prepararSentencia.setString(4, actividadEntrega.getComentarios());
                 prepararSentencia.setString(5, actividadEntrega.getNombreArchivo());
                 int filasAfectadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
             } catch (SQLException ex) {
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -287,7 +295,8 @@ public class ActividadDAO {
                  String sentencia = "delete from actividad where idActividad = ?";
                  PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                  int filasAfectadas = prepararSentencia.executeUpdate();
-                 respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                 respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                         Constantes.ERROR_CONSULTA;
                  conexionBD.close();
              }catch(SQLException ex){
                  respuesta = Constantes.ERROR_CONSULTA;
@@ -314,7 +323,8 @@ public class ActividadDAO {
                 prepararSentencia.setString(4, actividadEntrega.getNombreArchivo());
                 prepararSentencia.setInt(5, actividadEntrega.getIdActividad());
                 int filasAfectadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
             } catch (SQLException ex) {
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -345,5 +355,24 @@ public class ActividadDAO {
     return existeRegistro;
 }
 
+      public static boolean verificarTieneEvaluacion(int idActividad) {
+        boolean tieneEvaluacion = false;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT EXISTS (SELECT 1 FROM entrega WHERE idActividad = ? AND evaluacion IS NOT NULL) AS result;";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                prepararSentencia.setInt(1, idActividad);
+                ResultSet resultado = prepararSentencia.executeQuery();
+                if (resultado.next()) {
+                    tieneEvaluacion = resultado.getBoolean("result");
+                }
+                conexionBD.close();
+            } catch (SQLException ex) {
+                // Manejo de excepciones
+            }
+        }
+        return tieneEvaluacion;
+    }
        
 }

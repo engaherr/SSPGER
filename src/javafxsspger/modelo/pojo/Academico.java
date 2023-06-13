@@ -20,7 +20,9 @@ public class Academico extends Usuario {
     public Academico() {
     }
 
-    public Academico(int idAcademico, int noPersonal, boolean esAdmin, boolean esResponsableCA, int idCAResponsable, boolean esDirector, String grado, String email, String password, String nombre, String apellidoPaterno, String apellidoMaterno, byte[] foto) {
+    public Academico(int idAcademico, int noPersonal, boolean esAdmin, boolean esResponsableCA, 
+            int idCAResponsable, boolean esDirector, String grado, String email, String password, 
+            String nombre, String apellidoPaterno, String apellidoMaterno, byte[] foto) {
         super(email, password, nombre, apellidoPaterno, apellidoMaterno, foto);
         this.idAcademico = idAcademico;
         this.noPersonal = noPersonal;
