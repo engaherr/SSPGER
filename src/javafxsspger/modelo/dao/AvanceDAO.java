@@ -34,7 +34,6 @@ public class AvanceDAO {
                     Avance avance = new Avance();
                     avance.setIdAvance(resultado.getInt("idAvance"));
                     avance.setNombre(resultado.getString("nombre"));
-                   // avance.setPorcentaje(resultado.getInt("porcentaje"));
                     avance.setIdAnteproyecto(idAnteproyecto);
                     avances.add(avance);
                 }
@@ -49,36 +48,40 @@ public class AvanceDAO {
         return respuesta;
     }
     
-    public static AvanceRespuesta consultarAvances() {
-        AvanceRespuesta respuesta = new AvanceRespuesta();
-        respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
-        ArrayList<Avance> avances = new ArrayList<>();
-        Connection conexionBD = ConexionBD.abrirConexionBD();
-        if (conexionBD != null) {
-            try {
-                String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo, COUNT(DISTINCT act.idActividad) AS totalActividades, COUNT(ent.idEntrega) AS totalEntregas\n"
-                        + "FROM anteproyecto a\n"
-                        + "LEFT JOIN actividad act ON a.idAnteproyecto = act.idAnteproyecto\n"
-                        + "LEFT JOIN entrega ent ON act.idActividad = ent.idActividad\n"
-                        + "GROUP BY a.idAnteproyecto, a.nombreTrabajo;";
-                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
-                ResultSet resultado = prepararSentencia.executeQuery();
-                while (resultado.next()) {
-                    Avance avance = new Avance();
-                    avance.setIdAnteproyecto(resultado.getInt("idAnteproyecto"));
-                    avance.setNombreTrabajo(resultado.getString("nombreTrabajo"));
-                    avance.setCantidadActividades(resultado.getInt("totalActividades"));
-                    avance.setCantidadRegistros(resultado.getInt("totalEntregas"));
-                    avances.add(avance);
-                }
-                respuesta.setAvances(avances);
-                conexionBD.close();
-            } catch (SQLException ex) {
-                respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+    public static AvanceRespuesta consultarAvances(int idAcademico) {
+    AvanceRespuesta respuesta = new AvanceRespuesta();
+    respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
+    ArrayList<Avance> avances = new ArrayList<>();
+    Connection conexionBD = ConexionBD.abrirConexionBD();
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo, COUNT(DISTINCT act.idActividad) AS totalActividades, "
+                    + "COUNT(ent.idEntrega) AS totalEntregas\n"
+                    + "FROM anteproyecto a\n"
+                    + "LEFT JOIN actividad act ON a.idAnteproyecto = act.idAnteproyecto\n"
+                    + "LEFT JOIN entrega ent ON act.idActividad = ent.idActividad\n"
+                    + "WHERE a.idDirector = ?\n"
+                    + "GROUP BY a.idAnteproyecto, a.nombreTrabajo;";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setInt(1, idAcademico);
+            ResultSet resultado = prepararSentencia.executeQuery();
+            while (resultado.next()) {
+                Avance avance = new Avance();
+                avance.setIdAnteproyecto(resultado.getInt("idAnteproyecto"));
+                avance.setNombreTrabajo(resultado.getString("nombreTrabajo"));
+                avance.setCantidadActividades(resultado.getInt("totalActividades"));
+                avance.setCantidadRegistros(resultado.getInt("totalEntregas"));
+                avances.add(avance);
             }
-        } else {
-            respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
+            respuesta.setAvances(avances);
+            conexionBD.close();
+        } catch (SQLException ex) {
+            respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
         }
-        return respuesta;
+    } else {
+        respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
     }
+    return respuesta;
+}
+
 }
