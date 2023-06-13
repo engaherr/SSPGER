@@ -3,21 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/modelo/pojo/Actividad.java</file>
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLAnteproyectoController.java</file>
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLPrincipalController.java</file>
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/modelo/pojo/Avance.java</file>
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLCursoFormularioController.java</file>
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/modelo/dao/CursoDAO.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/controladores/FXMLAnteproyectoDetallesController.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/modelo/dao/EstudianteDAO.java</file>
-=======
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLCursoFormularioController.java</file>
->>>>>>> diddy's
->>>>>>> main
+            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/modelo/dao/AvanceDAO.java</file>
+            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLAdminCursosController.java</file>
+            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/modelo/dao/ActividadDAO.java</file>
+            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/modelo/pojo/ActividadEntrega.java</file>
+            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLVerActividadController.java</file>
         </group>
     </open-files>
 </project-private>
