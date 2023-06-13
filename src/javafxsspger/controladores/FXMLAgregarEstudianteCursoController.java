@@ -43,7 +43,6 @@ public class FXMLAgregarEstudianteCursoController implements Initializable {
     private Label lbNombre;
     @FXML
     private Label lbCorreo;
-    private Label lbTelefono;
     @FXML
     private Label lbTitulo;
     @FXML
@@ -94,7 +93,9 @@ private void clicAgregar(ActionEvent event) {
         CursoDAO.AgregarEstudianteCurso(idCursoEE, idEstudiante);
         Utilidades.mostrarDialogoSimple("Estudiante agregado", "El estudiante ha sido agregado al curso exitosamente.",
             Alert.AlertType.INFORMATION);
-         
+         lbMatricula.setText("");
+         lbNombre.setText("");
+         lbCorreo.setText("");
         } 
     } else {
         Utilidades.mostrarDialogoSimple("Error", "Seleccione un estudiante y un curso.",
@@ -142,7 +143,7 @@ private Estudiante obtenerEstudianteActual() {
                     protected void updateItem(Curso curso, boolean empty) {
                         super.updateItem(curso, empty);
                         if (curso != null) {
-                            setText(curso.getNombreMateria());
+                            setText(curso.getNombreMateria() +  " NRC: " + curso.getNRC());
                         } else {
                             setText(null);
                         }
@@ -156,7 +157,7 @@ private Estudiante obtenerEstudianteActual() {
             protected void updateItem(Curso curso, boolean empty) {
                 super.updateItem(curso, empty);
                 if (curso != null) {
-                    setText(curso.getNombreMateria());
+                    setText(curso.getNombreMateria() );
                 } else {
                     setText(null);
                 }
