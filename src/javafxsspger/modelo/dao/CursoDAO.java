@@ -19,16 +19,15 @@ import javafxsspger.utils.Constantes;
 
 
 public class CursoDAO {
-    
-    
-       public static CursoRespuesta obtenerCursos() {
+    public static CursoRespuesta obtenerCursos() {
     CursoRespuesta respuesta = new CursoRespuesta();
     respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
     ArrayList<Curso> cursos = new ArrayList<>();
     Connection conexionBD = ConexionBD.abrirConexionBD();
     if (conexionBD != null) {
         try {
-            String consulta = "SELECT cursoee.idCursoEE, cursoee.NRC, cursoee.idMateria, cursoee.idPeriodoEscolar, cursoee.idProfesor, "
+            String consulta = "SELECT cursoee.idCursoEE, cursoee.NRC, cursoee.idMateria, "
+                    + "cursoee.idPeriodoEscolar, cursoee.idProfesor, "
                     + "materia.nombre AS nombreMateria\n" +
                     "FROM cursoee\n" +
                     "JOIN materia ON cursoee.idMateria = materia.idMateria;";
@@ -82,7 +81,9 @@ public class CursoDAO {
     Connection conexionBD = ConexionBD.abrirConexionBD();
     if (conexionBD != null) {
         try {
-            String consulta = "SELECT EXISTS (SELECT 1 FROM estudiantecursoee WHERE estado = 'Activo' AND idCursoEE = ? AND idEstudiante = ?) AS registroExiste";
+            String consulta = "SELECT EXISTS (SELECT 1 FROM estudiantecursoee"
+                    + " WHERE estado = 'Activo' AND idCursoEE = ? AND idEstudiante = ?) "
+                    + "AS registroExiste";
             PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
             prepararSentencia.setInt(1, idCursoEE);
             prepararSentencia.setInt(2, idEstudiante);

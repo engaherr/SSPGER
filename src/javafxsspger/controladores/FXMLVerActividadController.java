@@ -5,7 +5,6 @@
 * Descripción: Clase controladora de vista FXMLVerActividadController
 */
 
-
 package javafxsspger.controladores;
 
 import java.io.File;
@@ -20,7 +19,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -41,11 +39,6 @@ import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author dplat
- */
 public class FXMLVerActividadController implements Initializable {
 
     @FXML
@@ -122,7 +115,8 @@ public class FXMLVerActividadController implements Initializable {
            FXMLLoader accesoControlador = new FXMLLoader(
                     JavaFXSSPGER.class.getResource("vistas/FXMLEvaluarActividad.fxml"));
             Parent vista = accesoControlador.load();
-             FXMLEvaluarActividadController evaluarActividadController = accesoControlador.getController();
+             FXMLEvaluarActividadController evaluarActividadController = 
+                     accesoControlador.getController();
              evaluarActividadController.setActividadEvaluar(idActividadSeleccionada);
             Stage stage = new Stage();
             stage.setScene(new Scene(vista));
@@ -184,28 +178,33 @@ public class FXMLVerActividadController implements Initializable {
     @FXML
 private void clicEnviar(ActionEvent event) throws IOException {
     if (taCuerpo.getText().isEmpty()){
-         Utilidades.mostrarDialogoSimple("Sin cuerpo de entrega", "Por favor ingrese el cuerpo de la entrega.", 
+         Utilidades.mostrarDialogoSimple("Sin cuerpo de entrega", 
+                 "Por favor ingrese el cuerpo de la entrega.", 
                  Alert.AlertType.INFORMATION);
         }else{
     if (lbnombreDelArchivo.getText().isEmpty()) {
-        Utilidades.mostrarDialogoSimple("No hay archivo adjunto", "Por favor seleccione un archivo para enviar.", 
+        Utilidades.mostrarDialogoSimple("No hay archivo adjunto", 
+                "Por favor seleccione un archivo para enviar.", 
                 Alert.AlertType.INFORMATION);
       } else {
         if(esModificar = true){
             if(preparadoModificar = false){
-                Utilidades.mostrarDialogoSimple("Seleccione el archivo", "Por favor seleccione el archivo", 
+                Utilidades.mostrarDialogoSimple("Seleccione el archivo", 
+                        "Por favor seleccione el archivo", 
                         Alert.AlertType.WARNING);
             }else{
                 try {
                         Actividad actividadEntrega = crearActividadDesdeFormulario();
                         int resultado = ActividadDAO.modificarEntrega(actividadEntrega);
                         if (resultado == Constantes.OPERACION_EXITOSA) {
-                            Utilidades.mostrarDialogoSimple("Entrega modificada", "La entrega se ha modificado correctamente.",
+                            Utilidades.mostrarDialogoSimple("Entrega modificada", 
+                                    "La entrega se ha modificado correctamente.",
                                     Alert.AlertType.INFORMATION);
                              Stage escenarioPrincipal = (Stage) lbDescripcion.getScene().getWindow();
                              escenarioPrincipal.close(); 
                         } else {
-                            Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
+                            Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega."
+                                    , Alert.AlertType.ERROR);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -216,12 +215,14 @@ private void clicEnviar(ActionEvent event) throws IOException {
                             Actividad actividadEntrega = crearActividadDesdeFormulario();
                             int resultado = ActividadDAO.enviarEntrega(actividadEntrega);
                             if (resultado == Constantes.OPERACION_EXITOSA) {
-                                Utilidades.mostrarDialogoSimple("Entrega enviada", "La entrega se ha enviado correctamente.",
+                                Utilidades.mostrarDialogoSimple("Entrega enviada", 
+                                        "La entrega se ha enviado correctamente.",
                                         Alert.AlertType.INFORMATION);
                                  Stage escenarioPrincipal = (Stage) lbDescripcion.getScene().getWindow();
                                  escenarioPrincipal.close(); 
                             } else {
-                                Utilidades.mostrarDialogoSimple("Error", "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
+                                Utilidades.mostrarDialogoSimple("Error", 
+                                        "No se pudo enviar la entrega.", Alert.AlertType.ERROR);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

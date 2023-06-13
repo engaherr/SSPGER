@@ -19,7 +19,8 @@ public abstract class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String email, String password, String nombre, String apellidoPaterno, String apellidoMaterno, byte[] foto) {
+    public Usuario(String email, String password, String nombre, String apellidoPaterno, 
+            String apellidoMaterno, byte[] foto) {
         this.email = email;
         this.password = password;
         this.nombre = nombre;

@@ -35,12 +35,6 @@ import javafxsspger.modelo.pojo.LgacRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-
-/**
- * FXML Controller class
- *
- * @author jasie
- */
 public class FXMLConsultarLGACController implements Initializable, INotificacionOperacion {
 
     @FXML
@@ -138,7 +132,6 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
             escenarioFormulario.showAndWait();         
             
         }catch(IOException ex){
-            Logger.getLogger(FXMLRegistrarLGACController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

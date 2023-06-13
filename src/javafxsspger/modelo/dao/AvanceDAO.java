@@ -55,7 +55,8 @@ public class AvanceDAO {
     Connection conexionBD = ConexionBD.abrirConexionBD();
     if (conexionBD != null) {
         try {
-            String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo, COUNT(DISTINCT act.idActividad) AS totalActividades, "
+            String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo,"
+                    + " COUNT(DISTINCT act.idActividad) AS totalActividades, "
                     + "COUNT(ent.idEntrega) AS totalEntregas\n"
                     + "FROM anteproyecto a\n"
                     + "LEFT JOIN actividad act ON a.idAnteproyecto = act.idAnteproyecto\n"

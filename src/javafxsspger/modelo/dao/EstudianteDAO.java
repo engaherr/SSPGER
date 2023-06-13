@@ -59,7 +59,8 @@ public class EstudianteDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if (conexionBD != null) {
             try {
-                String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, apellidoMaterno, matricula "
+                String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, "
+                        + "apellidoMaterno, matricula "
                         + "FROM estudiante WHERE matricula = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 prepararSentencia.setString(1, matricula);
@@ -92,7 +93,8 @@ public class EstudianteDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if (conexionBD != null) {
             try {
-                String consulta = "SELECT EXISTS(SELECT 1 FROM estudiante WHERE idEstudiante = ? AND idAnteproyecto IS NOT NULL) AS tiene_anteproyecto";
+                String consulta = "SELECT EXISTS(SELECT 1 FROM estudiante WHERE idEstudiante = ?"
+                        + " AND idAnteproyecto IS NOT NULL) AS tiene_anteproyecto";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 prepararSentencia.setInt(1, idEstudiante);
                 ResultSet resultado = prepararSentencia.executeQuery();

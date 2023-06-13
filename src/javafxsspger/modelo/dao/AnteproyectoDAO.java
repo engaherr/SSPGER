@@ -179,7 +179,8 @@ public class AnteproyectoDAO {
                 prepararSentencia.setInt(8, anteproyectoEdicion.getNumAlumnosParticipantes());
                 prepararSentencia.setString(9,
                         anteproyectoEdicion.getDescripcionProyectoInvestigacion());
-                prepararSentencia.setString(10, anteproyectoEdicion.getDescripcionTrabajoRecepcional());
+                prepararSentencia.setString(10, 
+                        anteproyectoEdicion.getDescripcionTrabajoRecepcional());
                 prepararSentencia.setString(11, anteproyectoEdicion.getResultadosEsperados());
                 prepararSentencia.setString(12, anteproyectoEdicion.getBibliografiaRecomendada());
                 prepararSentencia.setString(13, anteproyectoEdicion.getComentarios());

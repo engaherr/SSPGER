@@ -5,8 +5,6 @@
 * Descripción: Clase controladora de vista FXMLAgregarEstudianteCurso
 */
 
-
-
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -65,14 +63,17 @@ private void clicBuscar(ActionEvent event) {
         ArrayList<Estudiante> estudiantes = respuestaBD.getEstudiantes();
         if (!estudiantes.isEmpty()) {
             Estudiante estudiante = estudiantes.get(0);
-            lbNombre.setText(estudiante.getNombre() +" " +estudiante.getApellidoPaterno() +" "+ estudiante.getApellidoMaterno());
+            lbNombre.setText(estudiante.getNombre() +" " +estudiante.getApellidoPaterno() +" "+ 
+                    estudiante.getApellidoMaterno());
             lbCorreo.setText(estudiante.getEmail());
         } else {
-            Utilidades.mostrarDialogoSimple("No se encontró", "No se encontró ningún estudiante con esa matricula.",
+            Utilidades.mostrarDialogoSimple("No se encontró", "No se encontró ningún estudiante "
+                    + "con esa matricula.",
                     Alert.AlertType.ERROR);
         }
     } else {
-          Utilidades.mostrarDialogoSimple("Error", "Ocurrió un error con la base de datos, por favor intentelo más tarde..",
+          Utilidades.mostrarDialogoSimple("Error", "Ocurrió un error con la base de datos, "
+                  + "por favor intentelo más tarde..",
                     Alert.AlertType.ERROR);
     }
 }
@@ -88,10 +89,12 @@ private void clicAgregar(ActionEvent event) {
         boolean registroExiste = CursoDAO.VerificarRegistro(idCursoEE, idEstudiante);
         
         if (registroExiste) {
-        Utilidades.mostrarDialogoSimple("Atención", "El estudiante ya es parte del curso.", Alert.AlertType.WARNING);
+        Utilidades.mostrarDialogoSimple("Atención", "El estudiante ya es parte del curso.", 
+                Alert.AlertType.WARNING);
         } else{
         CursoDAO.AgregarEstudianteCurso(idCursoEE, idEstudiante);
-        Utilidades.mostrarDialogoSimple("Estudiante agregado", "El estudiante ha sido agregado al curso exitosamente.",
+        Utilidades.mostrarDialogoSimple("Estudiante agregado", "El estudiante ha sido agregado "
+                + "al curso exitosamente.",
             Alert.AlertType.INFORMATION);
          lbMatricula.setText("");
          lbNombre.setText("");

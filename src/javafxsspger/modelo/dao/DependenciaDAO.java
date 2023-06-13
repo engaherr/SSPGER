@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO de Dependencia
+* Autor: Jasiel Emir Zavaleta García
+* Fecha de Creación: 11/06/2023
+* Descripción: DAo para establecer la comunicación entre la BD y el sistema para la gestion de las
+* dependencias de los cuerpos académicos
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;
@@ -14,10 +17,6 @@ import javafxsspger.modelo.pojo.Dependencia;
 import javafxsspger.modelo.pojo.DependenciaRespuesta;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author jasie
- */
 public class DependenciaDAO {
     public static DependenciaRespuesta recuperarDependencias(){
         DependenciaRespuesta  respuesta= new DependenciaRespuesta();

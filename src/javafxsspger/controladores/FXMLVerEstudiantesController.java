@@ -5,7 +5,6 @@
 * Descripción: Clase controladora de vista FXMLVerEstudiantes
 */
 
-
 package javafxsspger.controladores;
 
 import java.io.IOException;
@@ -24,19 +23,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
-import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.dao.EstudianteDAO;
-import javafxsspger.modelo.pojo.ActividadRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.modelo.pojo.EstudianteRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
-import javafxsspger.controladores.FXMLVerActividadesController;
-
 
 
 public class FXMLVerEstudiantesController implements Initializable {

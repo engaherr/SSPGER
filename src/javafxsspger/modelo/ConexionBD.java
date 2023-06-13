@@ -12,10 +12,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author kikga
- */
 public class ConexionBD {
     
     private static String driver = "com.mysql.jdbc.Driver";

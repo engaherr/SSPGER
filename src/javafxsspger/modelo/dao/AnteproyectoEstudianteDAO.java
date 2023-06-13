@@ -1,22 +1,20 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO de AnteproyectoEstudiante
+* Autor: Jasiel Emir Zavaleta García y Omar Dylan Segura Platas
+* Fecha de Creación: 11/06/2023
+* Descripción: DAO para la comunicación entre la base de datos y el sistema para recuperar y 
+* modificar la tabla de AnteproyectoEstudiante
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import javafxsspger.modelo.ConexionBD;
 import javafxsspger.modelo.pojo.AnteproyectoEstudiante;
 import javafxsspger.utils.Constantes;
 
-/**
- *
- * @author jasie
- */
 public class AnteproyectoEstudianteDAO {
     public static AnteproyectoEstudiante obtenerAnteproyectoEstudiante(int idEstudiante){
         AnteproyectoEstudiante respuesta = new AnteproyectoEstudiante();

@@ -37,7 +37,14 @@ public class Anteproyecto {
     public Anteproyecto() {
     }
 
-    public Anteproyecto(int idAnteproyecto, int idModalidad, int idCuerpoAcademico, String proyectoInvestigacion, String lineaInvestigacion, int mesesDuracionAproximada, String nombreTrabajo, String gradoDirector, String requisitos, int numAlumnosParticipantes, String descripcionProyectoInvestigacion, String descripcionTrabajoRecepcional, String resultadosEsperados, String bibliografiaRecomendada, String comentarios, int idEstadoATP, int idDirector, String nombreCA, String modalidad, String nombreDirector, String codirectores, String estado, int idLgac, String nombreLgac, int responsablesActivos) {
+    public Anteproyecto(int idAnteproyecto, int idModalidad, int idCuerpoAcademico,
+            String proyectoInvestigacion, String lineaInvestigacion, int mesesDuracionAproximada,
+            String nombreTrabajo, String gradoDirector, String requisitos,
+            int numAlumnosParticipantes,String descripcionProyectoInvestigacion, 
+            String descripcionTrabajoRecepcional, String resultadosEsperados,
+            String bibliografiaRecomendada, String comentarios, int idEstadoATP, int idDirector, 
+            String nombreCA, String modalidad, String nombreDirector, String codirectores, 
+            String estado, int idLgac, String nombreLgac, int responsablesActivos) {
         this.idAnteproyecto = idAnteproyecto;
         this.idModalidad = idModalidad;
         this.idCuerpoAcademico = idCuerpoAcademico;

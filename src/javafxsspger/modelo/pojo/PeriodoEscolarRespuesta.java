@@ -15,7 +15,8 @@ public class PeriodoEscolarRespuesta {
     public PeriodoEscolarRespuesta() {
     }
 
-    public PeriodoEscolarRespuesta(int codigoRespuesta, ArrayList<PeriodoEscolar> periodosEscolares) {
+    public PeriodoEscolarRespuesta(int codigoRespuesta,
+            ArrayList<PeriodoEscolar> periodosEscolares) {
         this.codigoRespuesta = codigoRespuesta;
         this.periodosEscolares = periodosEscolares;
     }

@@ -5,7 +5,6 @@
 * Descripción: Clase controladora de vista FXMLVerActividadesCronograma
 */
 
-
 package javafxsspger.controladores;
 
 import java.io.IOException;
@@ -32,7 +31,6 @@ import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
 import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.dao.AnteproyectoDAO;
-import javafxsspger.modelo.dao.EstudianteDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.ActividadRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
@@ -82,7 +80,8 @@ public class FXMLVerActividadesCronogramaController implements Initializable {
                     try {
                         verActividad(actividad);
                     } catch (IOException ex) {
-                        Utilidades.mostrarDialogoSimple("Error", "Error al mostrar los detalles de la actividad", Alert.AlertType.ERROR);
+                        Utilidades.mostrarDialogoSimple("Error", "Error al mostrar los detalles de "
+                                + "la actividad", Alert.AlertType.ERROR);
                     }
                 }
             });
@@ -137,11 +136,15 @@ public class FXMLVerActividadesCronogramaController implements Initializable {
         ObservableList<Actividad> actividadesFiltradas = FXCollections.observableArrayList();
 
         for (Actividad actividad : actividades) {
-           LocalDate fechaActividadInicio = LocalDate.parse(actividad.getFechaInicio(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
-            LocalDate fechaActividadFin = LocalDate.parse(actividad.getFechaFin(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+           LocalDate fechaActividadInicio = LocalDate.parse(actividad.getFechaInicio(), 
+                   DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+            LocalDate fechaActividadFin = LocalDate.parse(actividad.getFechaFin(), 
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
 
-            if ((fechaActividadInicio.isEqual(fechaInicio) || fechaActividadInicio.isAfter(fechaInicio))
-                    && (fechaActividadFin.isEqual(fechaFin) || fechaActividadFin.isBefore(fechaFin))) {
+            if ((fechaActividadInicio.isEqual(fechaInicio) || 
+                    fechaActividadInicio.isAfter(fechaInicio))
+                    && (fechaActividadFin.isEqual(fechaFin) || 
+                    fechaActividadFin.isBefore(fechaFin))) {
                 actividadesFiltradas.add(actividad);
             }
         }

@@ -5,7 +5,6 @@
 * Descripción: Clase modelo para Curso y la información que lo integre
 */
 
-
 package javafxsspger.modelo.pojo;
 
 
@@ -20,7 +19,8 @@ public class Curso {
     public Curso(){
     }
 
-    public Curso(int idCursoEE, int NRC, int idMateria, int idPeridoEscolar, int idProfesor, String nombreMateria) {
+    public Curso(int idCursoEE, int NRC, int idMateria, int idPeridoEscolar, 
+            int idProfesor, String nombreMateria) {
         this.idCursoEE = idCursoEE;
         this.NRC = NRC;
         this.idMateria = idMateria;

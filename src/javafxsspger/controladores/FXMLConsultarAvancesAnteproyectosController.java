@@ -5,8 +5,6 @@
 * Descripción: Clase controladora de vista FXMLConsultarAvancesAnteproyectos
 */
 
-
-
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -15,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -28,7 +25,6 @@ import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Avance;
 import javafxsspger.modelo.pojo.AvanceRespuesta;
 import javafxsspger.utils.Constantes;
-import javafxsspger.utils.Utilidades;
 
 
 public class FXMLConsultarAvancesAnteproyectosController implements Initializable {

@@ -16,7 +16,8 @@ public class CuerpoAcademicoRespuesta {
     public CuerpoAcademicoRespuesta() {
     }
 
-    public CuerpoAcademicoRespuesta(int codigoRespuesta, ArrayList<CuerpoAcademico> cuerposAcademicos) {
+    public CuerpoAcademicoRespuesta(int codigoRespuesta, 
+            ArrayList<CuerpoAcademico> cuerposAcademicos) {
         this.codigoRespuesta = codigoRespuesta;
         this.cuerposAcademicos = cuerposAcademicos;
     }
