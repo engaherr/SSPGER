@@ -54,6 +54,9 @@ public class Actividad {
         this.evaluacion = evaluacion;
         this.nombreArchivo = nombreArchivo;
     }
+    
+    
+    
 
     
     public int getEvaluacion() {

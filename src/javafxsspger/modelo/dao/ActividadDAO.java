@@ -332,5 +332,27 @@ public class ActividadDAO {
         }
         return respuesta;
     }
+        
+        
+    public static boolean verificarEsModificar(int idActividad) {
+    boolean existeRegistro = false;
+    Connection conexionBD = ConexionBD.abrirConexionBD();
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT EXISTS(SELECT 1 FROM entrega WHERE idActividad = ?) AS existeRegistro;";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+            prepararSentencia.setInt(1, idActividad);
+            ResultSet resultado = prepararSentencia.executeQuery();
+            if (resultado.next()) {
+                existeRegistro = resultado.getBoolean("existeRegistro");
+            }
+            conexionBD.close();
+        } catch (SQLException ex) {
+     
+        }
+    }
+    return existeRegistro;
+}
+
        
 }
