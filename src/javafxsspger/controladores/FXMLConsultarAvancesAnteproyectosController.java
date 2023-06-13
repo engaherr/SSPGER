@@ -24,6 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.modelo.dao.AvanceDAO;
+import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Avance;
 import javafxsspger.modelo.pojo.AvanceRespuesta;
 import javafxsspger.utils.Constantes;
@@ -56,9 +57,9 @@ public class FXMLConsultarAvancesAnteproyectosController implements Initializabl
 
      private void configurarTabla(){
     tcNombreAnteproyecto.setCellValueFactory(new PropertyValueFactory<>("nombreTrabajo"));
-    tcEstablecidos.setCellValueFactory(new PropertyValueFactory<>("cantidadActividades")); // Asociar con la propiedad "cantidadActividades"
-    tcEntregados.setCellValueFactory(new PropertyValueFactory<>("cantidadRegistros")); // Asociar con la propiedad "cantidadRegistros"
-      tcPorcentaje.setCellValueFactory(new PropertyValueFactory<>("porcentaje"));
+    tcEstablecidos.setCellValueFactory(new PropertyValueFactory<>("cantidadActividades")); 
+    tcEntregados.setCellValueFactory(new PropertyValueFactory<>("cantidadRegistros")); 
+    tcPorcentaje.setCellValueFactory(new PropertyValueFactory<>("porcentaje"));
     tcPorcentaje.setCellFactory(column -> {
     return new TableCell<Avance, Double>() {
         @Override
@@ -76,14 +77,14 @@ public class FXMLConsultarAvancesAnteproyectosController implements Initializabl
 
      
      private void cargarInformacionTabla() {
+     Academico academico = Academico.getInstanciaSingleton();
     avances = FXCollections.observableArrayList();
-    AvanceRespuesta respuestaBD = AvanceDAO.consultarAvances();
+    AvanceRespuesta respuestaBD = AvanceDAO.consultarAvances(academico.getIdAcademico());
     switch (respuestaBD.getCodigoRespuesta()) {
         case Constantes.ERROR_CONEXION:
-            // ...
             break;
         case Constantes.ERROR_CONSULTA:
-            // ...
+            
             break;
         case Constantes.OPERACION_EXITOSA:
             for (Avance avance : respuestaBD.getAvances()) {
