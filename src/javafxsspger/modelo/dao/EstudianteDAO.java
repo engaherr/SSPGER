@@ -18,17 +18,22 @@ import javafxsspger.utils.Constantes;
 
 public class EstudianteDAO {
     
-    public static EstudianteRespuesta obtenerEstudiantes(){
+    public static EstudianteRespuesta obtenerEstudiantes(int idAcademico){
         EstudianteRespuesta respuesta = new EstudianteRespuesta();
         respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                String consulta = "SELECT idEstudiante, email, nombre, apellidoPaterno, "
-                        + "apellidoMaterno, matricula, idAnteproyecto\n" +
-                "FROM estudiante;";
+                String consulta = "SELECT e.idEstudiante, e.email, e.nombre, e.apellidoPaterno, e.apellidoMaterno, e.matricula, e.idAnteproyecto\n" +
+                    "FROM estudiante e\n" +
+                    "WHERE e.idAnteproyecto IN (\n" +
+                    "    SELECT a.idAnteproyecto\n" +
+                    "    FROM anteproyecto a\n" +
+                    "    WHERE a.idDirector = ?\n" +
+                    ");";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                 prepararSentencia.setInt(1, idAcademico);
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     Estudiante estudiante = new Estudiante();
