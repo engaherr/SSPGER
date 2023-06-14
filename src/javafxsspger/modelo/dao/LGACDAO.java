@@ -203,5 +203,27 @@ public class LgacDAO {
 
        }
        return respuesta;
-    }     
+    }
+    
+    public static int eliminarLgacCA(int idCuerpoAcademico){
+        int respuesta;
+       Connection conexionBD = ConexionBD.abrirConexionBD();
+       if(conexionBD != null){
+           try{
+               String sentencia = "update lgac set idCuerpoAcademico = null, numero = null "
+                       + "where idCuerpoAcademico = ?";
+               PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+               prepararSentencia.setInt(1, idCuerpoAcademico);
+               int filasAfectadas = prepararSentencia.executeUpdate(); 
+               respuesta = (filasAfectadas >= 1) ? Constantes.OPERACION_EXITOSA : 
+                       Constantes.ERROR_CONSULTA;
+           }catch(SQLException ex){
+               respuesta = Constantes.ERROR_CONSULTA;
+           }
+       }else{
+            respuesta = Constantes.ERROR_CONEXION;
+
+       }
+       return respuesta;       
+    }
 }

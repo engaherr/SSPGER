@@ -80,6 +80,8 @@ public class FXMLRegistrarCAController implements Initializable {
     
     private Lgac lgacDeCA;
     private int idLgac;
+    @FXML
+    private Label lbElegirResponsable;
 
 
     /**
@@ -153,35 +155,62 @@ public class FXMLRegistrarCAController implements Initializable {
 
        if(cbLgac.getSelectionModel().getSelectedItem() != null){
            lgacDeCA= cbLgac.getSelectionModel().getSelectedItem();
-            this.idLgac = cbLgac.getSelectionModel().getSelectedItem().getIdLgac();
+            this.idLgac = cbLgac.getSelectionModel().getSelectedItem().getIdLgac(); 
         }else{
             cbLgac.setStyle(estiloError);
             esValido = false;
         }
        
-        Academico academicoSeleccionado = tvAcademicos.getSelectionModel().getSelectedItem();
+        Academico academicoSeleccionado = tvAcademicos.getSelectionModel().getSelectedItem(); 
         if(academicoSeleccionado == null){
             esValido = false;
-            tvAcademicos.setStyle(estiloError);
+            tvAcademicos.setStyle(estiloError);  
         }
+            
+
         
+        CuerpoAcademico caValido = new CuerpoAcademico();
+
         if(esValido){
-            CuerpoAcademico caValido = new CuerpoAcademico();
             caValido.setClave(claveCA);
             caValido.setNombre(nombreCA);
             caValido.setIdDependencia(idDependencia);
             caValido.setIdGradoConsolidacion(idGrado);
             caValido.setIdResponsable(academicoSeleccionado.getIdAcademico());
-            
-            registrarCuerpoAcademico(caValido);
-
+            registrarCuerpoAcademico(caValido);         
         }else{
             Utilidades.mostrarDialogoSimple("Campos Vacíos",
                 "Por favor ingrese información o  seleccione valores en todas las casillas",
                 Alert.AlertType.WARNING);
         }
     }
-    
+        
+     private void modificarCuerpoAcademico(CuerpoAcademico caValido){
+        int codigoRespuesta = CuerpoAcademicoDAO.modificarCuerpoAcademico(caValido);
+        switch (codigoRespuesta){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
+                        + "podemos establecer conexión con la base de datos, por favor inténtalo "
+                        + "más tarde", Alert.AlertType.ERROR);
+                break;
+            case  Constantes.ERROR_CONSULTA:
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió un error "
+                        + "durante la modificacion del Cuerpo Académico, "
+                        + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico que "
+                        + "ha sido modificado en el sistema", Alert.AlertType.INFORMATION);
+                int idCuerpoAcademico = CuerpoAcademicoDAO.obtenerUltimoCARegistrado();
+                System.out.println(idCuerpoAcademico);
+                registrarElementosCA(idCuerpoAcademico,caValido.getIdResponsable() );
+                cerrarVentana();
+                String exito = "Operacion exitosa";
+                interfazNotificacion.notificarOperacionActualizar(exito);
+                break;               
+        }
+    }   
+     
     private void registrarCuerpoAcademico(CuerpoAcademico caValido){
         int codigoRespuesta = CuerpoAcademicoDAO.registrarCuerpoAcademico(caValido);
         switch (codigoRespuesta){
@@ -191,7 +220,7 @@ public class FXMLRegistrarCAController implements Initializable {
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case  Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió un error "
                         + "durante el registro del Cuerpo Académico, "
                         + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
                 break;
@@ -199,11 +228,10 @@ public class FXMLRegistrarCAController implements Initializable {
                 Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico que "
                         + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
                 int idCuerpoAcademico = CuerpoAcademicoDAO.obtenerUltimoCARegistrado();
-                System.out.println(idCuerpoAcademico);
                 registrarElementosCA(idCuerpoAcademico,caValido.getIdResponsable() );
                 cerrarVentana();
-                //String exito = "Operacion exitosa";
-                //interfazNotificacion.notificarOperacionGuardar(exito);
+                String exito = "Operacion exitosa";
+                interfazNotificacion.notificarOperacionGuardar(exito);
                 break;               
         }
     }
@@ -358,7 +386,9 @@ public class FXMLRegistrarCAController implements Initializable {
     
     private void cargarInformacionCuerpoAcademico(){
         tfClave.setText(caEdicion.getClave());
+        tfClave.setEditable(false);
         tfNombreCA.setText(caEdicion.getNombre());
+        
        
         int posicionDependencia = obtenerPosicionComboDependencia(caEdicion.
                 getIdDependencia());
@@ -366,6 +396,7 @@ public class FXMLRegistrarCAController implements Initializable {
         int posicionGrado = obtenerPosicionComboGrado(caEdicion.getIdGradoConsolidacion());
         cbGrado.getSelectionModel().select(posicionGrado);
         tvAcademicos.setVisible(false);
+        lbElegirResponsable.setVisible(false);
     }
     
     private int obtenerPosicionComboDependencia(int idDependencia){

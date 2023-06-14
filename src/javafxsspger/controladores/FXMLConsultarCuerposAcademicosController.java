@@ -31,7 +31,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
 import javafxsspger.interfaz.INotificacionOperacion;
+import javafxsspger.modelo.dao.AcademicoDAO;
 import javafxsspger.modelo.dao.CuerpoAcademicoDAO;
+import javafxsspger.modelo.dao.LgacDAO;
 import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.modelo.pojo.CuerpoAcademicoRespuesta;
 import javafxsspger.utils.Constantes;
@@ -114,12 +116,12 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
 
     @Override
     public void notificarOperacionGuardar(String estado) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        cargarInformacionTabla();
     }
 
     @Override
     public void notificarOperacionActualizar(String estado) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        cargarInformacionTabla();
     }
 
     @FXML
@@ -170,8 +172,7 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
     }
 
     private void eliminarCuerpoAcademico(CuerpoAcademico cuerpoAcademico) {
-        // Lógica para eliminar el cuerpoAcademico seleccionado
-        // ...
+        eliminarMiembrosDeCA(cuerpoAcademico.getIdCuerpoAcademico());
     }
 
 
@@ -224,6 +225,66 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
         
     }
     
+    private void eliminarCuerpoAcademico(int idCuerpoAcademico){
+        int respuesta = CuerpoAcademicoDAO.eliminarCuerpoAcademico(idCuerpoAcademico);
+        switch(respuesta){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
+                        + "realizar la operación, por favor inténtelo más tarde"
+                        + "más tarde", Alert.AlertType.ERROR);
+                break;
+            case Constantes.ERROR_CONSULTA:   
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
+                        + "un error al intentar eliminar el CA "
+                        + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                Utilidades.mostrarDialogoSimple("Operacion exitosa","El Cuerpo Académico ha "
+                    + "sido eliminado", Alert.AlertType.INFORMATION);
+                cargarInformacionTabla();
+                break;           
+        }        
+    }
     
+    private void eliminarMiembrosDeCA(int idCuerpoAcademico){
+        int respuesta = AcademicoDAO.removerTodosAcademicosDeCA(idCuerpoAcademico);
+        switch(respuesta){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
+                        + "realizar la operación, por favor inténtelo más tarde"
+                        + "más tarde", Alert.AlertType.ERROR);
+                break;
+            case Constantes.ERROR_CONSULTA:   
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
+                        + "un error al eliminar los miembros del CA "
+                        + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                Utilidades.mostrarDialogoSimple("Operacion exitosa","Todos los miembros del"
+                    + "CA fueron eliminados", Alert.AlertType.INFORMATION);
+                eliminarLgacsCA(idCuerpoAcademico);
+                break;           
+        }
+    }
     
+    private void eliminarLgacsCA(int idCuerpoAcademico){
+        int respuesta = LgacDAO.eliminarLgacCA(idCuerpoAcademico);
+        switch(respuesta){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
+                        + "realizar la operación, por favor inténtelo más tarde"
+                        + "más tarde", Alert.AlertType.ERROR);
+                break;
+            case Constantes.ERROR_CONSULTA:   
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
+                        + "un error al eliminar las LGAC del CA "
+                        + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                Utilidades.mostrarDialogoSimple("Operacion exitosa","Todos las LGAC del"
+                    + "CA fueron eliminados", Alert.AlertType.INFORMATION);
+                eliminarCuerpoAcademico(idCuerpoAcademico);
+                break;           
+        }        
+    }
 }

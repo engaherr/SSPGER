@@ -94,8 +94,9 @@ public class CuerpoAcademicoDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-              String sentencia = "update into cuerpoacademico nombre = ?,clave = ?,idGradoConsolidacion = ?,"
-                      + "idDependencia = ? ,idResponsable = ? where idCuerpoAcademico = ?";
+              String sentencia = "update cuerpoacademico set nombre = ?,clave = ?,"
+                      + "idGradoConsolidacion = ?,\n" +
+                       "idDependencia = ? ,idResponsable = ? where idCuerpoAcademico = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,caModificar.getNombre());
                 prepararSentencia.setString(2,caModificar.getClave());

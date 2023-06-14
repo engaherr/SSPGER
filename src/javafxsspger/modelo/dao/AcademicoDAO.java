@@ -161,5 +161,26 @@ public class AcademicoDAO {
         return repuesta; 
     }
     
-// UPDATE academico SET idCuerpoAcademico = NULL WHERE idCuerpoAcademico = ? AND idAcademico <> ?  
+    public static int removerTodosAcademicosDeCA(int idCuerpoAcademico){
+        int repuesta;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try{
+                String sentencia = "update academico set idCuerpoAcademico = null where "
+                        + "idCuerpoAcademico = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, idCuerpoAcademico);
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                repuesta  = (filasAfectadas >= 1) ? Constantes.OPERACION_EXITOSA : 
+                         Constantes.ERROR_CONSULTA;
+                conexionBD.close();
+            }catch(SQLException ex){
+                repuesta = Constantes.ERROR_CONSULTA;
+            }        
+        }else{
+            repuesta = Constantes.ERROR_CONEXION;
+        }
+        return repuesta; 
+    }    
+    
 }
