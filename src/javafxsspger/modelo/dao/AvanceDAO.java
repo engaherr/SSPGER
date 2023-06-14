@@ -74,6 +74,8 @@ public class AvanceDAO {
                 avance.setCantidadRegistros(resultado.getInt("totalEntregas"));
                 avances.add(avance);
             }
+            respuesta.setAvances(avances);
+            conexionBD.close();
         }catch(SQLException ex) {
             respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
         }
@@ -114,8 +116,7 @@ public class AvanceDAO {
             } catch (SQLException ex) {
                 respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
             }
-            respuesta.setAvances(avances);
-            conexionBD.close();
         }
+        return respuesta;
     }
 }

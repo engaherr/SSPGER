@@ -24,7 +24,7 @@
                         <Image url="@../recursos/anteproyecto.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="62.0" layoutY="16.0" onMouseClicked="#clicIrAnteproyectos" text="Anteproyectos" textFill="WHITE">
+                  <Label layoutX="53.0" layoutY="16.0" onMouseClicked="#clicIrAnteproyectos" text="Anteproyectos" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
@@ -45,29 +45,28 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="paneCronograma" layoutX="7.0" layoutY="281.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneCronograma" layoutX="7.0" layoutY="276.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos/actividades.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="48.0" layoutY="16.0" onMouseClicked="#clicIrCronograma" text="Cronograma de Actividades" textFill="WHITE">
+                  <Label layoutX="52.0" layoutY="16.0" onMouseClicked="#clicIrCronograma" text="Cronograma de Actividades" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="paneAdminCursos" layoutX="7.0" layoutY="140.0" prefHeight="50.0" prefWidth="237.0">
-            <Pane layoutX="7.0" layoutY="120.0" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneAdminCursos" layoutX="6.0" layoutY="116.0" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos/cursos.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="56.0" layoutY="16.0" onMouseClicked="#clicIrAdminCursos" text="Administrador de Cursos" textFill="WHITE">
+                  <Label layoutX="53.0" layoutY="16.0" onMouseClicked="#clicIrAdminCursos" text="Administrador de Cursos" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
@@ -81,35 +80,35 @@
                         <Image url="@../recursos/VectorEstudiantes.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="59.0" layoutY="16.0" onMouseClicked="#clicIrVerEstudiantes" text="Ver estudiantes" textFill="WHITE">
+                  <Label layoutX="52.0" layoutY="16.0" onMouseClicked="#clicIrVerEstudiantes" text="Ver estudiantes" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="paneCuerposAcademicos" layoutX="9.0" layoutY="175.0" onMouseClicked="#clicCuerposAcademicos" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneCuerposAcademicos" layoutX="8.0" layoutY="168.0" onMouseClicked="#clicCuerposAcademicos" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos/icons8-multicultural-people-100.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="55.0" layoutY="16.0" prefHeight="30.0" prefWidth="163.0" text="Cuerpos Académicos" textFill="WHITE">
+                  <Label layoutX="52.0" layoutY="16.0" prefHeight="30.0" prefWidth="163.0" text="Cuerpos Académicos" textFill="WHITE">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="paneLgac" layoutX="10.0" layoutY="227.0" onMouseClicked="#clicLGAC" prefHeight="50.0" prefWidth="237.0">
+            <Pane fx:id="paneLgac" layoutX="10.0" layoutY="223.0" onMouseClicked="#clicLGAC" prefHeight="50.0" prefWidth="237.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="4.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos/icons8-knowledge-sharing-100.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="50.0" layoutY="1.0" prefHeight="50.0" prefWidth="237.0" text="LGAC's" textFill="WHITE" wrapText="true">
+                  <Label layoutX="51.0" layoutY="1.0" prefHeight="50.0" prefWidth="237.0" text="LGAC's" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Roboto Regular" size="15.0" />
                      </font>

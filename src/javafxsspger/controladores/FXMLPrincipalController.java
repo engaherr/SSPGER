@@ -42,6 +42,8 @@ public class FXMLPrincipalController implements Initializable {
     private Pane paneCuerposAcademicos;
     @FXML
     private Pane paneLgac;
+    @FXML
+    private Pane paneAdminCursos;
     
     
     @Override
@@ -54,7 +56,7 @@ public class FXMLPrincipalController implements Initializable {
            paneAdminCursos.setVisible(false);
            paneEstudiantes.setVisible(false);
         }
-        if(! Academico.getInstanciaSingleton().isEsAdmin() || Estudiante.getInstanciaSingleton() != 
+        if(!Academico.getInstanciaSingleton().isEsAdmin() || Estudiante.getInstanciaSingleton() != 
                 null){
             paneCuerposAcademicos.setVisible(false);
             paneLgac.setVisible(false);
