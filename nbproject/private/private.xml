@@ -6,7 +6,8 @@
             <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLConsultarLGACController.java</file>
             <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLVerActividadController.java</file>
             <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarCAController.java</file>
-            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Actividad.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/CuerpoAcademicoDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/ActividadDAO.java</file>
             <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLVerActividadesCronogramaController.java</file>
             <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarActividadController.java</file>
             <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLConsultarCuerposAcademicosController.java</file>
