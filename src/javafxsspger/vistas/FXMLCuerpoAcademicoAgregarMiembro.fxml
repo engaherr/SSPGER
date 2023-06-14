@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLCuerpoAcademicoAgregarMiembroController">
+   <children>
+      <Pane prefHeight="72.0" prefWidth="700.0" style="-fx-background-color: #00529E;" />
+      <Label fx:id="lbNombreFormulario" layoutX="65.0" layoutY="15.0" text="Añadir miembros " textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="28.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvMiembrosCA" layoutX="108.0" layoutY="180.0" prefHeight="200.0" prefWidth="481.0">
+         <columns>
+            <TableColumn fx:id="colNombre" prefWidth="118.0" text="Nombre" />
+            <TableColumn fx:id="colPaterno" prefWidth="141.0" text="Paterno" />
+            <TableColumn fx:id="colMaterno" prefWidth="138.0" text="Materno" />
+         </columns>
+      </TableView>
+      <Button layoutX="401.0" layoutY="414.0" mnemonicParsing="false" onAction="#clicAñadirMiembros" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00529E;" text="Añadir" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="532.0" layoutY="414.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: f25d59;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="lbNombreCA" layoutX="66.0" layoutY="86.0" prefHeight="39.0" prefWidth="536.0" text="Cuerpo Académico:">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

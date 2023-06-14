@@ -7,6 +7,8 @@
 */
 package javafxsspger.modelo.pojo;
 
+import javafx.scene.control.CheckBox;
+
 public class Academico extends Usuario {
     private static Academico instanciaSingleton;
     private int idAcademico;
@@ -16,6 +18,7 @@ public class Academico extends Usuario {
     private int idCAResponsable;
     private boolean esDirector;
     private String grado;
+    private CheckBox seleccionar;
 
     public Academico() {
     }
@@ -31,6 +34,7 @@ public class Academico extends Usuario {
         this.idCAResponsable = idCAResponsable;
         this.esDirector = esDirector;
         this.grado = grado;
+        this.seleccionar = new CheckBox();
     }
 
     public int getIdCAResponsable() {
@@ -95,6 +99,14 @@ public class Academico extends Usuario {
 
     public void setGrado(String grado) {
         this.grado = grado;
+    }
+
+    public CheckBox getSeleccionar() {
+        return seleccionar;
+    }
+
+    public void setSeleccionar(CheckBox seleccionar) {
+        this.seleccionar = seleccionar;
     }
     
 }

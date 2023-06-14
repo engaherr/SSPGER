@@ -39,19 +39,25 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private Pane paneEstudiantes;
     @FXML
-    private Pane paneAdminCursos;
+    private Pane paneCuerposAcademicos;
+    @FXML
+    private Pane paneLgac;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
-        
         if(Academico.getInstanciaSingleton() != null)
             paneCronograma.setVisible(false);
         
         if(Estudiante.getInstanciaSingleton() != null){
            paneAdminCursos.setVisible(false);
            paneEstudiantes.setVisible(false);
+        }
+        if(! Academico.getInstanciaSingleton().isEsAdmin() || Estudiante.getInstanciaSingleton() != 
+                null){
+            paneCuerposAcademicos.setVisible(false);
+            paneLgac.setVisible(false);
         }
     }
     
@@ -148,6 +154,28 @@ public class FXMLPrincipalController implements Initializable {
         escenarioEstudiantes.setTitle("Estudiantes");
         escenarioEstudiantes.initModality(Modality.APPLICATION_MODAL);
         escenarioEstudiantes.showAndWait();
+    }
+
+    @FXML
+    private void clicCuerposAcademicos(MouseEvent event) {
+        actualizaEstadoMenu(-255, false, "recursos/menu.png");
+        Stage escenarioAnteproyectos = new Stage();
+        escenarioAnteproyectos.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLConsultarCuerposAcademicos.fxml"));
+        escenarioAnteproyectos.setTitle("Cuerpos Académicos");
+        escenarioAnteproyectos.initModality(Modality.APPLICATION_MODAL);
+        escenarioAnteproyectos.showAndWait();        
+    }
+
+    @FXML
+    private void clicLGAC(MouseEvent event) {
+        actualizaEstadoMenu(-255, false, "recursos/menu.png");
+        Stage escenarioAnteproyectos = new Stage();
+        escenarioAnteproyectos.setScene(Utilidades.inicializaEscena(
+                "vistas/FXMLConsultarLGAC.fxml"));
+        escenarioAnteproyectos.setTitle("Líneas de Generación y Aplicación del Conocimiento");
+        escenarioAnteproyectos.initModality(Modality.APPLICATION_MODAL);
+        escenarioAnteproyectos.showAndWait();         
     }
     
     

@@ -1,9 +1,9 @@
 /*
-* Título del programa: DAO de AnteproyectoEstudiante
-* Autor: Jasiel Emir Zavaleta García y Omar Dylan Segura Platas
-* Fecha de Creación: 11/06/2023
-* Descripción: DAO para la comunicación entre la base de datos y el sistema para recuperar y 
-* modificar la tabla de AnteproyectoEstudiante
+* Título del programa: DAO para la relación entre estudiante y anteproyecto
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 10/06/2023
+* Descripción: Clase de Acceso a la información de la base de datos correspondiente a la relación 
+* entre el estudiante y un anteproyecto,los cuales tienen una tabla en la persistencia del sistema
 */
 package javafxsspger.modelo.dao;
 

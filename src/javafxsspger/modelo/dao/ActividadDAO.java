@@ -1,5 +1,5 @@
 /*
-* Título del programa: DAO para Actividades
+* Título del programa: DAO para actividades
 * Autor: Jasiel Emir Zavaleta García, Dylan Omar Segura Platas
 * Fecha Creación: 10/06/2023
 * Descripción: Clase de Acceso a la información de la base de datos correspondiente a las 
@@ -45,7 +45,8 @@ public class ActividadDAO {
                 actividad.setArchivo(resultado.getBytes("archivo"));
                 actividad.setIdEstudiante(resultado.getInt("idEstudiante"));
                 actividad.setIdAvance(resultado.getInt("idAvance"));
-                actividad.setExtensionArchivo(resultado.getString("extensionArchivo"));
+                actividad.setExtensionArchivo(resultado.getString
+                    ("extensionArchivo"));
                 actividad.setNombreArchivo(resultado.getString("nombreArchivo"));
                 actividades.add(actividad);
             }
@@ -116,7 +117,7 @@ public class ActividadDAO {
                 prepararSentencia.setString(10,edicionActividad.getNombreArchivo());                
                 prepararSentencia.setInt(11,edicionActividad.getIdActividad());
                 int filasAfectadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
@@ -170,7 +171,7 @@ public class ActividadDAO {
         if(conexionBD != null){
             try{
                  String consulta = "SELECT idActividad, nombre, fechaInicio, fechaFin, "
-                         + "fechaCreacion, idAnteproyecto, "
+                        + "fechaCreacion, idAnteproyecto, "
                         + "descripcion, archivo, idEstudiante, idAvance "
                         + "FROM actividad "
                         + "WHERE idActividad = ?";
@@ -210,10 +211,10 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,evaluacion,archivo,"
-                         + "nombreArchivo\n" +
-                    "FROM entrega\n" +
-                    "WHERE idActividad = ?;";
+                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,"
+                         + "archivo,nombreArchivo\n" +
+                        "FROM entrega\n" +
+                        "WHERE idActividad = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 prepararSentencia.setInt(1, idActividad);
                 ResultSet resultado = prepararSentencia.executeQuery();

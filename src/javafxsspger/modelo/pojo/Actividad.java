@@ -32,8 +32,8 @@ public class Actividad {
 
     public Actividad(int idActividad, String nombre, String fechaInicio, String fechaFin, 
             String fechaCreacion, int idAnteproyecto, String descripcion, byte[] archivo, 
-            int idEstudiante, int idAvance, String comentarios, int evaluacion, 
-            String nombreArchivo) {
+            int idEstudiante, int idAvance, String comentarios, int evaluacion, String nombreArchivo,
+            String extensionArchivo) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;

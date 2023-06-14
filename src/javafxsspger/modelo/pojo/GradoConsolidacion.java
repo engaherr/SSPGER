@@ -1,4 +1,11 @@
+/*
+* Título del programa: Clase POJO de Grado de Consolidación
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 10/06/2023
+* Descripción: Clase modelo para recuperar y manipular las Dependencias
+*/
 package javafxsspger.modelo.pojo;
+
 
 public class GradoConsolidacion {
     private int idGradoConsolidacion;

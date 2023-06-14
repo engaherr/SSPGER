@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLCuerpoAcademicoEliminarMiembroController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="72.0" prefWidth="700.0" style="-fx-background-color: #00529E;" />
+      <Label fx:id="lbNombreFormulario" layoutX="71.0" layoutY="15.0" text="Remover miembros" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="28.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvMiembrosCA" layoutX="137.0" layoutY="139.0" prefHeight="200.0" prefWidth="437.0">
+         <columns>
+            <TableColumn fx:id="colNombre" prefWidth="169.0" text="Nombre" />
+            <TableColumn fx:id="colPaterno" prefWidth="135.0" text="Paterno" />
+            <TableColumn fx:id="colMaterno" prefWidth="132.0" text="Materno" />
+         </columns>
+      </TableView>
+      <Button layoutX="537.0" layoutY="398.0" mnemonicParsing="false" onAction="#clicCerrarVentana" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5FAD56;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="325.0" layoutY="398.0" mnemonicParsing="false" onAction="#clicEliminarMiembro" prefHeight="40.0" prefWidth="174.0" style="-fx-background-color: f25d59;" text="Eliminar miembro" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="117.0" layoutY="398.0" mnemonicParsing="false" onAction="#clicEliminarTodos" prefHeight="40.0" prefWidth="174.0" style="-fx-background-color: f25d59;" text="Eliminar todos" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="lbNombreCA" layoutX="75.0" layoutY="84.0" prefHeight="39.0" prefWidth="536.0" text="Cuerpo Académico:">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

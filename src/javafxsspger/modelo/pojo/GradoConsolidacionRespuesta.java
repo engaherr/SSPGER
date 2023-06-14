@@ -1,3 +1,9 @@
+/*
+* Título del programa: Clase POJO de Grado Consolidación Respuesta 
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 09/06/2023
+* Descripción: Clase modelo para la respuesta proveniente del DAO de Grado de Consolidación
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;

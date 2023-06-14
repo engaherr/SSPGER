@@ -1,6 +1,6 @@
 /*
 * Título del programa: Clase POJO de LGAC
-* Autor: Enrique Gamboa Hernández
+* Autor: Enrique Gamboa Hernández, Jasiel Emir Zavaleta García
 * Fecha Creación: 07/06/2023
 * Descripción: Clase modelo para las LGACs del sistema y toda su información
 */

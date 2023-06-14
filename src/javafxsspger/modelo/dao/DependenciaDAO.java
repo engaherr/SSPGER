@@ -1,9 +1,8 @@
 /*
-* Título del programa: DAO de Dependencia
+* Título del programa: DAO para las Dependencias de Educación Superior (DES)
 * Autor: Jasiel Emir Zavaleta García
-* Fecha de Creación: 11/06/2023
-* Descripción: DAo para establecer la comunicación entre la BD y el sistema para la gestion de las
-* dependencias de los cuerpos académicos
+* Fecha: 09/06/2023
+* Descripción: Se encarga de la correcta conexión y obtención de datos de la base de datos.
 */
 package javafxsspger.modelo.dao;
 
@@ -30,7 +29,8 @@ public class DependenciaDAO {
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     Dependencia dependencia = new Dependencia();
-                    dependencia.setIdDependencia(resultado.getInt("idDependencia"));
+                    dependencia.setIdDependencia(resultado.getInt
+                        ("idDependencia"));
                     dependencia.setNombre(resultado.getString("nombre"));
                     dependencias.add(dependencia);
                 }

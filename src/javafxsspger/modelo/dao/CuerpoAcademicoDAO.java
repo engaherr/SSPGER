@@ -1,6 +1,6 @@
 /*
-* Título del programa: DAO para los cuerpos académicos
-* Autor: Enrique Gamboa Hernández
+* Título del programa: DAO para cuerpos académicos
+* Autor: Enrique Gamboa Hernández, Jasiel Emir Zavaleta García
 * Fecha Creación: 07/06/2023
 * Descripción: Clase de acceso a la información para los Cuerpos Académicos los cuales tienen
 * una tabla en la persistencia del sistema
@@ -27,7 +27,8 @@ public class CuerpoAcademicoDAO {
             try{
                 String consulta = "select ca.idCuerpoAcademico,ca.nombre,ca.clave,d.nombre as "
                         + "'dependencia',ca.idGradoConsolidacion,ca.idDependencia,ca.idResponsable,"
-                        + "gc.grado, concat(a.nombre,' ',a.apellidoPaterno,' ',a.apellidoMaterno) "
+                        + "gc.nombre as 'nombreGrado', concat(a.nombre,' ',a.apellidoPaterno,' ',"
+                        + "a.apellidoMaterno) "
                         + "as 'responsable' "
                         + "from cuerpoacademico ca "
                         + "inner join academico a on a.idAcademico = ca.idResponsable "
@@ -38,16 +39,21 @@ public class CuerpoAcademicoDAO {
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     CuerpoAcademico cuerpoAcademico = new CuerpoAcademico();
-                    cuerpoAcademico.setIdCuerpoAcademico(resultado.getInt("idCuerpoAcademico"));
+                    cuerpoAcademico.setIdCuerpoAcademico(resultado.getInt
+                            ("idCuerpoAcademico"));
                     cuerpoAcademico.setClave(resultado.getString("clave"));
-                    cuerpoAcademico.setDependencia(resultado.getString("dependencia"));
-                    cuerpoAcademico.setGradoConsolidacion("grado");
-                    cuerpoAcademico.setIdDependencia(resultado.getInt("idDependencia"));
+                    cuerpoAcademico.setDependencia(resultado.getString
+                            ("dependencia"));
+                    cuerpoAcademico.setGradoConsolidacion("nombreGrado");
+                    cuerpoAcademico.setIdDependencia(resultado.getInt
+                            ("idDependencia"));
                     cuerpoAcademico.setIdGradoConsolidacion(
                             resultado.getInt("idGradoConsolidacion"));
-                    cuerpoAcademico.setIdResponsable(resultado.getInt("idResponsable"));
+                    cuerpoAcademico.setIdResponsable(resultado.getInt
+                           ("idResponsable"));
                     cuerpoAcademico.setNombre(resultado.getString("nombre"));
-                    cuerpoAcademico.setResponsable(resultado.getString("responsable"));
+                    cuerpoAcademico.setResponsable(resultado.getString
+                            ("responsable"));
                     cuerposAcademicos.add(cuerpoAcademico);
                 }
                 respuesta.setCuerposAcademicos(cuerposAcademicos);
@@ -91,9 +97,9 @@ public class CuerpoAcademicoDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-              String sentencia = "update into cuerpoacademico nombre = ?,clave = ?,"
-                      + "idGradoConsolidacion = ?,"
-                      + "idDependencia = ? ,idResponsable = ? where idCuerpoAcademico = ?";
+              String sentencia = "update cuerpoacademico set nombre = ?,clave = ?,"
+                      + "idGradoConsolidacion = ?,\n" +
+                       "idDependencia = ? ,idResponsable = ? where idCuerpoAcademico = ?;";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,caModificar.getNombre());
                 prepararSentencia.setString(2,caModificar.getClave());
@@ -104,7 +110,7 @@ public class CuerpoAcademicoDAO {
                 
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
@@ -124,7 +130,7 @@ public class CuerpoAcademicoDAO {
                 PreparedStatement prepararSentecia = conecionBD.prepareStatement(sentencia);
                 prepararSentecia.setInt(1,idCuerpoAcademico);
                 int filasAfectadas = prepararSentecia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA :
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
@@ -133,5 +139,28 @@ public class CuerpoAcademicoDAO {
             respuesta = Constantes.ERROR_CONEXION;
         }
         return respuesta;
+    }
+
+    public static int obtenerUltimoCARegistrado() {
+    int idCuerpoAcademico = -1;
+    Connection conexionBD = ConexionBD.abrirConexionBD(); 
+    if (conexionBD != null) {
+        try {
+            String sentencia = "select idCuerpoAcademico from cuerpoacademico "
+                    + "order by idCuerpoAcademico "
+                    + "DESC LIMIT 1";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+            ResultSet resultado = prepararSentencia.executeQuery(sentencia);
+            
+            if (resultado.next()) {
+                idCuerpoAcademico = resultado.getInt("idCuerpoAcademico");   
+            }           
+            conexionBD.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+        return idCuerpoAcademico;
     }    
 }

@@ -1,6 +1,6 @@
 /*
 * Título del programa: Clase POJO de Cuerpo Académico
-* Autor: Enrique Gamboa Hernández
+* Autor: Enrique Gamboa Hernández, Jasiel Emir Zavaleta García
 * Fecha Creación: 07/06/2023
 * Descripción: Clase modelo para los Cuerpos Académicos y su información que proviene de la 
 * persistencia del sistema

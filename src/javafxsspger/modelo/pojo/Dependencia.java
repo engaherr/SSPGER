@@ -1,3 +1,10 @@
+/*
+* Título del programa: Clase POJO de Dependencia
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 09/06/2023
+* Descripción: Clase modelo para las Dependencias y su información que proviene de la 
+* persistencia del sistema
+*/
 package javafxsspger.modelo.pojo;
 
 public class Dependencia {
@@ -28,7 +35,11 @@ public class Dependencia {
         this.nombre = nombre;
     }
     
-    public String tostring(){
+
+
+    @Override
+    public String toString() {
         return nombre;
     }
+    
 }

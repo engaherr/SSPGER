@@ -1,3 +1,9 @@
+/*
+* Título del programa: Clase POJO de DependenciaRespuesta
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 9/06/2023
+* Descripción: Clase modelo para la respuesta del DAO de Dependencias
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;

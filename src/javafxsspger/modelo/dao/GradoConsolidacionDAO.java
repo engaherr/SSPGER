@@ -1,9 +1,9 @@
 /*
-* Título del programa: DAO de Grado de Consolidación
-* Autor: Jasiel Emir Zavaleta García
-* Fecha de Creación: 11/06/2023
-* Descripción: DAo para establecer la comunicación entre la BD y el sistema para la gestion de los
-* grados de consolidacion de los cuerpos académicos
+* Título del programa: DAO para los grados de consolidación de un cuerpo académico
+* Autor: Jasiel Emir Zavaleta García, Dylan Omar Segura Platas
+* Fecha Creación: 10/06/2023
+* Descripción: Clase de Acceso a la información de la base de datos correspondiente a las 
+* actividades los cuales tienen una tabla en la persistencia del sistema
 */
 package javafxsspger.modelo.dao;
 
@@ -30,7 +30,8 @@ public class GradoConsolidacionDAO {
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     GradoConsolidacion grado = new GradoConsolidacion();
-                    grado.setIdGradoConsolidacion(resultado.getInt("idGradoConsolidacion"));
+                    grado.setIdGradoConsolidacion(resultado.getInt
+                            ("idGradoConsolidacion"));
                     grado.setNombre(resultado.getString("nombre"));
                     gradosConsolidacion.add(grado);
                 }

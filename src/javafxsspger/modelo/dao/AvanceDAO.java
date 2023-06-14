@@ -1,5 +1,5 @@
 /*
-* Título del programa: AvanceDAO
+* Título del programa: DAO para avances 
 * Autor: Omar Dylan Segura Platas, Jasiel Emir Zavaleta García
 * Fecha: 09/06/2023
 * Descripción: Se encarga de la correcta conexión y obtención de datos de la base de datos.
@@ -25,7 +25,7 @@ public class AvanceDAO {
         respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
         if(conexionBD != null){
             try{
-                String sentencia = "select idAvance,nombre,porcentaje from avance "
+                String sentencia = "select idAvance,nombre from avance "
                         + "where idAnteproyecto = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setInt(1,idAnteproyecto);  
@@ -74,15 +74,48 @@ public class AvanceDAO {
                 avance.setCantidadRegistros(resultado.getInt("totalEntregas"));
                 avances.add(avance);
             }
-            respuesta.setAvances(avances);
-            conexionBD.close();
-        } catch (SQLException ex) {
+        }catch(SQLException ex) {
             respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
         }
-    } else {
+    } else{
         respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
     }
     return respuesta;
-}
+    }
 
+    public static AvanceRespuesta consultarAvances() {
+        AvanceRespuesta respuesta = new AvanceRespuesta();
+        respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
+        ArrayList<Avance> avances = new ArrayList<>();
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo, "
+                        + "COUNT(DISTINCT act.idActividad) AS totalActividades, "
+                        + "COUNT(ent.idEntrega) AS totalEntregas\n"
+                        + "FROM anteproyecto a\n"
+                        + "LEFT JOIN actividad act ON a.idAnteproyecto = act.idAnteproyecto\n"
+                        + "LEFT JOIN entrega ent ON act.idActividad = ent.idActividad\n"
+                        + "GROUP BY a.idAnteproyecto, a.nombreTrabajo;";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                ResultSet resultado = prepararSentencia.executeQuery();
+                while (resultado.next()) {
+                    Avance avance = new Avance();
+                    avance.setIdAnteproyecto(resultado.getInt("idAnteproyecto"));
+                    avance.setNombreTrabajo(resultado.getString("nombreTrabajo"));
+                    avance.setCantidadActividades(resultado.getInt
+                        ("totalActividades"));
+                    avance.setCantidadRegistros(resultado.getInt
+                        ("totalEntregas"));
+                    avances.add(avance);
+                }
+                respuesta.setAvances(avances);
+                conexionBD.close();
+            } catch (SQLException ex) {
+                respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+            }
+            respuesta.setAvances(avances);
+            conexionBD.close();
+        }
+    }
 }
