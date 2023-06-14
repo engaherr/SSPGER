@@ -14,24 +14,24 @@
          <children>
             <Label layoutX="60.0" layoutY="11.0" text="Registro de actividad" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="44.0" />
+                  <Font name="Microsoft JhengHei Light" size="44.0" />
                </font>
             </Label>
          </children></Pane>
       <Label layoutX="67.0" layoutY="101.0" text="Nombre:" textFill="#2f0000">
          <font>
-            <Font name="System Bold Italic" size="28.0" />
+            <Font name="Microsoft JhengHei Light" size="28.0" />
          </font>
       </Label>
       <TextField fx:id="tfNombre" layoutX="194.0" layoutY="102.0" prefHeight="39.0" prefWidth="919.0" />
-      <DatePicker fx:id="dpFechaInicio" layoutX="753.0" layoutY="287.0" prefHeight="39.0" prefWidth="359.0" promptText="Fecha de inicio" />
-      <DatePicker fx:id="dpFechaFin" layoutX="754.0" layoutY="366.0" prefHeight="39.0" prefWidth="359.0" promptText="Fecha de fin" />
-      <Label layoutX="67.0" layoutY="164.0" text="Descripcion:" textFill="#2f0000">
+      <DatePicker fx:id="dpFechaInicio" layoutX="753.0" layoutY="207.0" prefHeight="39.0" prefWidth="359.0" promptText="Fecha de inicio" />
+      <DatePicker fx:id="dpFechaFin" layoutX="754.0" layoutY="347.0" prefHeight="39.0" prefWidth="359.0" promptText="Fecha de fin" />
+      <Label layoutX="67.0" layoutY="164.0" text="Descripción:" textFill="#2f0000">
          <font>
-            <Font name="System Bold Italic" size="28.0" />
+            <Font name="Microsoft JhengHei Light" size="28.0" />
          </font>
       </Label>
-      <TextArea fx:id="taDescripcion" layoutX="67.0" layoutY="209.0" prefHeight="197.0" prefWidth="643.0" />
+      <TextArea fx:id="taDescripcion" layoutX="67.0" layoutY="209.0" prefHeight="300.0" prefWidth="643.0" />
       <Button fx:id="btGuardar" layoutX="788.0" layoutY="578.0" mnemonicParsing="false" onAction="#clicGuardar" style="-fx-background-color: #00529E;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
@@ -42,13 +42,16 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="147.0" layoutY="580.0" mnemonicParsing="false" onAction="#clicSeleccionarArchivo" style="-fx-background-color: #5FAD56;" text="Seleccionar archivo" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="22.0" />
-         </font>
-      </Button>
-      <ComboBox fx:id="cbAvances" layoutX="754.0" layoutY="204.0" prefHeight="39.0" prefWidth="359.0" promptText="Avances" />
-      <Label layoutX="67.0" layoutY="421.0" text="Archivo seleccionado (opcional)" />
       <Label fx:id="lbRutaArchivo" layoutX="70.0" layoutY="462.0" prefHeight="27.0" prefWidth="246.0" />
+      <Label layoutX="791.0" layoutY="256.0" prefHeight="80.0" prefWidth="286.0" text="La hora en que iniciará la actividad es a las 00:00 horas" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="791.0" layoutY="395.0" prefHeight="80.0" prefWidth="286.0" text="La hora en que iterminará la actividad es a las 23:45 horas " textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

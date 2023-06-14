@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -31,11 +29,9 @@ import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.dao.AnteproyectoEstudianteDAO;
-import javafxsspger.modelo.dao.AvanceDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.AnteproyectoEstudiante;
 import javafxsspger.modelo.pojo.Avance;
-import javafxsspger.modelo.pojo.AvanceRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
@@ -74,11 +70,12 @@ public class FXMLRegistrarActividadController implements Initializable {
     
     private Estudiante estudiante;
     private AnteproyectoEstudiante atpAsignado;
-    @FXML
-    private ComboBox<Avance> cbAvances;
     private ObservableList<Avance> avances;
+    
     @FXML
     private Label lbRutaArchivo;
+    private String HORA_INICIO = "00:00:00";
+    private String HORA_TERMINO = "23:45:00";
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,7 +89,6 @@ public class FXMLRegistrarActividadController implements Initializable {
         estudiante = Estudiante.getInstanciaSingleton();
         atpAsignado = AnteproyectoEstudianteDAO.obtenerAnteproyectoEstudiante
             (estudiante.getIdEstudiante());
-        cargarInformacionAvances();      
     }    
 
     @FXML
@@ -105,15 +101,14 @@ public class FXMLRegistrarActividadController implements Initializable {
         cerrarVentana();
     }
 
-    @FXML
     private void clicSeleccionarArchivo(ActionEvent event) {
        FileChooser dialogoSeleccionArchivo = new FileChooser();
        dialogoSeleccionArchivo.setTitle("Selecciona un archivo");
        FileChooser.ExtensionFilter filtroPDF = new FileChooser.ExtensionFilter
-        ("Archivos PDF (*.pdf)", "*.pdf");
-       FileChooser.ExtensionFilter filtroZIP = new FileChooser.ExtensionFilter
-        ("Archivos ZIP (*.zip)", "*.zip");
-       dialogoSeleccionArchivo.getExtensionFilters().addAll(filtroPDF, filtroZIP);
+            ("Archivos PDF (*.pdf)", "*.pdf");
+        FileChooser.ExtensionFilter filtroWord = new FileChooser.ExtensionFilter
+            ("Archivos Word (*.docx)", "*.docx");
+        dialogoSeleccionArchivo.getExtensionFilters().addAll(filtroPDF, filtroWord);
 
        Stage escenarioBase = (Stage) tfNombre.getScene().getWindow();
        archivoAtividad = dialogoSeleccionArchivo.showOpenDialog(escenarioBase);
@@ -123,27 +118,17 @@ public class FXMLRegistrarActividadController implements Initializable {
                 Alert.AlertType.INFORMATION);
 
     }
+
     
     private void visualizarArchivo(File archivoSeleccionado) {
         if (archivoSeleccionado != null) {
             nombreArchivo = archivoSeleccionado.getName();
-            String enlace = "<a href='" + archivoSeleccionado.getAbsolutePath() + "'>" + 
-                    nombreArchivo + "</a>";
-            lbRutaArchivo.setText(enlace);
+            lbRutaArchivo.setText(nombreArchivo);
 
             String extension = getFileExtension(archivoSeleccionado);
             extensionArchivo = extension;
-            if (extension.equalsIgnoreCase("pdf")) {
-
-            } else if (extension.equalsIgnoreCase("zip")) {
-
-            }
-            else {
-                System.out.println("Formato de archivo no válido.");
-            }
         }
     }
-
 
 
     private String getFileExtension(File archivo) {
@@ -161,7 +146,6 @@ public class FXMLRegistrarActividadController implements Initializable {
         taDescripcion.setStyle(estiloNormal);
         dpFechaInicio.setStyle(estiloNormal);
         dpFechaFin.setStyle(estiloNormal);
-        cbAvances.setStyle(estiloNormal);
                
         String nombre = null;
         String descripcion = null;
@@ -169,6 +153,9 @@ public class FXMLRegistrarActividadController implements Initializable {
         String fechaFin = null;
         int idAvance = -1;
         boolean esValido = true;
+        
+        String fechaHoraInicio = null;
+        String fechaHoraTermino = null;
  
         if(! tfNombre.getText().isEmpty()){
             nombre = tfNombre.getText();            
@@ -186,6 +173,8 @@ public class FXMLRegistrarActividadController implements Initializable {
         
         if(dpFechaInicio.getValue() != null){
            fechaInicio = dpFechaInicio.getValue().format(DateTimeFormatter.ISO_DATE);
+           fechaHoraInicio = fechaInicio+" "+HORA_TERMINO;
+           
         }else{
             dpFechaInicio.setStyle(estiloError);
             esValido = false;
@@ -194,27 +183,20 @@ public class FXMLRegistrarActividadController implements Initializable {
         
         if(dpFechaFin.getValue() != null){
             fechaFin = dpFechaFin.getValue().format(DateTimeFormatter.ISO_DATE);
+            fechaHoraTermino = fechaFin+" "+HORA_TERMINO;
         }else{
             dpFechaFin.setStyle(estiloError);
             esValido = false;
         }
-        
-        if(cbAvances.getSelectionModel().getSelectedItem() != null){
-            idAvance = cbAvances.getSelectionModel().getSelectedItem().getIdAvance();
-        }else{
-            cbAvances.setStyle(estiloError);
-            esValido = false;
-        }
-        
-        
+                    
         if(esValido){
             Actividad actividadValida = new Actividad();
             actividadValida.setNombre(nombre);
             actividadValida.setDescripcion(descripcion);
-            actividadValida.setFechaInicio(fechaInicio);
-            actividadValida.setFechaFin(fechaFin);
-            actividadValida.setIdAvance(idAvance);
-            
+            actividadValida.setFechaFin(fechaHoraTermino);
+            actividadValida.setFechaInicio(fechaHoraInicio);
+
+         
             
             try{
                 if(esEdicion){
@@ -242,10 +224,7 @@ public class FXMLRegistrarActividadController implements Initializable {
                         actividadValida.setExtensionArchivo(extensionArchivo);
                         actividadValida.setNombreArchivo(nombreArchivo);
                     }
-                    LocalDate fechaActual = LocalDate.now();
-                    String fechaHoy = fechaActual.format(DateTimeFormatter.ISO_DATE);
-                    actividadValida.setFechaCreacion(fechaHoy);
-                    
+
                     actividadValida.setIdEstudiante(estudiante.getIdEstudiante());
                     actividadValida.setIdAnteproyecto(atpAsignado.getIdAnteproyecto());
                     registrarActividad(actividadValida);
@@ -270,8 +249,8 @@ public class FXMLRegistrarActividadController implements Initializable {
         escenarioBase.close();
     }
 
-    private void registrarActividad(Actividad nuevaActividad){
-        int codigoRespuesta = ActividadDAO.registrarActividad(nuevaActividad);
+    private void registrarActividad(Actividad actividadValida){
+        int codigoRespuesta = ActividadDAO.registrarActividad(actividadValida);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible registrar "
@@ -296,8 +275,8 @@ public class FXMLRegistrarActividadController implements Initializable {
                 
     }
     
-    private void modificarActividad(Actividad nuevaActividad){
-        int codigoRespuesta = ActividadDAO.modificarActividad(nuevaActividad);
+    private void modificarActividad(Actividad actividadValida){
+        int codigoRespuesta = ActividadDAO.modificarActividad(actividadValida);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible modificar "
@@ -368,14 +347,22 @@ public class FXMLRegistrarActividadController implements Initializable {
         
         tfNombre.setText(actividadEdicion.getNombre());
         taDescripcion.setText(actividadEdicion.getDescripcion());
-        dpFechaInicio.setValue(LocalDate.parse(actividadEdicion.getFechaInicio()));
-        dpFechaFin.setValue(LocalDate.parse(actividadEdicion.getFechaFin()));
         
-        int posicionAvance = obtenerPosicionComboAvance(actividadEdicion.getIdAvance());
-        cbAvances.getSelectionModel().select(posicionAvance);
+        String fechaHoraInicio = actividadEdicion.getFechaInicio();
+        LocalDate fechaI = LocalDate.parse(fechaHoraInicio, DateTimeFormatter.ofPattern
+        ("dd/MM/yyyy")); 
+        dpFechaInicio.setValue(fechaI);
         
-        lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.
+        String fechaHoraFin = actividadEdicion.getFechaFin();
+        LocalDate fechaF = LocalDate.parse(fechaHoraFin, DateTimeFormatter.ofPattern
+        ("dd/MM/yyyy")); 
+        dpFechaFin.setValue(fechaF);
+        
+        if(actividadEdicion.getNombreArchivo() != null){
+            lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.
                 getExtensionArchivo());
+        }
+
        
     }
     
@@ -387,27 +374,7 @@ public class FXMLRegistrarActividadController implements Initializable {
         return 0;
     }
     
-    private void cargarInformacionAvances(){
-        avances = FXCollections.observableArrayList();
-        AvanceRespuesta avancesBD = AvanceDAO.obtenerAvancesAnteproyecto(atpAsignado.
-                getIdAnteproyecto());
-        switch(avancesBD.getCodigoRespuesta()){
-            case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexion", "POr el momento no hay "
-                        + "conexion, "
-                        + "por favor inténtalos más tarde", Alert.AlertType.ERROR);
-                break;
-            case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de consulta", "Ocurrió un error al "
-                        + "cargar la información,"
-                        + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
-                break;
-            case Constantes.OPERACION_EXITOSA:
-                avances.addAll(avancesBD.getAvances());
-                cbAvances.setItems(avances);
-                break;
-        }
-    }
+
     private void configurarDatePickerInicio(){
         dpFechaInicio.setOnAction(event -> {
             LocalDate dateSeleccionada = dpFechaInicio.getValue();
