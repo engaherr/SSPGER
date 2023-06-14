@@ -60,6 +60,9 @@ public class FXMLVerActividadesController implements Initializable {
           tcActividad.setCellValueFactory(new PropertyValueFactory("nombre"));
           tcFechaInicio.setCellValueFactory(new PropertyValueFactory("fechaInicio"));
           tcFechaFinal.setCellValueFactory(new PropertyValueFactory("fechaFin"));
+          
+          
+          
             tvActividades.setRowFactory(tv -> {
         TableRow<Actividad> fila = new TableRow<>();
         fila.setOnMouseClicked(event -> {
@@ -75,6 +78,10 @@ public class FXMLVerActividadesController implements Initializable {
         });
         return fila;
     });
+            
+            
+            
+            
     }
     
 public void setEstudianteSeleccionado(Estudiante estudiante) {

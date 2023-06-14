@@ -74,10 +74,11 @@ public class FXMLVerActividadController implements Initializable {
     File archivoElegido;
     @FXML
     private ImageView btnNoArchivo;
-    boolean esModificar = false;
-    boolean preparadoModificar = false;
+    boolean archivoModificado = false;
     @FXML
     private Label lbEvaluacion;
+
+
     
    
 
@@ -85,6 +86,7 @@ public class FXMLVerActividadController implements Initializable {
 public void initialize(URL url, ResourceBundle rb) {
    taCuerpo.setWrapText(true);
    mostrarElementosSegunRol();
+
 }
 
 
@@ -102,6 +104,8 @@ public void initialize(URL url, ResourceBundle rb) {
         btnAdjuntar.setVisible(false);
         btnNoArchivo.setVisible(false);
         lbEvaluacion.setVisible(false);
+     
+       
     }
 }
     
@@ -126,6 +130,7 @@ public void initialize(URL url, ResourceBundle rb) {
     }
     
     
+    
     public void setActividadSeleccionada(Actividad actividad) {
     lbTitulo.setText(actividad.getNombre());
     lbDescripcion.setText(actividad.getDescripcion());
@@ -144,6 +149,18 @@ public void initialize(URL url, ResourceBundle rb) {
      if (fechaComienzo.isAfter(fechaActual) || fechaEntrega.isBefore(fechaActual)) {
          btnEnviar.setDisable(true);
      }
+       DateTimeFormatter formatterInicio = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String fechaInicioFormateada = LocalDateTime.parse(actividad.getFechaInicio(), 
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"))
+            .format(formatterInicio);
+    lbFechaComienzo.setText(fechaInicioFormateada);
+
+    
+    DateTimeFormatter formatterEntrega = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String fechaEntregaFormateada = LocalDateTime.parse(actividad.getFechaFin(), 
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"))
+            .format(formatterEntrega);
+    lbFechaEntrega.setText(fechaEntregaFormateada);
 }
     
     
@@ -151,23 +168,30 @@ public void initialize(URL url, ResourceBundle rb) {
         ActividadRespuesta respuestaBD = ActividadDAO.obtenerDetallesEntrega(idActividad);
         ArrayList<Actividad> actividades = respuestaBD.getActividades();
         boolean tieneEvaluacion = ActividadDAO.verificarTieneEvaluacion(idActividad);
+        
+                
+        
+        
         if (!actividades.isEmpty()) {
             Actividad actividad = actividades.get(0);
             taCuerpo.setText(actividad.getComentarios());
             lbfechaCreacion.setText(actividad.getFechaCreacion());
-            lbnombreDelArchivo.setText("");
+            lbnombreDelArchivo.setText(actividad.getNombreArchivo());
+         
             
                if (tieneEvaluacion) {
                 btnEnviar.setDisable(true);
                 lbEvaluacion.setText(actividad.getEvaluacion()+ " de 10 pts.");
                 taCuerpo.setEditable(false);
                 btnAdjuntar.setVisible(false);
-           
+                lbnombreDelArchivo.setText(actividad.getNombreArchivo());
+                          
         } else {
-                 
+      
             if(actividad.getNombreArchivo() == null){
                 btnDescargar.setVisible(false);
             }
+            
             btnDescargar.setOnMouseClicked(event -> {
     DirectoryChooser dialogoSeleccionDirectorio = new DirectoryChooser();
     dialogoSeleccionDirectorio.setTitle("Selecciona una carpeta de destino");
@@ -231,7 +255,7 @@ private void clicEnviar(ActionEvent event) throws IOException {
             
         
     }else{
-                   
+                 
                         try {
                             Actividad actividadEntrega = crearActividadDesdeFormulario();
                             int resultado = ActividadDAO.enviarEntrega(actividadEntrega);
@@ -256,7 +280,7 @@ private void clicEnviar(ActionEvent event) throws IOException {
 }
     @FXML
     private void clicAdjuntarArchivo(MouseEvent event) {
-            preparadoModificar = true;
+            archivoModificado = true;
             FileChooser dialogoSeleccionImg = new FileChooser();
             dialogoSeleccionImg.setTitle("Selecciona un documento");
             Stage escenarioBase = (Stage)lbDescripcion.getScene().getWindow();
@@ -268,21 +292,33 @@ private void clicEnviar(ActionEvent event) throws IOException {
          btnNoArchivo.setVisible(true);
         }
 
-    private Actividad crearActividadDesdeFormulario() throws IOException {
+ private Actividad crearActividadDesdeFormulario() throws IOException {
     Actividad actividadEntrega = new Actividad();
     actividadEntrega.setIdActividad(idActividadSeleccionada);
     actividadEntrega.setFechaCreacion(Utilidades.obtenerFechaActual());
-    actividadEntrega.setArchivo(Files.readAllBytes(archivoElegido.toPath()));
     actividadEntrega.setComentarios(taCuerpo.getText());
     actividadEntrega.setNombreArchivo(lbnombreDelArchivo.getText());
+
+    if (archivoModificado) {
+        actividadEntrega.setArchivo(Files.readAllBytes(archivoElegido.toPath()));
+    } else {
+        actividadEntrega.setArchivo(actividadSeleccionada.getArchivo());
+    }
+
     return actividadEntrega;
 }
+
+
+ 
+ 
 
     @FXML
     private void clicNoArchivo(MouseEvent event) {
      lbnombreDelArchivo.setText(""); 
      btnNoArchivo.setVisible(false);
     }
+
+
 
     
 
