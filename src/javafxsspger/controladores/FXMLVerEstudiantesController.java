@@ -68,7 +68,6 @@ private void configurarTabla() {
     private void cargarInformacionTabla(){
      estudiantes = FXCollections.observableArrayList();
       Academico academico = Academico.getInstanciaSingleton();
-        System.out.println(academico.getIdAcademico());
         EstudianteRespuesta respuestaBD = EstudianteDAO.obtenerEstudiantes(academico.getIdAcademico());
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
