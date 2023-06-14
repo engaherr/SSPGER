@@ -68,7 +68,7 @@ public class ActividadDAO {
             try{
                 String sentencia = "insert into actividad (nombre,fechaInicio,fechaFin,"
                         + ",idAnteproyecto,descripcion,idEstudiante,) values "
-                        + "(?,?,?,?,?,?,?,?,?,?,?)";
+                        + "(?,?,?,?,?,?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,actividadNueva.getNombre());
                 prepararSentencia.setString(2,actividadNueva.getFechaInicio());
