@@ -49,17 +49,19 @@ public class FXMLPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menuAbierto = false;
-        if(Academico.getInstanciaSingleton() != null)
+        if(Academico.getInstanciaSingleton() != null){
             paneCronograma.setVisible(false);
+            if(!Academico.getInstanciaSingleton().isEsAdmin()){
+                paneCuerposAcademicos.setVisible(false);
+                paneLgac.setVisible(false);
+            }
+        }
         
         if(Estudiante.getInstanciaSingleton() != null){
            paneAdminCursos.setVisible(false);
            paneEstudiantes.setVisible(false);
-        }
-        if(!Academico.getInstanciaSingleton().isEsAdmin() || Estudiante.getInstanciaSingleton() != 
-                null){
-            paneCuerposAcademicos.setVisible(false);
-            paneLgac.setVisible(false);
+           paneCuerposAcademicos.setVisible(false);
+           paneLgac.setVisible(false);
         }
     }
     
