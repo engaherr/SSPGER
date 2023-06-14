@@ -117,7 +117,7 @@ public class FXMLRegistrarCAController implements Initializable {
         String claveCA = null;
         int idGrado = -1;
         int idDependencia = -1;
-        int idLgac = -1;
+        
         
         if(! tfClave.getText().isEmpty()){
             claveCA = tfClave.getText();
@@ -170,19 +170,42 @@ public class FXMLRegistrarCAController implements Initializable {
 
         
         CuerpoAcademico caValido = new CuerpoAcademico();
+        if (esEdicion) {
+            if (! tfNombreCA.getText().isEmpty()) {
+                
+                caValido.setClave(claveCA);
+                caValido.setNombre(nombreCA);
+                caValido.setIdDependencia(idDependencia);
+                caValido.setIdGradoConsolidacion(idGrado);
+                caValido.setIdResponsable(caEdicion.getIdResponsable());
+                caValido.setIdCuerpoAcademico(caEdicion.getIdCuerpoAcademico());
+                if((cbLgac.getSelectionModel().getSelectedItem() == null)){
+                    cbLgac.setStyle(estiloNormal);
+                    modificarCuerpoAcademico(caValido);
+                }else{
+                    modificarCuerpoAcademico(caValido);
+                }
+            }else{
+                tfNombreCA.setStyle(estiloError);
+                Utilidades.mostrarDialogoSimple("Campos Vacíos",
+                    "Por favor ingrese información o  seleccione valores en todas las casillas",
+                    Alert.AlertType.WARNING);
+            }  
+        }else  {
+            if (esValido) {
+                caValido.setClave(claveCA);
+                caValido.setNombre(nombreCA);
+                caValido.setIdDependencia(idDependencia);
+                caValido.setIdGradoConsolidacion(idGrado);
+                caValido.setIdResponsable(academicoSeleccionado.getIdAcademico());
+                registrarCuerpoAcademico(caValido);
+            }else{
+                Utilidades.mostrarDialogoSimple("Campos Vacíos",
+                    "Por favor ingrese información o  seleccione valores en todas las casillas",
+                    Alert.AlertType.WARNING);
+            }
 
-        if(esValido){
-            caValido.setClave(claveCA);
-            caValido.setNombre(nombreCA);
-            caValido.setIdDependencia(idDependencia);
-            caValido.setIdGradoConsolidacion(idGrado);
-            caValido.setIdResponsable(academicoSeleccionado.getIdAcademico());
-            registrarCuerpoAcademico(caValido);         
-        }else{
-            Utilidades.mostrarDialogoSimple("Campos Vacíos",
-                "Por favor ingrese información o  seleccione valores en todas las casillas",
-                Alert.AlertType.WARNING);
-        }
+        }       
     }
         
      private void modificarCuerpoAcademico(CuerpoAcademico caValido){
@@ -199,10 +222,10 @@ public class FXMLRegistrarCAController implements Initializable {
                         + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico que "
+                Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico "
                         + "ha sido modificado en el sistema", Alert.AlertType.INFORMATION);
-                int idCuerpoAcademico = CuerpoAcademicoDAO.obtenerUltimoCARegistrado();
-                registrarElementosCA(idCuerpoAcademico,caValido.getIdResponsable() );
+                registrarElementosCA(caEdicion.getIdCuerpoAcademico()
+                        ,caValido.getIdResponsable() );
                 cerrarVentana();
                 String exito = "Operacion exitosa";
                 interfazNotificacion.notificarOperacionActualizar(exito);
@@ -236,20 +259,23 @@ public class FXMLRegistrarCAController implements Initializable {
     }
     
     private void registrarElementosCA(int idCuerpoAcademico, int idAcademico){
-        int respuestaLgac = LgacDAO.agregarLgacCA(idLgac, idCuerpoAcademico);
-         switch(respuestaLgac){
-            case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexion LGAC", "Por el momento no "
-                        + "hay conexion, "
-                        + "por favor inténtalos más tarde", Alert.AlertType.ERROR);
-                break;
-            case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de consulta", "Ocurrió un error al "
-                        + "actualizar el LGAC del CA,"
-                        + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
-                break;
-            case Constantes.OPERACION_EXITOSA:
-                break;    
+        if(esEdicion && (cbLgac.getSelectionModel().getSelectedItem() != null) || !esEdicion){
+            int respuestaLgac = LgacDAO.agregarLgacCA(idLgac, idCuerpoAcademico);
+            switch(respuestaLgac){
+                case Constantes.ERROR_CONEXION:
+                    Utilidades.mostrarDialogoSimple("Error de conexion LGAC", "Por el momento no "
+                            + "hay conexion, "
+                            + "por favor inténtalos más tarde", Alert.AlertType.ERROR);
+                    break;
+                case Constantes.ERROR_CONSULTA:
+                    Utilidades.mostrarDialogoSimple("Error de consulta", "Ocurrió un error al"
+                            + " actualizar el LGAC del CA,"
+                            + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
+                    break;
+                case Constantes.OPERACION_EXITOSA:
+                    Utilidades.mostrarDialogoSimple("EXITO AL ACTUALIZAR EL LGAC", inicioClave, Alert.AlertType.INFORMATION);
+                    break;
+            }           
         }
         
         int respuestaAcademico = AcademicoDAO.agregarAcademicoCA(idAcademico, idCuerpoAcademico);
@@ -265,6 +291,8 @@ public class FXMLRegistrarCAController implements Initializable {
                         + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
+                Utilidades.mostrarDialogoSimple("EXITO AL ACTUALIZAR EL ACADEMICO", inicioClave, Alert.AlertType.INFORMATION);
+
                 break;    
         }       
     }

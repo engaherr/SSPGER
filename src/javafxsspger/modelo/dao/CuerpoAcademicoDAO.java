@@ -97,6 +97,12 @@ public class CuerpoAcademicoDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
+                System.out.println(caModificar.getNombre());
+                System.out.println(caModificar.getClave());
+                System.out.println(caModificar.getIdCuerpoAcademico());
+
+
+                
               String sentencia = "update cuerpoacademico set nombre = ?,clave = ?,"
                       + "idGradoConsolidacion = ?,\n" +
                        "idDependencia = ? ,idResponsable = ? where idCuerpoAcademico = ?;";
@@ -110,7 +116,7 @@ public class CuerpoAcademicoDAO {
                 
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                respuesta = (filasAfectadas >= 0) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
