@@ -3,13 +3,44 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/controladores/FXMLPrincipalController.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/controladores/FXMLVerActividadController.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/modelo/pojo/Actividad.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/controladores/FXMLAdminResponsablesATPController.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/modelo/dao/AvanceDAO.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/modelo/dao/ActividadDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Lgac.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarLGACController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/DependenciaRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Academico.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/LgacRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/AcademicoDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/EstudianteRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/CuerpoAcademicoRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCronogramaActividadesController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLConsultarLGACController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarCAController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/GradoConsolidacionRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Actividad.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/ActividadRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/AvanceDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/LgacDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLConsultarAvancesAnteproyectosController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/CursoRespuesta.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Dependencia.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLAgregarEstudianteCursoController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/GradoConsolidacion.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/ActividadDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Materia.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarActividadController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCursoFormularioController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCuerpoAcademicoConsultarMiembrosController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLConsultarCuerposAcademicosController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Anteproyecto.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCuerpoAcademicoAgregarMiembroController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLAdminCursosController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/GradoConsolidacionDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/ActividadEntrega.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCuerpoAcademicoEliminarMiembroController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/Estudiante.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/CuerpoAcademicoDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/DependenciaDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/pojo/CuerpoAcademico.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/AnteproyectoEstudianteDAO.java</file>
         </group>
     </open-files>
 </project-private>
