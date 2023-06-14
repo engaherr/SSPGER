@@ -31,7 +31,8 @@ public class CuerpoAcademicoDAO {
             try{
                 String consulta = "select ca.idCuerpoAcademico,ca.nombre,ca.clave,d.nombre as "
                         + "'dependencia',ca.idGradoConsolidacion,ca.idDependencia,ca.idResponsable,"
-                        + "gc.nombre as 'nombreGrado', concat(a.nombre,' ',a.apellidoPaterno,' ',a.apellidoMaterno) "
+                        + "gc.nombre as 'nombreGrado', concat(a.nombre,' ',a.apellidoPaterno,' ',"
+                        + "a.apellidoMaterno) "
                         + "as 'responsable' "
                         + "from cuerpoacademico ca "
                         + "inner join academico a on a.idAcademico = ca.idResponsable "
@@ -42,16 +43,21 @@ public class CuerpoAcademicoDAO {
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     CuerpoAcademico cuerpoAcademico = new CuerpoAcademico();
-                    cuerpoAcademico.setIdCuerpoAcademico(resultado.getInt("idCuerpoAcademico"));
+                    cuerpoAcademico.setIdCuerpoAcademico(resultado.getInt
+                            ("idCuerpoAcademico"));
                     cuerpoAcademico.setClave(resultado.getString("clave"));
-                    cuerpoAcademico.setDependencia(resultado.getString("dependencia"));
+                    cuerpoAcademico.setDependencia(resultado.getString
+                            ("dependencia"));
                     cuerpoAcademico.setGradoConsolidacion("nombreGrado");
-                    cuerpoAcademico.setIdDependencia(resultado.getInt("idDependencia"));
+                    cuerpoAcademico.setIdDependencia(resultado.getInt
+                            ("idDependencia"));
                     cuerpoAcademico.setIdGradoConsolidacion(
                             resultado.getInt("idGradoConsolidacion"));
-                    cuerpoAcademico.setIdResponsable(resultado.getInt("idResponsable"));
+                    cuerpoAcademico.setIdResponsable(resultado.getInt
+                           ("idResponsable"));
                     cuerpoAcademico.setNombre(resultado.getString("nombre"));
-                    cuerpoAcademico.setResponsable(resultado.getString("responsable"));
+                    cuerpoAcademico.setResponsable(resultado.getString
+                            ("responsable"));
                     cuerposAcademicos.add(cuerpoAcademico);
                 }
                 respuesta.setCuerposAcademicos(cuerposAcademicos);
@@ -80,7 +86,8 @@ public class CuerpoAcademicoDAO {
                 prepararSentencia.setInt(5,caRegistrar.getIdResponsable());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -107,7 +114,8 @@ public class CuerpoAcademicoDAO {
                 
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }
@@ -126,7 +134,8 @@ public class CuerpoAcademicoDAO {
                 PreparedStatement prepararSentecia = conecionBD.prepareStatement(sentencia);
                 prepararSentecia.setInt(1,idCuerpoAcademico);
                 int filasAfectadas = prepararSentecia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;
             }

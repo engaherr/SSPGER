@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador para la consulta de los miembros de un Cuerpo Académico
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 11/06/2023
+* Descripción: Clase controladora de vista FXMLCuerpoAcademicoConsultarMiembros.fxml
+*/
 package javafxsspger.controladores;
 
 import java.io.IOException;
@@ -10,7 +12,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,11 +34,7 @@ import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
+
 public class FXMLCuerpoAcademicoConsultarMiembrosController implements Initializable {
 
     @FXML
@@ -51,20 +47,17 @@ public class FXMLCuerpoAcademicoConsultarMiembrosController implements Initializ
     private TableColumn<Academico, String> colPaterno;
     @FXML
     private TableColumn<Academico,String> colMaterno;
+    @FXML
+    private Label lbNombreCA;
     
     private ObservableList<Academico> miembrosCA;
 
     private CuerpoAcademico caSeleccionado;
-    @FXML
-    private Label lbNombreCA;
-    /**
-     * Initializes the controller class.
-     */
+
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        configurarTabla();
-
-        
+        configurarTabla();     
     }    
 
     @FXML
@@ -74,7 +67,7 @@ public class FXMLCuerpoAcademicoConsultarMiembrosController implements Initializ
 
     @FXML
     private void clicEliminarMiembros(ActionEvent event) {
-                  try{
+        try{
             FXMLLoader accesoControlador = new FXMLLoader
                 (JavaFXSSPGER.class.getResource("vistas/FXMLCuerpoAcademicoEliminarMiembro"
                         + ".fxml"));
@@ -148,17 +141,15 @@ public class FXMLCuerpoAcademicoConsultarMiembrosController implements Initializ
         switch(academicos.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "recuperar la información, por favor inténtelo "
+                        + "recuperar la información de los integrantes, por favor inténtelo "
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
-                        + "un error al intentar recuperar la información de los académicos, "
+                        + "un error al recuperar a los integrantes del Cuerpo Académico, "
                         + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Exito","Se cargaron los miembros",
-                        Alert.AlertType.INFORMATION);
                 miembrosCA.addAll(academicos.getAcademicos());
                 tvMiembrosCA.setItems(miembrosCA);
                 break;       

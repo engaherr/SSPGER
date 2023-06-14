@@ -1,15 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de DependenciaRespuesta
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 9/06/2023
+* Descripción: Clase modelo para la respuesta del DAO de Dependencias
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author jasie
- */
 public class DependenciaRespuesta {
     private int codigoRespuesta;
     private ArrayList<Dependencia> dependencias;

@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador para añadir miembros al Cuerpo Académico
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 11/06/2023
+* Descripción: Clase controladora de vista FXMLCuerpoAcademicoAgregarMiembro.fxml
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -24,13 +26,10 @@ import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
+
 public class FXMLCuerpoAcademicoAgregarMiembroController implements Initializable {
-    private CuerpoAcademico caSeleccionado;
+      private CuerpoAcademico caSeleccionado;
+    
     @FXML
     private Label lbNombreFormulario;
     @FXML
@@ -43,56 +42,15 @@ public class FXMLCuerpoAcademicoAgregarMiembroController implements Initializabl
     private TableColumn colMaterno;
     @FXML
     private Label lbNombreCA;
+    
     private ObservableList<Academico> academicosBD;
     
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurartabla();
-    }    
-
-    @FXML
-    private void clicAñadirMiembros(ActionEvent event) {
-        if(tvMiembrosCA.getSelectionModel().getSelectedItem() == null){
-            Utilidades.mostrarDialogoSimple("No se puede realizar la operación",
-                    "Por favor selecciona un registro de la tabla para realizar el proceso",
-                    Alert.AlertType.WARNING);
-        }else{
-            registrarAcademicoCA(tvMiembrosCA.getSelectionModel().getSelectedItem().
-                    getIdAcademico());
-        }
-    }
+    }   
     
-    private void registrarAcademicoCA(int idAcademico){
-        int respuesta = AcademicoDAO.agregarAcademicoCA(idAcademico,caSeleccionado.
-                getIdCuerpoAcademico());
-        switch(respuesta){
-            case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
-                        + "podemos establecer conexión con la base de datos, por favor inténtalo "
-                        + "más tarde", Alert.AlertType.ERROR);
-                break;
-            case  Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió un error "
-                        + "durante la eliminación del académico del Cuerpo Académico, "
-                        + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
-                break;
-            case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El académico fue eliminado"
-                        + "del Cuerpo Académico", Alert.AlertType.INFORMATION);
-                cargarIformacion();
-                break;              
-        } 
-    }
-
-    @FXML
-    private void clicCancelar(ActionEvent event) {
-        Stage escenarioPrincipal = (Stage) lbNombreFormulario.getScene().getWindow();
-        escenarioPrincipal.close();
-    }
- 
     
     private void configurartabla(){
         colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
@@ -106,13 +64,13 @@ public class FXMLCuerpoAcademicoAgregarMiembroController implements Initializabl
         AcademicoRespuesta academicos = AcademicoDAO.recuperarAcademicosSinCA();
         switch(academicos.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "recuperar la información, por favor inténtelo "
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible  "
+                        + "recuperar a los académicos del sistema, por favor inténtelo "
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
-                        + "un error al intentar recuperar la información de los académicos, "
+                        + "un error al recuperar la información de los académicos, "
                         + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
                 break;
             case Constantes.OPERACION_EXITOSA:
@@ -120,8 +78,48 @@ public class FXMLCuerpoAcademicoAgregarMiembroController implements Initializabl
                 tvMiembrosCA.setItems(academicosBD);
                 break;
         }  
+    }    
+
+    @FXML
+    private void clicAñadirMiembros(ActionEvent event) {
+        if(tvMiembrosCA.getSelectionModel().getSelectedItem() == null){
+            Utilidades.mostrarDialogoSimple("No se puede realizar la operación",
+                    "Por favor selecciona un académico para añadir al Cuerpo Académico",
+                    Alert.AlertType.WARNING);
+        }else{
+            registrarAcademicoCA(tvMiembrosCA.getSelectionModel().getSelectedItem().
+                    getIdAcademico());
+        }
+    }
+    
+    private void registrarAcademicoCA(int idAcademico){
+        int respuesta = AcademicoDAO.agregarAcademicoCA(idAcademico,caSeleccionado.
+                getIdCuerpoAcademico());
+        switch(respuesta){
+            case Constantes.ERROR_CONEXION:
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible agregar  "
+                        + "al académico al Cuerpo Académico, por favor inténtalo "
+                        + "más tarde", Alert.AlertType.ERROR);
+                break;
+            case  Constantes.ERROR_CONSULTA:
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió un error "
+                        + "al añadir al académico al Cuerpo Académico, "
+                        + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                break;
+            case Constantes.OPERACION_EXITOSA:
+                Utilidades.mostrarDialogoSimple("Operación realizada","El académico fue "
+                        + "añadido al Cuerpo Académico", Alert.AlertType.INFORMATION);
+                cargarIformacion();
+                break;              
+        } 
     }
 
+    @FXML
+    private void clicCancelar(ActionEvent event) {
+        Stage escenarioPrincipal = (Stage) lbNombreFormulario.getScene().getWindow();
+        escenarioPrincipal.close();
+    }
+ 
     void enviarCASeleccionado(CuerpoAcademico caSeleccionado) {
         this.caSeleccionado = caSeleccionado;
         lbNombreCA.setText("Cuerpo Académico: "+ caSeleccionado.getNombre());

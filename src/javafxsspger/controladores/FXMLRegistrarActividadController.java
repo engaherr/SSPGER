@@ -6,23 +6,16 @@
 */
 package javafxsspger.controladores;
 
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,24 +27,19 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.ActividadDAO;
-import javafxsspger.modelo.dao.AnteproyectoDAO;
 import javafxsspger.modelo.dao.AnteproyectoEstudianteDAO;
 import javafxsspger.modelo.dao.AvanceDAO;
 import javafxsspger.modelo.pojo.Actividad;
-import javafxsspger.modelo.pojo.Anteproyecto;
 import javafxsspger.modelo.pojo.AnteproyectoEstudiante;
 import javafxsspger.modelo.pojo.Avance;
 import javafxsspger.modelo.pojo.AvanceRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
-import javax.imageio.ImageIO;
 
 
 public class FXMLRegistrarActividadController implements Initializable {
@@ -130,40 +118,42 @@ public class FXMLRegistrarActividadController implements Initializable {
        Stage escenarioBase = (Stage) tfNombre.getScene().getWindow();
        archivoAtividad = dialogoSeleccionArchivo.showOpenDialog(escenarioBase);
        visualizarArchivo(archivoAtividad);   
-        Utilidades.mostrarDialogoSimple(extensionArchivo, archivoAtividad.getAbsolutePath(),
+        Utilidades.mostrarDialogoSimple(extensionArchivo, archivoAtividad.
+                getAbsolutePath(),
                 Alert.AlertType.INFORMATION);
 
     }
     
-private void visualizarArchivo(File archivoSeleccionado) {
-    if (archivoSeleccionado != null) {
-        nombreArchivo = archivoSeleccionado.getName();
-        String enlace = "<a href='" + archivoSeleccionado.getAbsolutePath() + "'>" + nombreArchivo + "</a>";
-        lbRutaArchivo.setText(enlace);
-        
-        String extension = getFileExtension(archivoSeleccionado);
-        extensionArchivo = extension;
-        if (extension.equalsIgnoreCase("pdf")) {
-            
-        } else if (extension.equalsIgnoreCase("zip")) {
-        
-        }
-        else {
-            System.out.println("Formato de archivo no válido.");
+    private void visualizarArchivo(File archivoSeleccionado) {
+        if (archivoSeleccionado != null) {
+            nombreArchivo = archivoSeleccionado.getName();
+            String enlace = "<a href='" + archivoSeleccionado.getAbsolutePath() + "'>" + 
+                    nombreArchivo + "</a>";
+            lbRutaArchivo.setText(enlace);
+
+            String extension = getFileExtension(archivoSeleccionado);
+            extensionArchivo = extension;
+            if (extension.equalsIgnoreCase("pdf")) {
+
+            } else if (extension.equalsIgnoreCase("zip")) {
+
+            }
+            else {
+                System.out.println("Formato de archivo no válido.");
+            }
         }
     }
-}
 
 
 
-private String getFileExtension(File archivo) {
-    String nombreArchivo = archivo.getName();
-    int lastDotIndex = nombreArchivo.lastIndexOf(".");
-    if (lastDotIndex > 0 && lastDotIndex < nombreArchivo.length() - 1) {
-        return nombreArchivo.substring(lastDotIndex + 1).toLowerCase();
+    private String getFileExtension(File archivo) {
+        String nombreArchivo = archivo.getName();
+        int lastDotIndex = nombreArchivo.lastIndexOf(".");
+        if (lastDotIndex > 0 && lastDotIndex < nombreArchivo.length() - 1) {
+            return nombreArchivo.substring(lastDotIndex + 1).toLowerCase();
+        }
+        return "";
     }
-    return "";
-}
 
  
     private void validarInformacion(){
@@ -229,21 +219,26 @@ private String getFileExtension(File archivo) {
             try{
                 if(esEdicion){
                     actividadValida.setIdEstudiante(actividadEdicion.getIdEstudiante());
-                    actividadValida.setIdAnteproyecto(actividadEdicion.getIdAnteproyecto());
+                    actividadValida.setIdAnteproyecto(actividadEdicion.
+                            getIdAnteproyecto());
                     if(archivoAtividad != null){
-                        actividadValida.setArchivo(Files.readAllBytes(archivoAtividad.toPath()));
+                        actividadValida.setArchivo(Files.readAllBytes
+                            (archivoAtividad.toPath()));
                         actividadValida.setExtensionArchivo(extensionArchivo);
                         actividadValida.setNombreArchivo(nombreArchivo);
                     }else{
                         actividadValida.setIdActividad(actividadEdicion.getIdActividad());
-                        actividadValida.setExtensionArchivo(actividadEdicion.getExtensionArchivo());
-                        actividadValida.setNombreArchivo(actividadEdicion.getNombreArchivo());
+                        actividadValida.setExtensionArchivo(actividadEdicion.
+                                getExtensionArchivo());
+                        actividadValida.setNombreArchivo(actividadEdicion.
+                                getNombreArchivo());
                     }
                     actividadValida.setIdActividad(actividadEdicion.getIdActividad());
                     modificarActividad(actividadValida);               
                 }else{
                     if(archivoAtividad != null){
-                        actividadValida.setArchivo(Files.readAllBytes(archivoAtividad.toPath()));
+                        actividadValida.setArchivo(Files.readAllBytes
+                                (archivoAtividad.toPath()));
                         actividadValida.setExtensionArchivo(extensionArchivo);
                         actividadValida.setNombreArchivo(nombreArchivo);
                     }
@@ -279,17 +274,19 @@ private String getFileExtension(File archivo) {
         int codigoRespuesta = ActividadDAO.registrarActividad(nuevaActividad);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
-                        + "podemos establecer conexión con la base de datos, por favor inténtalo "
-                        + "más tarde", Alert.AlertType.ERROR);
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible registrar "
+                        + "la actividad, por favor inténtelo más tarde "
+                        , Alert.AlertType.ERROR);
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la consulta, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                        + "al registrar la actividad, inténtelo de nuevo por favor",
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El LGAC que "
-                        + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
+                Utilidades.mostrarDialogoSimple("Operación realizada","La actividad fue "
+                        + "registrada",
+                        Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
                 interfazNotificacion.notificarOperacionGuardar(exito);
@@ -303,17 +300,18 @@ private String getFileExtension(File archivo) {
         int codigoRespuesta = ActividadDAO.modificarActividad(nuevaActividad);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
-                        + "podemos establecer conexión con la base de datos, por favor inténtalo "
-                        + "más tarde", Alert.AlertType.ERROR);
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible modificar "
+                        + "la actividad, por favor inténtelo más tarde "
+                        , Alert.AlertType.ERROR);
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la actualización, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                        + "al modificar la actividad, inténtelo de nuevo por favor",
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El LGAC ha "
-                        + "sido actualizado", Alert.AlertType.INFORMATION);
+                Utilidades.mostrarDialogoSimple("Operación realizada","La actividad "
+                        + "ha sido actualizada", Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
                 interfazNotificacion.notificarOperacionActualizar(exito);
@@ -376,7 +374,8 @@ private String getFileExtension(File archivo) {
         int posicionAvance = obtenerPosicionComboAvance(actividadEdicion.getIdAvance());
         cbAvances.getSelectionModel().select(posicionAvance);
         
-        lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.getExtensionArchivo());
+        lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.
+                getExtensionArchivo());
        
     }
     

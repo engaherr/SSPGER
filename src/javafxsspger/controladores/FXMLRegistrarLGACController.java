@@ -111,17 +111,18 @@ public class FXMLRegistrarLGACController implements Initializable {
         int codigoRespuesta = LgacDAO.RegistarLgac(nuevoLgac);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
-                        + "podemos establecer conexión con la base de datos, por favor inténtalo "
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible "
+                        + "registrar la LGAC, por favor inténtalo "
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case  Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Erro de consulta","Ocurrió un error "
-                        + "durante la consulta, inténtelo de nuevo por favor", Alert.AlertType.WARNING);
+                Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió un error "
+                        + "al registrar la LGAC, inténtelo de nuevo por favor",
+                        Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El Lgac que "
-                        + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
+                Utilidades.mostrarDialogoSimple("Operación realizada","La LGAC  ha sido "
+                        + "registrada", Alert.AlertType.INFORMATION);
                 cerrarVentana();
                 String exito = "Operacion exitosa";
                 interfazNotificacion.notificarOperacionGuardar(exito);
@@ -161,7 +162,8 @@ public class FXMLRegistrarLGACController implements Initializable {
        
     }
 
-    public void inicializarInformacionFormulario(boolean esEdicion, Lgac lgacEdicion, INotificacionOperacion interfazNotificacion){
+    public void inicializarInformacionFormulario(boolean esEdicion, Lgac lgacEdicion, 
+            INotificacionOperacion interfazNotificacion){
         this.esEdicion = esEdicion;
         this.lgacEdicion = lgacEdicion;
         this.interfazNotificacion = interfazNotificacion;

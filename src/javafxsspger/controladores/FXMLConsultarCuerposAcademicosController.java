@@ -39,18 +39,15 @@ import javafxsspger.modelo.pojo.CuerpoAcademicoRespuesta;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
-public class FXMLConsultarCuerposAcademicosController implements Initializable,INotificacionOperacion {
+
+public class FXMLConsultarCuerposAcademicosController implements Initializable,
+        INotificacionOperacion {
+
 
     @FXML
-    private Label lbNombreFormulario;
-    @FXML
     private TableView<CuerpoAcademico> tvCuerposAcademicos;
-    
+    @FXML
+    private Label lbNombreFormulario;
     @FXML
     private TableColumn colClave;
     @FXML
@@ -62,9 +59,6 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
     
     private ObservableList<CuerpoAcademico> cuerposAcademicos;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarTabla();
@@ -81,7 +75,8 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
     @FXML
     private void clicRegistrar(ActionEvent event) {
         Stage escenarioFormulario = new Stage();
-        escenarioFormulario.setScene(Utilidades.inicializaEscena("vistas/FXMLRegistrarCA.fxml"));
+        escenarioFormulario.setScene(Utilidades.inicializaEscena
+                ("vistas/FXMLRegistrarCA.fxml"));
         escenarioFormulario.setTitle("Formulario");
         escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
         escenarioFormulario.showAndWait();          
@@ -95,18 +90,17 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
         CuerpoAcademicoRespuesta caRespuesta = CuerpoAcademicoDAO.obtenerCuerposAcademicos();
         switch(caRespuesta.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "recuperar la información relacionada con las Lgac, por favor inténtelo "
+                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudieron  "
+                        + "recuperar los Cuerpos Académicos, por favor inténtelo "
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
-                        + "un error al intentar recuperar la información "
+                        + "un error al intentar recuperar la información de los Cuerpos Académicos "
                         + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operacion exitosa","Las Lgac registradas en el"
-                    + " sistema se cargaron de forma correcta", Alert.AlertType.INFORMATION);
+
                 cuerposAcademicos.addAll(caRespuesta.getCuerposAcademicos());
                 tvCuerposAcademicos.setItems(cuerposAcademicos);
                 break;
@@ -132,24 +126,23 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
     
         }else{
             Utilidades.mostrarDialogoSimple("Atención","Por favor selecciona "
-                    + "una promoción para poder editar", Alert.AlertType.WARNING);
+                    + "un Cuerpo Académico para poder editar", Alert.AlertType.WARNING);
         }         
     }
 
     private void mostrarOpcionesModificacion(CuerpoAcademico cuerpoAcademico) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Opciones de Modificación");
-        alert.setHeaderText("Seleccione una opción para modificar el CA seleccionado.");
+        alert.setHeaderText("Seleccione una opción a realizar con el Cuerpo Académico "
+                + "seleccionado");
         alert.setContentText("Elige una opción:");
-
         ButtonType modificarButton = new ButtonType("Modificar");
         ButtonType eliminarButton = new ButtonType("Eliminar");
         ButtonType miembrosButton  = new ButtonType("Administrar miembros");
-        ButtonType cancelButton = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-
+        ButtonType cancelButton = new ButtonType("Cancelar",
+                ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(modificarButton, eliminarButton,
                 miembrosButton, cancelButton);
-
         Optional<ButtonType> result = alert.showAndWait();
         result.ifPresent(buttonType -> {
             if (buttonType == modificarButton) {
@@ -229,13 +222,13 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
         int respuesta = CuerpoAcademicoDAO.eliminarCuerpoAcademico(idCuerpoAcademico);
         switch(respuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "realizar la operación, por favor inténtelo más tarde"
-                        + "más tarde", Alert.AlertType.ERROR);
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible "
+                        + "eliminar el Cuerpo Académico, por favor inténtelo más tarde"
+                        , Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
-                        + "un error al intentar eliminar el CA "
+                        + "un error al intentar eliminar el Cuerpo Académico "
                         + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
                 break;
             case Constantes.OPERACION_EXITOSA:
@@ -250,18 +243,17 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
         int respuesta = AcademicoDAO.removerTodosAcademicosDeCA(idCuerpoAcademico);
         switch(respuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "realizar la operación, por favor inténtelo más tarde"
-                        + "más tarde", Alert.AlertType.ERROR);
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible remover "
+                        + "los miembros del Cuerpo Académico,por favor inténtelo más tarde"
+                        , Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
-                        + "un error al eliminar los miembros del CA "
+                        + "un error al eliminar los miembros del Cuerpo Académico "
                         + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operacion exitosa","Todos los miembros del"
-                    + "CA fueron eliminados", Alert.AlertType.INFORMATION);
+
                 eliminarLgacsCA(idCuerpoAcademico);
                 break;           
         }
@@ -271,18 +263,17 @@ public class FXMLConsultarCuerposAcademicosController implements Initializable,I
         int respuesta = LgacDAO.eliminarLgacCA(idCuerpoAcademico);
         switch(respuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","No se pudo "
-                        + "realizar la operación, por favor inténtelo más tarde"
-                        + "más tarde", Alert.AlertType.ERROR);
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible remover "
+                        + "las LGAC del Cuerpo Académico, por favor inténtelo más tarde"
+                        , Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:   
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió "
-                        + "un error al eliminar las LGAC del CA "
+                        + "un error al intentar eliminar las LGAC del Cuerpo Académico, "
                         + "inténtelo de nuevo, por favor", Alert.AlertType.WARNING);    
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operacion exitosa","Todos las LGAC del"
-                    + "CA fueron eliminados", Alert.AlertType.INFORMATION);
+
                 eliminarCuerpoAcademico(idCuerpoAcademico);
                 break;           
         }        

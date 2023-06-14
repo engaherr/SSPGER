@@ -1,13 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de Grado de Consolidación
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 10/06/2023
+* Descripción: Clase modelo para recuperar y manipular las Dependencias
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author jasie
- */
+
 public class GradoConsolidacion {
     private int idGradoConsolidacion;
     private String nombre;

@@ -82,7 +82,8 @@ public class ActividadDAO {
                 prepararSentencia.setString(11,actividadNueva.getNombreArchivo());
                 
                 int filasAfecadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : Constantes.ERROR_CONSULTA;
+                respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                        Constantes.ERROR_CONSULTA;
                 conexionBD.close();
             }catch(SQLException ex){
                 respuesta = Constantes.ERROR_CONSULTA;

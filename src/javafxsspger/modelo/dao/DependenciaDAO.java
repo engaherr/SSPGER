@@ -33,7 +33,8 @@ public class DependenciaDAO {
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     Dependencia dependencia = new Dependencia();
-                    dependencia.setIdDependencia(resultado.getInt("idDependencia"));
+                    dependencia.setIdDependencia(resultado.getInt
+                        ("idDependencia"));
                     dependencia.setNombre(resultado.getString("nombre"));
                     dependencias.add(dependencia);
                 }

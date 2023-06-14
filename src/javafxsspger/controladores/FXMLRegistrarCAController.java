@@ -202,7 +202,6 @@ public class FXMLRegistrarCAController implements Initializable {
                 Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico que "
                         + "ha sido modificado en el sistema", Alert.AlertType.INFORMATION);
                 int idCuerpoAcademico = CuerpoAcademicoDAO.obtenerUltimoCARegistrado();
-                System.out.println(idCuerpoAcademico);
                 registrarElementosCA(idCuerpoAcademico,caValido.getIdResponsable() );
                 cerrarVentana();
                 String exito = "Operacion exitosa";
@@ -215,18 +214,18 @@ public class FXMLRegistrarCAController implements Initializable {
         int codigoRespuesta = CuerpoAcademicoDAO.registrarCuerpoAcademico(caValido);
         switch (codigoRespuesta){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexión","Por el momento no "
-                        + "podemos establecer conexión con la base de datos, por favor inténtalo "
+                Utilidades.mostrarDialogoSimple("Error de conexión","No fue posible  "
+                        + "registrar al Cuerpo Académico, por favor inténtelo "
                         + "más tarde", Alert.AlertType.ERROR);
                 break;
             case  Constantes.ERROR_CONSULTA:
                 Utilidades.mostrarDialogoSimple("Error de consulta","Ocurrió un error "
-                        + "durante el registro del Cuerpo Académico, "
+                        + "al registrar el Cuerpo Académico, "
                         + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico que "
-                        + "ingresaste ha sido registrado en el sistema", Alert.AlertType.INFORMATION);
+                Utilidades.mostrarDialogoSimple("Operación realizada","El Cuerpo Academico "
+                        + "ha sido registrado",Alert.AlertType.INFORMATION);
                 int idCuerpoAcademico = CuerpoAcademicoDAO.obtenerUltimoCARegistrado();
                 registrarElementosCA(idCuerpoAcademico,caValido.getIdResponsable() );
                 cerrarVentana();
@@ -240,7 +239,7 @@ public class FXMLRegistrarCAController implements Initializable {
         int respuestaLgac = LgacDAO.agregarLgacCA(idLgac, idCuerpoAcademico);
          switch(respuestaLgac){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexion LGAC", "POr el momento no "
+                Utilidades.mostrarDialogoSimple("Error de conexion LGAC", "Por el momento no "
                         + "hay conexion, "
                         + "por favor inténtalos más tarde", Alert.AlertType.ERROR);
                 break;
@@ -250,8 +249,6 @@ public class FXMLRegistrarCAController implements Initializable {
                         + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Exito","Se actualizó el LGAC del CA", 
-                        Alert.AlertType.INFORMATION);
                 break;    
         }
         
@@ -268,8 +265,6 @@ public class FXMLRegistrarCAController implements Initializable {
                         + " por favor inténtelo más tarde", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Exito","Se actualizó el Acad. del CA", 
-                        Alert.AlertType.INFORMATION);
                 break;    
         }       
     }

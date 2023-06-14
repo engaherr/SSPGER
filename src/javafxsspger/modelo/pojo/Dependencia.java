@@ -1,13 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de Dependencia
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 09/06/2023
+* Descripción: Clase modelo para las Dependencias y su información que proviene de la 
+* persistencia del sistema
+*/
 package javafxsspger.modelo.pojo;
 
-/**
- *
- * @author jasie
- */
 public class Dependencia {
     private int idDependencia;
     private String nombre;

@@ -1,15 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: Clase POJO de Grado Consolidación Respuesta 
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 09/06/2023
+* Descripción: Clase modelo para la respuesta proveniente del DAO de Grado de Consolidación
+*/
 package javafxsspger.modelo.pojo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author jasie
- */
+
 public class GradoConsolidacionRespuesta {
     private int codigoRespuesta;
     private ArrayList<GradoConsolidacion> grados;

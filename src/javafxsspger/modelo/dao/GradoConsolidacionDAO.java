@@ -34,7 +34,8 @@ public class GradoConsolidacionDAO {
                 ResultSet resultado = prepararSentencia.executeQuery();
                 while(resultado.next()){
                     GradoConsolidacion grado = new GradoConsolidacion();
-                    grado.setIdGradoConsolidacion(resultado.getInt("idGradoConsolidacion"));
+                    grado.setIdGradoConsolidacion(resultado.getInt
+                            ("idGradoConsolidacion"));
                     grado.setNombre(resultado.getString("nombre"));
                     gradosConsolidacion.add(grado);
                 }

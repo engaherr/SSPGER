@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+* Título del programa: Controlador para la eliminación de miembros de un Cuerpo Académico
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 11/06/2023
+* Descripción: Clase controladora de vista FXMLCuerpoAcademicoEliminarMiembro.fxml
+*/
 package javafxsspger.controladores;
 
 import java.net.URL;
@@ -12,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,11 +24,7 @@ import javafxsspger.modelo.pojo.CuerpoAcademico;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author jasie
- */
+
 public class FXMLCuerpoAcademicoEliminarMiembroController implements Initializable {
     private CuerpoAcademico caSeleccionado;
     private ObservableList<Academico> miembrosCA;
@@ -45,9 +42,7 @@ public class FXMLCuerpoAcademicoEliminarMiembroController implements Initializab
     @FXML
     private Label lbNombreCA;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarTabla();
@@ -75,7 +70,7 @@ public class FXMLCuerpoAcademicoEliminarMiembroController implements Initializab
     private void clicEliminarTodos(ActionEvent event) {
         if(miembrosCA.isEmpty()){
             Utilidades.mostrarDialogoSimple("No se puede realizar la operación","El Cuerpo "
-                    + "Académico ya no cuenta con miembros que se puedan remover",
+                    + "Académico ya no cuenta con miembros",
                     Alert.AlertType.WARNING);
         }else{
             eliminarTodosAcademicos();
@@ -88,7 +83,8 @@ public class FXMLCuerpoAcademicoEliminarMiembroController implements Initializab
         colMaterno.setCellValueFactory(new PropertyValueFactory("apellidoMaterno"));
     }    
 
-    public void enviarMiembrosCA(CuerpoAcademico caSeleccionado, ObservableList<Academico> miembrosCA){
+    public void enviarMiembrosCA(CuerpoAcademico caSeleccionado, 
+                ObservableList<Academico> miembrosCA){
         this.caSeleccionado = caSeleccionado;
         this.miembrosCA = miembrosCA;
         lbNombreCA.setText("Cuerpo Académico: "+caSeleccionado.getNombre());
@@ -119,8 +115,8 @@ public class FXMLCuerpoAcademicoEliminarMiembroController implements Initializab
                         + "inténtelo de nuevo por favor", Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Operación realizada","El académico fue eliminado"
-                        + "del Cuerpo Académico", Alert.AlertType.INFORMATION);
+                Utilidades.mostrarDialogoSimple("Operación realizada","El académico fue "
+                        + "eliminado del Cuerpo Académico", Alert.AlertType.INFORMATION);
                 eliminarAcademicoTabla(idAcademico);
                 break;              
         }        
@@ -154,6 +150,7 @@ public class FXMLCuerpoAcademicoEliminarMiembroController implements Initializab
                 Utilidades.mostrarDialogoSimple("Operación realizada","Los académicos fueron"
                         + "eliminados del Cuerpo Académico", Alert.AlertType.INFORMATION);
                 eliminarTodosTabla();
+                
                 break;              
         }         
     }
