@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para las Dependencias de Educación Superior (DES)
+* Autor: Jasiel Emir Zavaleta García
+* Fecha: 09/06/2023
+* Descripción: Se encarga de la correcta conexión y obtención de datos de la base de datos.
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;

@@ -1,6 +1,6 @@
 /*
-* Título del programa: DAO para los cuerpos académicos
-* Autor: Enrique Gamboa Hernández
+* Título del programa: DAO para cuerpos académicos
+* Autor: Enrique Gamboa Hernández, Jasiel Emir Zavaleta García
 * Fecha Creación: 07/06/2023
 * Descripción: Clase de acceso a la información para los Cuerpos Académicos los cuales tienen
 * una tabla en la persistencia del sistema
@@ -31,7 +31,7 @@ public class CuerpoAcademicoDAO {
             try{
                 String consulta = "select ca.idCuerpoAcademico,ca.nombre,ca.clave,d.nombre as "
                         + "'dependencia',ca.idGradoConsolidacion,ca.idDependencia,ca.idResponsable,"
-                        + "gc.grado, concat(a.nombre,' ',a.apellidoPaterno,' ',a.apellidoMaterno) "
+                        + "gc.nombre as 'nombreGrado', concat(a.nombre,' ',a.apellidoPaterno,' ',a.apellidoMaterno) "
                         + "as 'responsable' "
                         + "from cuerpoacademico ca "
                         + "inner join academico a on a.idAcademico = ca.idResponsable "
@@ -45,7 +45,7 @@ public class CuerpoAcademicoDAO {
                     cuerpoAcademico.setIdCuerpoAcademico(resultado.getInt("idCuerpoAcademico"));
                     cuerpoAcademico.setClave(resultado.getString("clave"));
                     cuerpoAcademico.setDependencia(resultado.getString("dependencia"));
-                    cuerpoAcademico.setGradoConsolidacion("grado");
+                    cuerpoAcademico.setGradoConsolidacion("nombreGrado");
                     cuerpoAcademico.setIdDependencia(resultado.getInt("idDependencia"));
                     cuerpoAcademico.setIdGradoConsolidacion(
                             resultado.getInt("idGradoConsolidacion"));
@@ -133,5 +133,28 @@ public class CuerpoAcademicoDAO {
             respuesta = Constantes.ERROR_CONEXION;
         }
         return respuesta;
+    }
+
+    public static int obtenerUltimoCARegistrado() {
+    int idCuerpoAcademico = -1;
+    Connection conexionBD = ConexionBD.abrirConexionBD(); 
+    if (conexionBD != null) {
+        try {
+            String sentencia = "select idCuerpoAcademico from cuerpoacademico "
+                    + "order by idCuerpoAcademico "
+                    + "DESC LIMIT 1";
+            PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+            ResultSet resultado = prepararSentencia.executeQuery(sentencia);
+            
+            if (resultado.next()) {
+                idCuerpoAcademico = resultado.getInt("idCuerpoAcademico");   
+            }           
+            conexionBD.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+        return idCuerpoAcademico;
     }    
 }

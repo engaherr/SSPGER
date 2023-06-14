@@ -36,7 +36,11 @@ public class Dependencia {
         this.nombre = nombre;
     }
     
-    public String tostring(){
+
+
+    @Override
+    public String toString() {
         return nombre;
     }
+    
 }

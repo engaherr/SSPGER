@@ -97,13 +97,14 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
 
     @FXML
     private void clicCerrarVentana(MouseEvent event) {
-        
+        Stage escenarioPrincipal = (Stage) lbNombreFormulario.getScene().getWindow();
+        escenarioPrincipal.close();
     }
 
     @FXML
     private void clicRegistrar(ActionEvent event) {
         Stage escenarioFormulario = new Stage();
-        escenarioFormulario.setScene(Utilidades.inicializaEscena("vistas/FXMLRegistrarLgac.fxml"));
+        escenarioFormulario.setScene(Utilidades.inicializaEscena("vistas/FXMLRegistrarLGAC.fxml"));
         escenarioFormulario.setTitle("Formulario");
         escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
         escenarioFormulario.showAndWait();
@@ -124,7 +125,7 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
     private void irFormulario(boolean esEdicion, Lgac lgacSeleccionada){
         try{
             FXMLLoader accesoControlador = new FXMLLoader
-                (JavaFXSSPGER.class.getResource("vistas/FXMLRegistrarLgac.fxml"));
+                (JavaFXSSPGER.class.getResource("vistas/FXMLRegistrarLGAC.fxml"));
             Parent vista;
             vista = accesoControlador.load();
             

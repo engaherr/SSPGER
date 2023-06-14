@@ -1,5 +1,5 @@
 /*
-* Título del programa: AvanceDAO
+* Título del programa: DAO para avances 
 * Autor: Omar Dylan Segura Platas, Jasiel Emir Zavaleta García
 * Fecha: 09/06/2023
 * Descripción: Se encarga de la correcta conexión y obtención de datos de la base de datos.
@@ -25,7 +25,7 @@ public class AvanceDAO {
         respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
         if(conexionBD != null){
             try{
-                String sentencia = "select idAvance,nombre,porcentaje from avance "
+                String sentencia = "select idAvance,nombre from avance "
                         + "where idAnteproyecto = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setInt(1,idAnteproyecto);  
@@ -34,7 +34,6 @@ public class AvanceDAO {
                     Avance avance = new Avance();
                     avance.setIdAvance(resultado.getInt("idAvance"));
                     avance.setNombre(resultado.getString("nombre"));
-                   // avance.setPorcentaje(resultado.getInt("porcentaje"));
                     avance.setIdAnteproyecto(idAnteproyecto);
                     avances.add(avance);
                 }
@@ -56,7 +55,9 @@ public class AvanceDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if (conexionBD != null) {
             try {
-                String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo, COUNT(DISTINCT act.idActividad) AS totalActividades, COUNT(ent.idEntrega) AS totalEntregas\n"
+                String consulta = "SELECT a.idAnteproyecto, a.nombreTrabajo, "
+                        + "COUNT(DISTINCT act.idActividad) AS totalActividades, "
+                        + "COUNT(ent.idEntrega) AS totalEntregas\n"
                         + "FROM anteproyecto a\n"
                         + "LEFT JOIN actividad act ON a.idAnteproyecto = act.idAnteproyecto\n"
                         + "LEFT JOIN entrega ent ON act.idActividad = ent.idActividad\n"
@@ -67,8 +68,10 @@ public class AvanceDAO {
                     Avance avance = new Avance();
                     avance.setIdAnteproyecto(resultado.getInt("idAnteproyecto"));
                     avance.setNombreTrabajo(resultado.getString("nombreTrabajo"));
-                    avance.setCantidadActividades(resultado.getInt("totalActividades"));
-                    avance.setCantidadRegistros(resultado.getInt("totalEntregas"));
+                    avance.setCantidadActividades(resultado.getInt
+                        ("totalActividades"));
+                    avance.setCantidadRegistros(resultado.getInt
+                        ("totalEntregas"));
                     avances.add(avance);
                 }
                 respuesta.setAvances(avances);

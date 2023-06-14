@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/controladores/FXMLAnteproyectoDetallesController.java</file>
-            <file>file:/C:/Users/kikga/OneDrive%20-%20Universidad%20Veracruzana/workspace/JavaFXSSPGER/src/javafxsspger/modelo/dao/EstudianteDAO.java</file>
-=======
-            <file>file:/C:/Users/dplat/OneDrive/Documentos/Codes%20n%20shit/Netbeans/SSPGER/src/javafxsspger/controladores/FXMLCursoFormularioController.java</file>
->>>>>>> diddy's
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCuerpoAcademicoAgregarMiembroController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarLGACController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLRegistrarCAController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCuerpoAcademicoEliminarMiembroController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/modelo/dao/AcademicoDAO.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLCuerpoAcademicoConsultarMiembrosController.java</file>
+            <file>file:/C:/Users/jasie/OneDrive/Documents/GitHub/SSPGER/src/javafxsspger/controladores/FXMLConsultarCuerposAcademicosController.java</file>
         </group>
     </open-files>
 </project-private>

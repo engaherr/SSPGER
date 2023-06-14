@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsspger.controladores.FXMLCuerpoAcademicoConsultarMiembrosController">
+   <children>
+      <Pane prefHeight="72.0" prefWidth="700.0" style="-fx-background-color: #00529E;" />
+      <Label fx:id="lbNombreFormulario" layoutX="64.0" layoutY="17.0" text="Miembros del Cuerpo Académico" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="28.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvMiembrosCA" layoutX="149.0" layoutY="154.0" prefHeight="200.0" prefWidth="397.0">
+        <columns>
+          <TableColumn fx:id="colNombre" prefWidth="118.0" text="Nombre" />
+            <TableColumn fx:id="colPaterno" prefWidth="141.0" text="Paterno" />
+            <TableColumn fx:id="colMaterno" prefWidth="138.0" text="Materno" />
+        </columns>
+      </TableView>
+      <Button layoutX="225.0" layoutY="402.0" mnemonicParsing="false" onAction="#clicCerrarVentana" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5FAD56;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="372.0" layoutY="402.0" mnemonicParsing="false" onAction="#clicEliminarMiembros" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: f25d59;" text="Eliminar " textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="521.0" layoutY="402.0" mnemonicParsing="false" onAction="#clicAñadirMiembros" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00529E;" text="Añadir" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="lbNombreCA" layoutX="70.0" layoutY="92.0" prefHeight="39.0" prefWidth="536.0" text="Cuerpo Académico:">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

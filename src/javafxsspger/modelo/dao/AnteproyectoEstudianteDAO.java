@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para la relación entre estudiante y anteproyecto
+* Autor: Jasiel Emir Zavaleta García
+* Fecha Creación: 10/06/2023
+* Descripción: Clase de Acceso a la información de la base de datos correspondiente a la relación 
+* entre el estudiante y un anteproyecto,los cuales tienen una tabla en la persistencia del sistema
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;

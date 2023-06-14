@@ -28,42 +28,32 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="38.0" layoutY="72.0" text="Clave:">
+      <Label layoutX="119.0" layoutY="72.0" text="Clave:">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="442.0" layoutY="73.0" text="Nombre:">
+      <Label layoutX="119.0" layoutY="174.0" text="Nombre:">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbGrado" layoutX="144.0" layoutY="141.0" prefHeight="39.0" prefWidth="344.0" promptText="Grado de consolidacion" />
-      <ComboBox fx:id="cbDependencias" layoutX="614.0" layoutY="141.0" prefHeight="39.0" prefWidth="344.0" promptText="Dependencia de adscripcipción" />
-      <TextField fx:id="tfClave" layoutX="134.0" layoutY="73.0" prefHeight="39.0" prefWidth="265.0" />
-      <TextField fx:id="tfNombreCA" layoutX="570.0" layoutY="74.0" prefHeight="39.0" prefWidth="541.0" />
-      <TableView fx:id="tvLgac" layoutX="54.0" layoutY="332.0" prefHeight="274.0" prefWidth="429.0">
-        <columns>
-          <TableColumn fx:id="colNombreLgac" editable="false" prefWidth="315.0" text="Nombre" />
-          <TableColumn fx:id="colSeleccionarLGAC" editable="false" prefWidth="113.0" text="Seleccionar" />
-        </columns>
-      </TableView>
+      <ComboBox fx:id="cbGrado" layoutX="119.0" layoutY="411.0" prefHeight="39.0" prefWidth="344.0" promptText="Grado de consolidacion" />
+      <ComboBox fx:id="cbDependencias" layoutX="119.0" layoutY="313.0" prefHeight="39.0" prefWidth="344.0" promptText="Dependencia de adscripcipción" />
+      <TextField fx:id="tfClave" layoutX="121.0" layoutY="113.0" prefHeight="39.0" prefWidth="265.0" />
+      <TextField fx:id="tfNombreCA" layoutX="119.0" layoutY="214.0" prefHeight="39.0" prefWidth="566.0" />
       <TableView fx:id="tvAcademicos" layoutX="639.0" layoutY="332.0" prefHeight="236.0" prefWidth="513.0">
         <columns>
-          <TableColumn fx:id="colNumeroDePersonal" editable="false" prefWidth="190.0" text="Número de personal" />
-          <TableColumn fx:id="colNombreAcademico" editable="false" prefWidth="181.0" text="Nombres" />
-            <TableColumn fx:id="colPaternoAcademico" editable="false" prefWidth="141.0" text="Paterno" />
+          <TableColumn fx:id="colNombreAcademico" editable="false" prefWidth="190.0" text="Nombres" />
+          <TableColumn fx:id="colPaternoAcademico" editable="false" prefWidth="181.0" text="Paterno" />
+            <TableColumn fx:id="colMaternoAcademico" editable="false" prefWidth="141.0" text="Materno" />
         </columns>
       </TableView>
-      <Label layoutX="23.0" layoutY="228.0" text="Eliga los LGAC a relacionar con el Cuerpo Académico">
-         <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="661.0" layoutY="232.0" text="Elija un responsable para el cuerpo académico:">
+      <Label layoutX="654.0" layoutY="274.0" text="Elija un responsable para el cuerpo académico:">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Label>
+      <ComboBox fx:id="cbLgac" layoutX="119.0" layoutY="535.0" prefHeight="39.0" prefWidth="344.0" promptText="LGAC a relacionar " />
    </children>
 </AnchorPane>

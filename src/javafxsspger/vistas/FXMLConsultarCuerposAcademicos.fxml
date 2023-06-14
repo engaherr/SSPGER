@@ -28,7 +28,7 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="366.0" layoutY="420.0" mnemonicParsing="false" onAction="#clicVerDetalles" prefHeight="51.0" prefWidth="170.0" style="-fx-background-color: #5FAD56;" text="Ver detalles" textFill="WHITE">
+      <Button layoutX="366.0" layoutY="420.0" mnemonicParsing="false" onAction="#clicModificar" prefHeight="51.0" prefWidth="170.0" style="-fx-background-color: #5FAD56;" text="Modificar" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>

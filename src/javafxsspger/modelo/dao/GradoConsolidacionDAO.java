@@ -1,7 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Título del programa: DAO para los grados de consolidación de un cuerpo académico
+* Autor: Jasiel Emir Zavaleta García, Dylan Omar Segura Platas
+* Fecha Creación: 10/06/2023
+* Descripción: Clase de Acceso a la información de la base de datos correspondiente a las 
+* actividades los cuales tienen una tabla en la persistencia del sistema
+*/
 package javafxsspger.modelo.dao;
 
 import java.sql.Connection;

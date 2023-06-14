@@ -1,6 +1,6 @@
 /*
-* Título del programa: DAO para las Lgacs
-* Autor: Enrique Gamboa Hernández
+* Título del programa: DAO para las Líneas de Generación y Aplicación del Conocimiento (LGAC)
+* Autor: Enrique Gamboa Hernández, Jasiel Emir Zavaleta García
 * Fecha Creación: 07/06/2023
 * Descripción: Clase de acceso a la información para las Lgacs lass cuales tienen
 * una tabla en la persistencia del sistema
@@ -48,6 +48,33 @@ public class LgacDAO {
         }
         return respuesta;
     }
+
+    public static LgacRespuesta obtenerLgacsSinCA(){
+        LgacRespuesta respuesta = new LgacRespuesta();
+        respuesta.setCodigoRespuesta(Constantes.OPERACION_EXITOSA);
+        ArrayList<Lgac> lgacs = new ArrayList<>();
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "select idLgac,nombre from lgac where idCuerpoAcademico is null";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                ResultSet resultado = prepararSentencia.executeQuery();
+                while(resultado.next()){
+                    Lgac lgac = new Lgac();
+                    lgac.setIdLgac(resultado.getInt("idLgac"));
+                    lgac.setNombre(resultado.getString("nombre"));
+                    lgacs.add(lgac);
+                }
+                conexionBD.close();
+                respuesta.setLgacs(lgacs);
+            } catch (SQLException ex) {
+                respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+            }
+        }else{
+            respuesta.setCodigoRespuesta(Constantes.ERROR_CONEXION);
+        }
+        return respuesta;
+    }    
        
     public static LgacRespuesta obtenerTodosLgacs(){
         LgacRespuesta respuesta = new LgacRespuesta();
@@ -117,13 +144,12 @@ public class LgacDAO {
             if(tieneCuerpoAcademico){
                 try{
                     String sentencia = "update lgac set nombre = ? descripcion = ?, "
-                            + "idCuerpoAcademico = ?, numero = ? where idLgac = ?";
+                            + "idCuerpoAcademico = ? where idLgac = ?";
                     PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                     prepararSentencia.setString(1, edicionLgac.getNombre());
                     prepararSentencia.setString(2, edicionLgac.getDescripcion());
                     prepararSentencia.setInt(3, edicionLgac.getIdCuerpoAcademico());    
-                    prepararSentencia.setInt(4, edicionLgac.getNumero());
-                    prepararSentencia.setInt(3, edicionLgac.getIdLgac());
+                    prepararSentencia.setInt(4, edicionLgac.getIdLgac());
 
                     int filasAfectadas = prepararSentencia.executeUpdate();
                     respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
@@ -140,8 +166,6 @@ public class LgacDAO {
                     PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                     prepararSentencia.setString(1, edicionLgac.getNombre());
                     prepararSentencia.setString(2, edicionLgac.getDescripcion());
-                    //prepararSentencia.setInt(3, edicionLgac.getIdCuerpoAcademico());    
-                    //prepararSentencia.setInt(4, edicionLgac.getNumero());
                     prepararSentencia.setInt(3, edicionLgac.getIdLgac());
 
                     int filasAfectadas = prepararSentencia.executeUpdate();
@@ -159,4 +183,25 @@ public class LgacDAO {
         return respuesta;
     }
 
+    public static int agregarLgacCA(int idLgac,int idCuerpoAcademico){
+       int respuesta;
+       Connection conexionBD = ConexionBD.abrirConexionBD();
+       if(conexionBD != null){
+           try{
+               String sentencia = "update lgac set idCuerpoAcademico = ? where idLgac = ?";
+               PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+               prepararSentencia.setInt(1, idCuerpoAcademico);
+               prepararSentencia.setInt(2, idLgac);
+               int filasAfectadas = prepararSentencia.executeUpdate(); 
+               respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
+                       Constantes.ERROR_CONSULTA;
+           }catch(SQLException ex){
+               respuesta = Constantes.ERROR_CONSULTA;
+           }
+       }else{
+            respuesta = Constantes.ERROR_CONEXION;
+
+       }
+       return respuesta;
+    }     
 }
