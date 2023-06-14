@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -73,16 +76,17 @@ public class FXMLVerActividadController implements Initializable {
     private ImageView btnNoArchivo;
     boolean esModificar = false;
     boolean preparadoModificar = false;
+    @FXML
+    private Label lbEvaluacion;
     
    
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       taCuerpo.setWrapText(true);
-       mostrarElementosSegunRol(); 
-      
-       
-    }    
+  @Override
+public void initialize(URL url, ResourceBundle rb) {
+   taCuerpo.setWrapText(true);
+   mostrarElementosSegunRol();
+}
+
 
     public void mostrarElementosSegunRol() {
     Estudiante estudiante = Estudiante.getInstanciaSingleton();
@@ -97,6 +101,7 @@ public class FXMLVerActividadController implements Initializable {
         btnEnviar.setVisible(false);
         btnAdjuntar.setVisible(false);
         btnNoArchivo.setVisible(false);
+        lbEvaluacion.setVisible(false);
     }
 }
     
@@ -129,17 +134,37 @@ public class FXMLVerActividadController implements Initializable {
      cargarInformacionEntrega(actividad.getIdActividad());
      idActividadSeleccionada = actividad.getIdActividad();
      actividadSeleccionada = actividad;
+     String fechaComienzoStr = lbFechaComienzo.getText();
+     LocalDateTime fechaComienzo = LocalDateTime.parse(fechaComienzoStr, 
+             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+     String fechaEntregaStr = lbFechaEntrega.getText();
+     LocalDateTime fechaEntrega = LocalDateTime.parse(fechaEntregaStr, 
+             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+     LocalDateTime fechaActual = LocalDateTime.now();
+     if (fechaComienzo.isAfter(fechaActual) || fechaEntrega.isBefore(fechaActual)) {
+         btnEnviar.setDisable(true);
+     }
 }
     
     
      public void cargarInformacionEntrega(int idActividad) {
         ActividadRespuesta respuestaBD = ActividadDAO.obtenerDetallesEntrega(idActividad);
         ArrayList<Actividad> actividades = respuestaBD.getActividades();
+        boolean tieneEvaluacion = ActividadDAO.verificarTieneEvaluacion(idActividad);
         if (!actividades.isEmpty()) {
             Actividad actividad = actividades.get(0);
             taCuerpo.setText(actividad.getComentarios());
             lbfechaCreacion.setText(actividad.getFechaCreacion());
-            lbnombreDelArchivo.setText(actividad.getNombreArchivo());
+            lbnombreDelArchivo.setText("");
+            
+               if (tieneEvaluacion) {
+                btnEnviar.setDisable(true);
+                lbEvaluacion.setText(actividad.getEvaluacion()+ " de 10 pts.");
+                taCuerpo.setEditable(false);
+                btnAdjuntar.setVisible(false);
+           
+        } else {
+                 
             if(actividad.getNombreArchivo() == null){
                 btnDescargar.setVisible(false);
             }
@@ -169,6 +194,7 @@ public class FXMLVerActividadController implements Initializable {
 });
 
             
+            }
         }       
 }
 
@@ -183,7 +209,7 @@ private void clicEnviar(ActionEvent event) throws IOException {
         Utilidades.mostrarDialogoSimple("No hay archivo adjunto", 
                 "Por favor seleccione un archivo para enviar.", 
                 Alert.AlertType.INFORMATION);
-      } else {
+      } else { 
          boolean existeRegistro = ActividadDAO.verificarEsModificar(actividadSeleccionada.getIdActividad());
         if(existeRegistro){
                 try {

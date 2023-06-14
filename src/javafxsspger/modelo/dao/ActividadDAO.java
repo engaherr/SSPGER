@@ -210,7 +210,7 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,archivo,"
+                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,evaluacion,archivo,"
                          + "nombreArchivo\n" +
                     "FROM entrega\n" +
                     "WHERE idActividad = ?;";
@@ -221,6 +221,7 @@ public class ActividadDAO {
                     Actividad actividad = new Actividad();                
                     actividad.setIdActividad(resultado.getInt("idActividad"));
                     actividad.setComentarios(resultado.getString("comentarios"));
+                    actividad.setEvaluacion(resultado.getInt("evaluacion"));
                     actividad.setFechaCreacion(resultado.getString("fechaCreacion"));
                     actividad.setArchivo(resultado.getBytes("archivo"));
                     actividad.setNombreArchivo(resultado.getString("nombreArchivo"));
@@ -354,5 +355,24 @@ public class ActividadDAO {
     return existeRegistro;
 }
 
+      public static boolean verificarTieneEvaluacion(int idActividad) {
+        boolean tieneEvaluacion = false;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT EXISTS (SELECT 1 FROM entrega WHERE idActividad = ? AND evaluacion IS NOT NULL) AS result;";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                prepararSentencia.setInt(1, idActividad);
+                ResultSet resultado = prepararSentencia.executeQuery();
+                if (resultado.next()) {
+                    tieneEvaluacion = resultado.getBoolean("result");
+                }
+                conexionBD.close();
+            } catch (SQLException ex) {
+                // Manejo de excepciones
+            }
+        }
+        return tieneEvaluacion;
+    }
        
 }

@@ -125,6 +125,7 @@
                               <Image url="@../recursos/VectorCerrar.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="lbEvaluacion" layoutX="916.0" layoutY="393.0" prefHeight="36.0" prefWidth="149.0" />
                      </children>
                   </AnchorPane>
             </content>
