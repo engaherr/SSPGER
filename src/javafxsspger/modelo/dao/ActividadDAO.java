@@ -284,7 +284,7 @@ public class ActividadDAO {
             }
         } else {
             respuesta = Constantes.ERROR_CONEXION;
-        }
+            }
         return respuesta;
     }
 
