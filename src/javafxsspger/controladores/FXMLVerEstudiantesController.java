@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
 import javafxsspger.modelo.dao.EstudianteDAO;
+import javafxsspger.modelo.pojo.Academico;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.modelo.pojo.EstudianteRespuesta;
 import javafxsspger.utils.Constantes;
@@ -63,9 +64,12 @@ private void configurarTabla() {
     });
 }
     
+
     private void cargarInformacionTabla(){
      estudiantes = FXCollections.observableArrayList();
-        EstudianteRespuesta respuestaBD = EstudianteDAO.obtenerEstudiantes();
+      Academico academico = Academico.getInstanciaSingleton();
+        System.out.println(academico.getIdAcademico());
+        EstudianteRespuesta respuestaBD = EstudianteDAO.obtenerEstudiantes(academico.getIdAcademico());
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
                 Utilidades.mostrarDialogoSimple("Sin conexión",
