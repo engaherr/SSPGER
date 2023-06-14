@@ -67,21 +67,15 @@ public class ActividadDAO {
         if(conexionBD != null){
             try{
                 String sentencia = "insert into actividad (nombre,fechaInicio,fechaFin,"
-                        + "fechaCreacion,idAnteproyecto,descripcion,archivo,idEstudiante,idAvance,"
-                        + "extensionArchivo,nombreArchivo) values (?,?,?,?,?,?,?,?,?,?,?)";
+                        + ",idAnteproyecto,descripcion,idEstudiante,) values "
+                        + "(?,?,?,?,?,?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,actividadNueva.getNombre());
                 prepararSentencia.setString(2,actividadNueva.getFechaInicio());
                 prepararSentencia.setString(3,actividadNueva.getFechaFin());
-                prepararSentencia.setString(4,actividadNueva.getFechaCreacion());
-                prepararSentencia.setInt(5, actividadNueva.getIdAnteproyecto());
-                prepararSentencia.setString(6,actividadNueva.getDescripcion());
-                prepararSentencia.setBytes(7,actividadNueva.getArchivo());
-                prepararSentencia.setInt(8,actividadNueva.getIdEstudiante());
-                prepararSentencia.setInt(9,actividadNueva.getIdAvance());
-                prepararSentencia.setString(10,actividadNueva.getExtensionArchivo());
-                prepararSentencia.setString(11,actividadNueva.getNombreArchivo());
-                
+                prepararSentencia.setInt(4, actividadNueva.getIdAnteproyecto());
+                prepararSentencia.setString(5,actividadNueva.getDescripcion());
+                prepararSentencia.setInt(6,actividadNueva.getIdEstudiante());                
                 int filasAfecadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfecadas == 1) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;
@@ -101,8 +95,8 @@ public class ActividadDAO {
         if(conexionBD != null){
             try{
                 String sentencia = "update actividad set nombre = ?, fechaInicio = ?, fechaFin = ?,"
-                        + " idAnteproyecto = ?, descripcion = ?, archivo = ?, "
-                        + "idEstudiante = ?, idAvance = ?, extensionArchivo = ?,nombreArchivo = ? "
+                        + " idAnteproyecto = ?, descripcion = ?, "
+                        + "idEstudiante = ? "
                         + "where idActividad = ?";
                 PreparedStatement prepararSentencia  = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1,edicionActividad.getNombre());
@@ -110,12 +104,8 @@ public class ActividadDAO {
                 prepararSentencia.setString(3,edicionActividad.getFechaFin());
                 prepararSentencia.setInt(4,edicionActividad.getIdAnteproyecto());
                 prepararSentencia.setString(5,edicionActividad.getDescripcion());
-                prepararSentencia.setBytes(6,edicionActividad.getArchivo());
-                prepararSentencia.setInt(7,edicionActividad.getIdEstudiante());
-                prepararSentencia.setInt(8,edicionActividad.getIdAvance());
-                prepararSentencia.setString(9,edicionActividad.getExtensionArchivo());
-                prepararSentencia.setString(10,edicionActividad.getNombreArchivo());                
-                prepararSentencia.setInt(11,edicionActividad.getIdActividad());
+                prepararSentencia.setInt(6,edicionActividad.getIdEstudiante());
+                prepararSentencia.setInt(7,edicionActividad.getIdActividad());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
                         Constantes.ERROR_CONSULTA;

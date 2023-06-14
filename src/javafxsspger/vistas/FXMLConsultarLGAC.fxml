@@ -14,7 +14,7 @@
          <children>
             <Label fx:id="lbNombreFormulario" layoutX="81.0" layoutY="8.0" text="Listado de LGAC" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="36.0" />
+                  <Font name="Microsoft JhengHei Light" size="36.0" />
                </font>
             </Label>
          </children>

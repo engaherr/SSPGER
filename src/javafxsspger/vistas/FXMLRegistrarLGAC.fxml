@@ -14,19 +14,19 @@
          <children>
             <Label fx:id="lbNombreFormulario" layoutX="109.0" layoutY="11.0" text="Registro de LGAC" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="36.0" />
+                  <Font name="Microsoft JhengHei Light" size="36.0" />
                </font>
             </Label>
          </children>
       </Pane>
       <Label layoutX="68.0" layoutY="88.0" text="Nombre:">
          <font>
-            <Font name="System Bold Italic" size="28.0" />
+            <Font name="Microsoft JhengHei Light" size="28.0" />
          </font>
       </Label>
       <Label layoutX="68.0" layoutY="199.0" text="Descripción:">
          <font>
-            <Font name="System Bold Italic" size="28.0" />
+            <Font name="Microsoft JhengHei Light" size="28.0" />
          </font>
       </Label>
       <TextField fx:id="tfNombreLgac" layoutX="68.0" layoutY="134.0" prefHeight="39.0" prefWidth="675.0" promptText="Educación Ambiental para la Sustentabilidad" />
