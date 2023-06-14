@@ -12,8 +12,11 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,17 +30,20 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxsspger.JavaFXSSPGER;
+import javafxsspger.interfaz.INotificacionOperacion;
 import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.dao.AnteproyectoDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.ActividadRespuesta;
 import javafxsspger.modelo.pojo.Estudiante;
+import javafxsspger.modelo.pojo.Lgac;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
 
-public class FXMLVerActividadesCronogramaController implements Initializable {
+public class FXMLVerActividadesCronogramaController implements Initializable, INotificacionOperacion {
 
     @FXML
     private Label lbTitulo;
@@ -155,6 +161,60 @@ public class FXMLVerActividadesCronogramaController implements Initializable {
     }
 }
 
+    @FXML
+    private void registrarActividad(ActionEvent event) {
+        Stage escenarioFormulario = new Stage();
+        escenarioFormulario.setScene(Utilidades.inicializaEscena
+                ("vistas/FXMLRegistrarActividad.fxml"));
+        escenarioFormulario.setTitle("Formulario");
+        escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
+        escenarioFormulario.showAndWait();
+    }
+
+    @FXML
+    private void modificarActividad(ActionEvent event) {
+        Actividad actividadSeleccionada = tvActividades.getSelectionModel().getSelectedItem();
+        if(actividadSeleccionada != null){
+            irFormulario(true,actividadSeleccionada);
+        }else{
+            Utilidades.mostrarDialogoSimple("Atención","Por favor selecciona "
+                    + "una promoción para editar", Alert.AlertType.WARNING);
+        }  
+    }
+
+    @Override
+    public void notificarOperacionGuardar(String estado) {
+        cargarInformacionTabla(Estudiante.getInstanciaSingleton().getIdEstudiante());
+    }
+
+    @Override
+    public void notificarOperacionActualizar(String estado) {
+         cargarInformacionTabla(Estudiante.getInstanciaSingleton().getIdEstudiante());
+
+    }
+
+        private void irFormulario(boolean esEdicion, Actividad actividadSeleccionada){
+        try{
+            FXMLLoader accesoControlador = new FXMLLoader
+                (JavaFXSSPGER.class.getResource("vistas/FXMLRegistrarActividad.fxml"));
+            Parent vista;
+            vista = accesoControlador.load();
+            
+            FXMLRegistrarActividadController formulario = accesoControlador.getController();
+            formulario.inicializarInformacionFormulario(esEdicion,actividadSeleccionada,
+                    this);
+            
+            Stage escenarioFormulario = new Stage();
+            escenarioFormulario.setScene(new Scene(vista));
+            escenarioFormulario.setTitle("Modificación de actividad");
+            escenarioFormulario.initModality(Modality.APPLICATION_MODAL);
+            escenarioFormulario.showAndWait();         
+            
+        }catch(IOException ex){
+            Logger.getLogger(FXMLRegistrarLGACController.class.getName()).
+                    log(Level.SEVERE, null, ex);            
+        }
+    }
 }
 
 

@@ -24,14 +24,16 @@
             </Label>
          </children>
       </Pane>
-      <TableView fx:id="tvActividades" layoutX="87.0" layoutY="169.0" prefHeight="446.0" prefWidth="1014.0" style="-fx-font-size: 20;">
+      <TableView fx:id="tvActividades" layoutX="142.0" layoutY="173.0" prefHeight="346.0" prefWidth="892.0" style="-fx-font-size: 20;">
         <columns>
-          <TableColumn fx:id="tcActividades" prefWidth="547.0" text="Actividades" />
-          <TableColumn fx:id="tvFechaInicio" prefWidth="231.0" text="Fecha de Inicio" />
-            <TableColumn fx:id="tvFechaFin" prefWidth="235.0" text="Fecha de Finalización" />
+          <TableColumn fx:id="tcActividades" prefWidth="348.0" text="Actividades" />
+          <TableColumn fx:id="tvFechaInicio" prefWidth="245.0" text="Fecha de Inicio" />
+            <TableColumn fx:id="tvFechaFin" prefWidth="298.0" text="Fecha de Finalización" />
         </columns>
       </TableView>
       <DatePicker fx:id="dpFin" layoutX="710.0" layoutY="90.0" promptText="Fecha de Finalización" style="-fx-font-size: 25;" />
       <DatePicker fx:id="dpInicio" layoutX="124.0" layoutY="90.0" promptText="Fecha de inicio" style="-fx-font-size: 25;" />
+      <Button layoutX="348.0" layoutY="566.0" mnemonicParsing="false" onAction="#registrarActividad" text="Registrar actividad" />
+      <Button layoutX="621.0" layoutY="565.0" mnemonicParsing="false" onAction="#modificarActividad" text="Modificar actividad" />
    </children>
 </AnchorPane>

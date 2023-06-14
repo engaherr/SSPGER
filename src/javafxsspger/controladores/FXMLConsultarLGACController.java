@@ -133,6 +133,8 @@ public class FXMLConsultarLGACController implements Initializable, INotificacion
             escenarioFormulario.showAndWait();         
             
         }catch(IOException ex){
+            Logger.getLogger(FXMLRegistrarLGACController.class.getName()).
+                    log(Level.SEVERE, null, ex);            
         }
     }
 
