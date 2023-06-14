@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +30,6 @@ import javafxsspger.modelo.dao.ActividadDAO;
 import javafxsspger.modelo.dao.AnteproyectoEstudianteDAO;
 import javafxsspger.modelo.pojo.Actividad;
 import javafxsspger.modelo.pojo.AnteproyectoEstudiante;
-import javafxsspger.modelo.pojo.Avance;
 import javafxsspger.modelo.pojo.Estudiante;
 import javafxsspger.utils.Constantes;
 import javafxsspger.utils.Utilidades;
@@ -52,7 +50,7 @@ public class FXMLRegistrarActividadController implements Initializable {
     @FXML
     private TextArea taDescripcion;
     
-    private String estiloError = 
+    private final String estiloError = 
             "-fx-border-color: RED; -fx-border-width: 2; -fx-border-radius: 2;";
     private String estiloNormal;
     
@@ -70,12 +68,11 @@ public class FXMLRegistrarActividadController implements Initializable {
     
     private Estudiante estudiante;
     private AnteproyectoEstudiante atpAsignado;
-    private ObservableList<Avance> avances;
     
     @FXML
     private Label lbRutaArchivo;
-    private String HORA_INICIO = "00:00:00";
-    private String HORA_TERMINO = "23:45:00";
+    private final String HORA_INICIO = "00:00:00";
+    private final String HORA_TERMINO = "23:45:00";
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,44 +98,11 @@ public class FXMLRegistrarActividadController implements Initializable {
         cerrarVentana();
     }
 
-    private void clicSeleccionarArchivo(ActionEvent event) {
-       FileChooser dialogoSeleccionArchivo = new FileChooser();
-       dialogoSeleccionArchivo.setTitle("Selecciona un archivo");
-       FileChooser.ExtensionFilter filtroPDF = new FileChooser.ExtensionFilter
-            ("Archivos PDF (*.pdf)", "*.pdf");
-        FileChooser.ExtensionFilter filtroWord = new FileChooser.ExtensionFilter
-            ("Archivos Word (*.docx)", "*.docx");
-        dialogoSeleccionArchivo.getExtensionFilters().addAll(filtroPDF, filtroWord);
 
-       Stage escenarioBase = (Stage) tfNombre.getScene().getWindow();
-       archivoAtividad = dialogoSeleccionArchivo.showOpenDialog(escenarioBase);
-       visualizarArchivo(archivoAtividad);   
-        Utilidades.mostrarDialogoSimple(extensionArchivo, archivoAtividad.
-                getAbsolutePath(),
-                Alert.AlertType.INFORMATION);
-
-    }
 
     
-    private void visualizarArchivo(File archivoSeleccionado) {
-        if (archivoSeleccionado != null) {
-            nombreArchivo = archivoSeleccionado.getName();
-            lbRutaArchivo.setText(nombreArchivo);
-
-            String extension = getFileExtension(archivoSeleccionado);
-            extensionArchivo = extension;
-        }
-    }
 
 
-    private String getFileExtension(File archivo) {
-        String nombreArchivo = archivo.getName();
-        int lastDotIndex = nombreArchivo.lastIndexOf(".");
-        if (lastDotIndex > 0 && lastDotIndex < nombreArchivo.length() - 1) {
-            return nombreArchivo.substring(lastDotIndex + 1).toLowerCase();
-        }
-        return "";
-    }
 
  
     private void validarInformacion(){
@@ -151,7 +115,6 @@ public class FXMLRegistrarActividadController implements Initializable {
         String descripcion = null;
         String fechaInicio = null;
         String fechaFin = null;
-        int idAvance = -1;
         boolean esValido = true;
         
         String fechaHoraInicio = null;
@@ -173,7 +136,7 @@ public class FXMLRegistrarActividadController implements Initializable {
         
         if(dpFechaInicio.getValue() != null){
            fechaInicio = dpFechaInicio.getValue().format(DateTimeFormatter.ISO_DATE);
-           fechaHoraInicio = fechaInicio+" "+HORA_TERMINO;
+           fechaHoraInicio = fechaInicio+" "+HORA_INICIO;
            
         }else{
             dpFechaInicio.setStyle(estiloError);
@@ -195,47 +158,15 @@ public class FXMLRegistrarActividadController implements Initializable {
             actividadValida.setDescripcion(descripcion);
             actividadValida.setFechaFin(fechaHoraTermino);
             actividadValida.setFechaInicio(fechaHoraInicio);
-
-         
+            actividadValida.setIdAnteproyecto(atpAsignado.getIdAnteproyecto());
+            actividadValida.setIdEstudiante(atpAsignado.getIdEstudiante());
             
-            try{
-                if(esEdicion){
-                    actividadValida.setIdEstudiante(actividadEdicion.getIdEstudiante());
-                    actividadValida.setIdAnteproyecto(actividadEdicion.
-                            getIdAnteproyecto());
-                    if(archivoAtividad != null){
-                        actividadValida.setArchivo(Files.readAllBytes
-                            (archivoAtividad.toPath()));
-                        actividadValida.setExtensionArchivo(extensionArchivo);
-                        actividadValida.setNombreArchivo(nombreArchivo);
-                    }else{
-                        actividadValida.setIdActividad(actividadEdicion.getIdActividad());
-                        actividadValida.setExtensionArchivo(actividadEdicion.
-                                getExtensionArchivo());
-                        actividadValida.setNombreArchivo(actividadEdicion.
-                                getNombreArchivo());
-                    }
-                    actividadValida.setIdActividad(actividadEdicion.getIdActividad());
-                    modificarActividad(actividadValida);               
-                }else{
-                    if(archivoAtividad != null){
-                        actividadValida.setArchivo(Files.readAllBytes
-                                (archivoAtividad.toPath()));
-                        actividadValida.setExtensionArchivo(extensionArchivo);
-                        actividadValida.setNombreArchivo(nombreArchivo);
-                    }
-
-                    actividadValida.setIdEstudiante(estudiante.getIdEstudiante());
-                    actividadValida.setIdAnteproyecto(atpAsignado.getIdAnteproyecto());
-                    registrarActividad(actividadValida);
-
-                    
-                }
-            }catch(IOException ex){
-                Utilidades.mostrarDialogoSimple("Error con el archivo","Hubo un error al "
-                        + "guardar el archivo seleccionado, por favor inténtelo de nuevo",
-                        Alert.AlertType.ERROR);
-            }         
+            if(esEdicion){
+                modificarActividad(actividadValida);
+            }else{
+                registrarActividad(actividadValida);
+            }
+        
         }else{
             Utilidades.mostrarDialogoSimple("Campos Vacíos",
                 "Por favor ingrese información o valores en todas las casillas",
@@ -357,24 +288,8 @@ public class FXMLRegistrarActividadController implements Initializable {
         LocalDate fechaF = LocalDate.parse(fechaHoraFin, DateTimeFormatter.ofPattern
         ("dd/MM/yyyy")); 
         dpFechaFin.setValue(fechaF);
-        
-        if(actividadEdicion.getNombreArchivo() != null){
-            lbRutaArchivo.setText(actividadEdicion.getNombreArchivo()+"."+actividadEdicion.
-                getExtensionArchivo());
-        }
-
-       
     }
     
-    private int obtenerPosicionComboAvance(int idAvance){
-        for (int i = 0; i < avances.size(); i++) {
-            if(avances.get(i).getIdAvance() == idAvance)
-                return i;
-        }
-        return 0;
-    }
-    
-
     private void configurarDatePickerInicio(){
         dpFechaInicio.setOnAction(event -> {
             LocalDate dateSeleccionada = dpFechaInicio.getValue();
