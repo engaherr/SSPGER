@@ -25,8 +25,7 @@ public class LgacDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try {
-                String consulta = "select idLgac,nombre,numero "
-                        + "from lgac where idCuerpoAcademico = ?";
+                String consulta = "select idLgac,nombre from lgac where idCuerpoAcademico = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 prepararSentencia.setInt(1, idCuerpoAcademico);
                 ResultSet resultado = prepararSentencia.executeQuery();
@@ -35,7 +34,6 @@ public class LgacDAO {
                     lgac.setIdCuerpoAcademico(idCuerpoAcademico);
                     lgac.setIdLgac(resultado.getInt("idLgac"));
                     lgac.setNombre(resultado.getString("nombre"));
-                    lgac.setNumero(resultado.getInt("numero"));
                     lgacs.add(lgac);
                 }
                 conexionBD.close();
@@ -96,7 +94,6 @@ public class LgacDAO {
                     lgac.setIdLgac(resultado.getInt("idLgac"));
                     lgac.setNombre(resultado.getString("nombre"));
                     lgac.setDescripcion(resultado.getString("descripcion"));
-                    lgac.setNumero(resultado.getInt("numero"));
                     lgac.setIdCuerpoAcademico(resultado.
                             getInt("idCuerpoAcademico"));
                     lgac.setNombreCuerpoAcademico(resultado.
@@ -210,7 +207,7 @@ public class LgacDAO {
        Connection conexionBD = ConexionBD.abrirConexionBD();
        if(conexionBD != null){
            try{
-               String sentencia = "update lgac set idCuerpoAcademico = null, numero = null "
+               String sentencia = "update lgac set idCuerpoAcademico = null "
                        + "where idCuerpoAcademico = ?";
                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                prepararSentencia.setInt(1, idCuerpoAcademico);

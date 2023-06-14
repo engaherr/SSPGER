@@ -211,7 +211,7 @@ public class ActividadDAO {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try{
-                 String consulta = "SELECT idActividad, fechaCreacion, comentarios,"
+                 String consulta = "SELECT idActividad, fechaCreacion, comentarios, evaluacion, "
                          + "archivo,nombreArchivo\n" +
                         "FROM entrega\n" +
                         "WHERE idActividad = ?;";

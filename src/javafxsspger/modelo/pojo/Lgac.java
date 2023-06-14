@@ -12,16 +12,13 @@ public class Lgac {
     private String descripcion;
     private int idCuerpoAcademico;
     private String nombreCuerpoAcademico;
-    private int numero;
 
-    public Lgac(int idLgac, String nombre,String descripcion, int idCuerpoAcademico,
-            String nombreCuerpoAcademico, int numero) {
+    public Lgac(int idLgac, String nombre, String descripcion, int idCuerpoAcademico, String nombreCuerpoAcademico) {
         this.idLgac = idLgac;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.idCuerpoAcademico = idCuerpoAcademico;
         this.nombreCuerpoAcademico = nombreCuerpoAcademico;
-        this.numero = numero;
     }
 
     public Lgac() {
@@ -67,18 +64,9 @@ public class Lgac {
     public void setNombreCuerpoAcademico(String nombreCuerpoAcademico) {
         this.nombreCuerpoAcademico = nombreCuerpoAcademico;
     }
-    
-    
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
 
     @Override
     public String toString() {
-        return numero + ". " + nombre;
+        return nombre;
     }
 }
